@@ -1,0 +1,46 @@
+{
+  "name": "cotizador-local-jp",
+  "version": "2.0.0",
+  "description": "Cotizador Medio Angular - Backend API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
+    "archiver": "^6.0.2",
+    "archiver-zip-encrypted": "^2.0.0",
+    "better-sqlite3": "^9.6.0",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.6.0",
+    "dayjs": "^1.11.18",
+    "dotenv": "^16.6.1",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^7.2.0",
+    "iconv-lite": "^0.7.0",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "node-cron": "^3.0.3",
+    "pdfkit": "^0.14.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [
+    "cotizador",
+    "eventos",
+    "medioangular",
+    "api",
+    "render"
+  ],
+  "author": "Medio Angular",
+  "license": "ISC"
+}

@@ -1,0 +1,15 @@
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Entorno
+.env
+
+# Datos generados en runtime
+/data/*
+!/data/catalogo_normalizado_2025.csv
+
+# Mac / Sistema
+.DS_Store
+Thumbs.db

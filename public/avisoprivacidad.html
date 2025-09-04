@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aviso de Privacidad – Medio Angular</title>
+<style>
+  :root{
+    --bg:#0d0d0d; --bg-2:#151515; --card:#1a1a1a; --edge:#2b2b2b;
+    --ink:#f2f2f2; --muted:rgba(255,255,255,.78);
+    --brand:#f58442; --brand-700:#d56e2f;
+  }
+  html,body{
+    margin:0;padding:0;background:
+      radial-gradient(1200px 600px at 50% -240px, rgba(255,255,255,.035), transparent 70%),
+      linear-gradient(var(--bg-2), var(--bg));
+    color:var(--ink); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, Helvetica, sans-serif;
+  }
+  .wrap{max-width:900px;margin:40px auto 60px;padding:0 20px;}
+  .card{
+    background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:24px;
+    box-shadow: 0 1px 0 #000 inset, 0 0 0 1px rgba(255,255,255,.04);
+  }
+  h1{color:var(--brand);margin:0 0 10px}
+  h2{color:var(--brand);margin:28px 0 10px;font-size:20px}
+  p,li{line-height:1.65;color:var(--muted)}
+  ul{margin:8px 0 0 18px}
+
+  /* Enlaces SIEMPRE naranja (incluye visitado) */
+  a, a:visited{color:var(--brand);text-decoration:none}
+  a:hover{color:var(--brand-700);text-decoration:underline}
+
+  .actions{margin-top:22px}
+  .btn{
+    display:inline-block;background:var(--brand);color:#0b0b0b;
+    padding:11px 14px;border-radius:10px;text-decoration:none;font-weight:800;border:0;cursor:pointer
+  }
+  .btn:hover{background:var(--brand-700)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Aviso de Privacidad</h1>
+
+      <p><strong>Medio Angular Comunicaciones SA de CV</strong>, con domicilio en Cda. De San Jerónimo No. 17, Col. San Jerónimo Lídice, C.P. 10200, Delegación Magdalena Contreras, México, D.F., es responsable del tratamiento de los datos personales que nos proporciones a través de nuestro cotizador en línea.</p>
+
+      <h2>Datos que recabamos</h2>
+      <ul>
+        <li>Nombre completo</li>
+        <li>Nombre de la empresa</li>
+        <li>Teléfono</li>
+        <li>Correo electrónico</li>
+        <li>Información sobre el evento:
+          <ul>
+            <li>Tipo de evento</li>
+            <li>Fecha</li>
+            <li>Ubicación</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>Finalidad del Tratamiento</h2>
+      <ul>
+        <li>Enviarte la cotización que solicitaste.</li>
+        <li>Contactarte para afinar los detalles de tu cotización y ofrecerte una propuesta optimizada.</li>
+        <li>Generar estadísticas y análisis internos sobre el tipo de clientes y proyectos que nos cotizan.</li>
+        <li>Enviarte información, promociones y novedades sobre nuestros servicios de producción de eventos.</li>
+      </ul>
+
+      <h2>Derechos ARCO</h2>
+      <p>Tienes derecho a acceder, rectificar, cancelar u oponerte al uso de tus datos personales (Derechos ARCO). Para ejercer estos derechos, por favor envía una solicitud a nuestro correo de contacto <a href="mailto:contacto@medioangular.com">contacto@medioangular.com</a>.</p>
+
+      <h2>Aceptación del Aviso de Privacidad</h2>
+      <p>Al enviar tus datos, aceptas los términos de este aviso de privacidad.</p>
+
+      <div class="actions">
+        <button id="btnVolver" class="btn">← Volver</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/aviso.js" defer></script>
+</body>
+</html>

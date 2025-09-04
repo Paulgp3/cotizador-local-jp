@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizador de Servicios · Medio Angular (Corporativo)</title>
+  <meta name="robots" content="noindex,nofollow">
+
+  <link rel="icon" href="data:," />
+  <style>
+    :root{
+      --bg:#111315; --panel:#191c1f; --ring:#2a2f33;
+      --text:#f2f3f4; --brand:#ff7a2f;
+      --input:#0f1113; --danger:#ff4d4f;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:1280px;margin:0 auto;padding:24px}
+    h1,h2{color:var(--brand);margin:0} h1{font-size:36px;margin-bottom:6px}
+    .lead{color:var(--text);margin:0 0 22px}
+    .hint{color:var(--text);opacity:.95;margin:6px 2px 14px}
+    .accent{color:var(--brand)}
+
+    .card{background:var(--panel);border:1px solid var(--ring);border-radius:14px}
+    .grid{display:grid;gap:20px}
+    .grid.catalog{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:1100px){.grid.catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:720px){.grid.catalog{grid-template-columns:1fr}}
+
+    .product{display:flex;flex-direction:column;padding:14px;min-height:470px}
+    .imgBox{background:#0d0f11;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--ring)}
+    .imgBox img{width:100%;height:240px;object-fit:cover;display:block}
+    .imgBox .ph{width:100%;height:240px;background:linear-gradient(135deg,#0f1113,#13161a)}
+
+    .title{margin:14px 4px 6px;font-weight:800;font-size:20px;line-height:1.25;color:var(--text)}
+    .desc{margin:0 4px 12px;color:var(--text);opacity:.92}
+    .grow{flex:1 1 auto}
+
+    .controls{margin-top:auto;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+    .line{display:flex;gap:10px;align-items:flex-end}
+    .field{display:flex;flex-direction:column}
+    .field label{font-size:12px;color:#d8dee3;margin:0 0 4px 2px}
+    .input,.select{width:110px;padding:12px 12px;border-radius:12px;border:1px solid var(--ring);background:var(--input);color:var(--text);font-size:16px}
+    .btn{cursor:pointer;border:0;border-radius:12px;background:var(--brand);color:#000;font-weight:800;padding:12px 16px}
+    .btn[disabled]{opacity:.5;cursor:not-allowed}
+    .btn.danger{background:var(--danger);color:#000}
+
+    .form{padding:18px}
+    .form .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .form .grid .item{display:flex;flex-direction:column;gap:8px}
+    label{color:var(--text);font-weight:600}
+    .text{padding:14px 16px;border-radius:12px;border:1px solid var(--ring);background:var(--input);color:var(--text);font-size:16px}
+    .selectFull{padding:14px 16px;border-radius:12px;border:1px solid var(--ring);background:var(--input);color:var(--text);font-size:16px}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:18px;border-bottom:1px solid var(--ring);text-align:left}
+    th{font-size:22px;color:var(--brand)}
+
+    .toolbar{display:flex;gap:12px;margin:8px 0 18px}
+    .search{flex:1;display:flex;gap:8px}
+    .search input{flex:1}
+
+    .actionsEnd{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:16px}
+    .privacy{display:flex;gap:8px;align-items:flex-start;color:var(--text)}
+    .privacy a{color:var(--brand);text-decoration:none}
+    .privacy input{transform:translateY(3px)}
+
+    /* Fecha (picker nativo con botón dentro) */
+    .date-wrap { position: relative; }
+    .date-wrap input { padding-right: 2.4rem; }
+    .date-btn {
+      position: absolute; right: .6rem; top: 50%; transform: translateY(-50%);
+      border: 0; background: transparent; cursor: pointer;
+      font-size: 18px; line-height: 1; opacity: .9;
+    }
+    .date-btn:focus-visible { outline: 2px solid rgba(255,255,255,.35); outline-offset: 2px; }
+
+    /* Oculta el indicador nativo del input date */
+    input[type="date"]::-webkit-calendar-picker-indicator { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+    input[type="date"] { appearance: none; -webkit-appearance: none; background-image: none !important; }
+
+    /* Layout del bloque fecha */
+    .date-row{ display:flex; align-items:center; column-gap:.5rem; }
+    .date-wrap{ flex:1 1 auto; min-width:0; }
+    .date-open{ order:-1; margin-right:.5rem; align-self:center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header style="margin-bottom:12px">
+      <h1>Cotizador de Servicios</h1>
+      <p class="lead">Selecciona productos, completa tus datos y recibe la cotización por correo.</p>
+    </header>
+
+    <!-- 1) Selección -->
+    <section class="card" style="padding:18px">
+      <h2>1) Selecciona equipos y servicios</h2>
+      <p class="hint">Usa el buscador o filtra por categoría. Luego agrega productos y pasa a <span class="accent">Tu selección</span>.</p>
+
+      <div class="toolbar">
+        <div class="search">
+          <input id="search" type="search" class="text" placeholder="Buscar por nombre, SKU o descripción..." />
+        </div>
+        <select id="filterCategory" class="selectFull" style="width:220px">
+          <option value="">Todas</option>
+        </select>
+      </div>
+      <div id="catalogGrid" class="grid catalog"></div>
+    </section>
+
+    <!-- 2) Datos del cliente -->
+    <section class="card" style="margin-top:22px">
+      <form id="clientForm" class="form" novalidate>
+        <h2>2) Datos del cliente</h2>
+        <p class="hint">Completa tus datos para enviarte la cotización.</p>
+
+        <div class="grid">
+          <div class="item">
+            <label for="name">Nombre completo *</label>
+            <input id="name" class="text" placeholder="Nombre completo" required />
+          </div>
+          <div class="item">
+            <label for="company">Empresa <span style="opacity:.75">(opcional)</span></label>
+            <input id="company" class="text" placeholder="Razón social o empresa (opcional)" />
+          </div>
+          <div class="item">
+            <label for="email">Correo electrónico *</label>
+            <input id="email" type="email" class="text" placeholder="tucorreo@dominio.com" required />
+          </div>
+          <div class="item">
+            <label for="email2">Confirma tu correo *</label>
+            <input id="email2" type="email" class="text" placeholder="Repite tu correo" required />
+          </div>
+          <div class="item">
+            <label for="phone">Teléfono <span style="opacity:.75">(opcional)</span></label>
+            <input id="phone" class="text" placeholder="10 dígitos (opcional)" />
+          </div>
+          <div class="item">
+            <label for="eventType">Tipo de evento *</label>
+            <select id="eventType" name="event_type" class="selectFull" required>
+  <option value="" disabled selected>Selecciona...</option>
+
+  <!-- Corporativo -->
+  <option>Kick-off / Reunión de planificación</option>
+  <option>Capacitación / Taller de desarrollo</option>
+  <option>Eventos de networking & Team building</option>
+  <option>Eventos con clientes</option>
+  <option>Lanzamientos de producto</option>
+  <option>Seminarios / conferencias especializadas</option>
+  <option>Convención anual</option>
+  <option>Eventos de responsabilidad social</option>
+  <option>Fiesta de fin de año</option>
+  <option>Otros</option>
+
+  <!-- Social (sin duplicar "Fiesta de fin de año") -->
+  <option>Boda</option>
+  <option>Graduación</option>
+  <option>Cumpleaños</option>
+  <option>Aniversario de boda</option>
+  <option>15 años</option>
+  <option>Baby Shower</option>
+  <option>Fiestas patrias</option>
+  <option>Halloween</option>
+</select>
+
+          </div>
+          <div class="item">
+            <label for="eventDate">Fecha del evento *</label>
+            <div class="date-row">
+              <button id="btnEventCalendar" type="button" class="date-open" aria-label="Abrir calendario">📅</button>
+              <div class="date-wrap">
+                <input id="eventDate" type="text" inputmode="numeric" class="text" placeholder="dd / mm / aaaa" required />
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <label for="eventLocation">Ubicación del evento *</label>
+            <input id="eventLocation" class="text" placeholder="Dirección o recinto" required />
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3) Tu selección -->
+    <section class="card" style="margin-top:22px;padding:18px">
+      <h2><span class="accent">3) Tu selección</span></h2>
+      <p class="hint">Edita cantidades y días de renta y oprime <span class="accent">Enviar cotización</span>.</p>
+
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:140px">SKU</th>
+              <th>Descripción</th>
+              <th style="width:140px">Cant.</th>
+              <th style="width:140px">Días</th>
+              <th style="width:140px"></th>
+            </tr>
+          </thead>
+          <tbody id="cartRows"></tbody>
+        </table>
+      </div>
+
+      <div class="actionsEnd">
+        <label class="privacy">
+          <input id="acceptPrivacy" type="checkbox" />
+          <span>He leído y acepto el
+            <a href="/avisoprivacidad.html" data-open-privacy>Aviso de Privacidad</a>.
+          </span>
+        </label>
+        <button id="sendQuote" type="button" class="btn" disabled>Enviar cotización</button>
+      </div>
+    </section>
+
+    <footer style="text-align:center;color:var(--text);opacity:.85;margin:28px 0 8px">© Medio Angular</footer>
+  </div>
+
+  <!-- Tu JS actual -->
+  <script src="/public/app.js" defer></script>
+
+</body>
+</html>
+
