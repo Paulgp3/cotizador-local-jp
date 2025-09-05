@@ -1,5 +1,5 @@
-name,sku,unit,price,currency,category,discountable,description,active,section,imageUrl
-CONSOLA DE AUDIO VENUE S3L-X 16X8 CH,A-001,dia,4000,MXN,audio,True,Consola digital de 16 canales de entrada x 8 de salida,True,todos,https://medioangular.com/cotizador/img/consolas3l.jpeg
+Ôªøname,sku,unit,price,currency,category,discountable,description,active,section,imageUrl
+CONSOLA DE AUDIO VENUE S3L X 16X8 CH,A-001,dia,4000,MXN,audio,True,Consola digital de 16 canales de entrada x 8 de salida,True,todos,https://medioangular.com/cotizador/img/consolas3l.jpeg
 STAGE RACK VENUE 16 X 8 CH,A-002,dia,2500,MXN,audio,True,Snake digital de 16 canales de entrada x 8 de salida,True,todos,https://medioangular.com/cotizador/img/stage16.jpeg
 SNAKE RAPCO 24 CH,A-003,dia,1000,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/snakeanalogo.jpeg
 CONSOLA DE AUDIO YAMAHA DM3 DANTE,A-004,dia,2500,MXN,audio,True,,True,todos,https://medioangular.com/cotizador/img/consoladm3.jpeg
@@ -76,19 +76,19 @@ CONVERTIDOR SDI A HDMI BLACK MAGIC,V-035,dia,350,MXN,video,True,,True,corporativ
 DISTRIBUIDOR DE HDMI 4 PUERTOS,V-036,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/distrohdmi.jpeg
 DISTRIBUIDOR SDI 4 PUERTOS,V-037,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/distrosdi.jpeg
 EXTEDER HDMI,V-038,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/EXTENDERHDMI.jpeg
-CÁMARA SONY PXWZ150 CCTV,V-039,dia,4000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/CAMARATV.jpeg
+C√ÅMARA SONY PXWZ150 CCTV,V-039,dia,4000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/CAMARATV.jpeg
 "VIDEO ASSIST BLACK MAGIC 7"" 3G",V-040,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
 TARJETA CAPTURA WEB PRESENTER ,V-041,dia,800,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
 CABLES DE RED DE 80 MTS,V-042,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CABLES DE RED DE 60 MTS,V-043,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
-CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminacion,True,Consola de Iluminación,True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
-CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,2500,MXN,iluminacion,True,Consola de Iluminación,True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
+CONSOLA ILUMINACI√ìN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminacion,True,Consola de Iluminaci√≥n,True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
+CONSOLA ILUMINACI√ìN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,2500,MXN,iluminacion,True,Consola de Iluminaci√≥n,True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
 LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
 SPLITTER,I-004,dia,500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/SPLITTER.jpeg
-LÁMPARA BEAM ROBE POINTE,I-005,dia,1200,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
-LÁMPARA CHAUVET SPOT MAVERICK MK2,I-006,dia,1500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/mk2spot.jpeg
-LÁMPARA ROBE LED WASH 300,I-007,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robewash.jpeg
-LÁMPARA CHAUVET ROUGE WASH R2,I-008,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/r2wash.jpeg
+L√ÅMPARA BEAM ROBE POINTE,I-005,dia,1200,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
+L√ÅMPARA CHAUVET SPOT MAVERICK MK2,I-006,dia,1500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/mk2spot.jpeg
+L√ÅMPARA ROBE LED WASH 300,I-007,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robewash.jpeg
+L√ÅMPARA CHAUVET ROUGE WASH R2,I-008,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/r2wash.jpeg
 CUEPIX WW4,I-009,dia,800,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/cuepixww4.jpeg
 LEEKO LED LIGHT SKY 8800-C42,I-010,dia,600,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekoled.jpeg
 LEEKO ETC 575,I-011,dia,400,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekojr.jpeg
@@ -97,7 +97,7 @@ DIMMER,I-013,dia,600,MXN,iluminacion,True,,True,todos,https://medioangular.com/c
 SEGUIDOR,I-014,dia,2500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/seguidor.jpeg
 PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,400,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/parled.jpeg
 BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,450,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
-MÁQUINA DE HUMO ANTARI F1,I-017,dia,900,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
+M√ÅQUINA DE HUMO ANTARI F1,I-017,dia,900,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
 ESTRUCTURA DE MK 3 METROS,R-001,dia,650,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
 ESTRUCTURA DE MK 1.5 METROS,R-002,dia,450,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
 CUBO 4 VIAS,R-003,dia,800,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/cubo.jpeg
@@ -109,23 +109,23 @@ CENTRO DE CARGA,E-001,dia,1500,MXN,energia,True,,True,corporativo,https://medioa
 CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energia,True,,True,corporativo,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energia,True,,True,corporativo,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energia,True,,True,corporativo,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
-COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
-COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
-COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
+COMUNICACI√ìN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
+COMUNICACI√ìN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
+COMUNICACI√ìN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
 RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/radioep450.jpeg
 ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/HANDMIC.jpeg
 INGENIERO DE AUDIO,P-001,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 OPERADOR DE AUDIO,P-002,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
-TÉCNICO DE AUDIO,P-003,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
+T√âCNICO DE AUDIO,P-003,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 INGENIERO DE LUCES,P-004,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
-OPERADOR DE ILUMINACIÓN,P-005,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
-TÉCNICO DE ILUMINACIÓN,P-006,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
+OPERADOR DE ILUMINACI√ìN,P-005,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
+T√âCNICO DE ILUMINACI√ìN,P-006,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 OPERADOR DE SWITCHER,P-007,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 OPERADOR DE MAPPING,P-008,dia,3000,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 OPERADOR DE STREAMING,P-009,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 OPERADOR DE VIDEO,P-010,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
-TÉCNICO DE VIDEO,P-011,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
-CAMARÓGRAFO,P-012,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
+T√âCNICO DE VIDEO,P-011,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
+CAMAR√ìGRAFO,P-012,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/
 VIATICOS,O-001,dia,550,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/viaticos.jpeg
 FLETE 2.5 CDMX,O-002,dia,4500,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5 CDMX,O-003,dia,6500,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg

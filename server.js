@@ -200,45 +200,51 @@ const toBool = (v, def = true) => {
   if (!s) return def;
   return !["0","false","no","inactive","inactivo","f","off"].includes(s);
 };
+// --- Normalizador de acentos (Ç/ç -> Á/á) + NFC ---
+function fixAccents(s) {
+  if (!s) return s;
+  return String(s).normalize('NFC')
+    .replace(/([A-Z])ç(?=[A-Z])/g, '$1Á') // LçMPARA -> LÁMPARA
+    .replace(/Ç/g, 'Á')
+    .replace(/ç/g, 'á');
+}
 
-function normalizeRow(row){
-  const pick = (keys)=>{
-    const e = Object.entries(row);
-    const f = e.find(([k]) => keys.includes(String(k).toLowerCase()));
-    return f ? f[1] : undefined;
-  };
+function normalizeRow(row) {
+  // Lee campos con distintos alias del CSV
+  const sku       = row.sku ?? row.SKU ?? '';
+  const name      = row.name ?? row.Nombre ?? row.descripcion ?? row.description ?? '';
+  const category  = row.category ?? row.Categoria ?? '';
+  let   section   = row.section ?? row.seccion ?? row.section_name ?? row.sectionName ?? '';
+  const desc      = row.desc ?? row.Descripcion ?? row.description ?? '';
 
-  const name  = pick(["name","nombre","producto","description","descripcion","descripción"]) || "";
-  const sku   = pick(["sku","clave","id","code"]) || "";
-  const category = pick(["category","categoría","categoria","familia","linea","línea"]) || "";
-  const section  = pick(["section","seccion","sección","variant","scope","target","modo","audiencia"]) || "";
+  // Precios/depósito
+  const dailyPrice   = Number(row.dailyPrice ?? row.price ?? row.Precio ?? 0) || 0;
+  const depositRate_ = Number(row.depositRate ?? row.Deposito ?? row.deposit ?? NaN);
 
-  const price = pick(["price","precio","precio_renta","precio renta","renta","dailyprice","precio por día","precio/día","precio dia","precio_dia"]);
-  const image = pick(["imageurl","image_url","imagen","image","url","foto"]);
-  const deposit = pick(["depositrate","deposit_rate","deposito","depósito","garantia","garantía","deposito %","garantia %"]);
-  const active = pick(["active","activo"]);
-  const discountable = pick(["discountable","descontable","aplica descuento"]);
-  const desc = pick(["description","descripcion","descripción","desc"]) || "";
+  // Imagen
+  const imageUrl = row.imageUrl ?? row.image_url ?? row.image ?? row.img ?? row.imagen ?? row.url ?? '';
 
-  const dailyPrice  = Number(String(price||"").replace(/[^\d.,-]/g,"").replace(",", ".")) || 0;
-  const depositRate = (deposit!=null && deposit!=="") ? Number(String(deposit).toString().replace(",", ".")) : DEFAULT_DEPOSIT_RATE;
-
-  const imageUrl = String(image||"").trim();
+  // Si no vino 'section', intenta derivarla desde la categoría
+  if (!section) {
+    const catLower = String(category || '').toLowerCase();
+    if (/(corporativo|social|todos|ambos|all)/.test(catLower)) section = catLower;
+  }
 
   return {
-    sku: String(sku||"").trim(),
-    name: String(name||"").trim(),
-    category: String(category||"").trim(),
-    section: String(section||"").trim(), 
+    sku: String(sku || '').trim(),
+    name: fixAccents(String(name || '').trim()),
+    category: fixAccents(String(category || '').trim()),
+    section: fixAccents(String(section || '').trim()),
     dailyPrice,
-    depositRate: isNaN(depositRate) ? DEFAULT_DEPOSIT_RATE : depositRate,
+    depositRate: Number.isNaN(depositRate_) ? DEFAULT_DEPOSIT_RATE : depositRate_,
     imageUrl,
     image_url: imageUrl,
-    description: String(desc).trim(),
-    active: toBool(active,true),
-    discountable: toBool(discountable,true),
+    description: fixAccents(String(desc || '').trim()),
+    active: toBool(row.active ?? row.Activo ?? true, true),
+    discountable: toBool(row.discountable ?? row.Descuento ?? true, true),
   };
 }
+
 
 function loadCatalog(){
   const p = CANDIDATE_FILES.find(f => fs.existsSync(f));
