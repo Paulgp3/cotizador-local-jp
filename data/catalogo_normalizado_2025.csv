@@ -118,8 +118,8 @@ INGENIERO DE AUDIO,P-001,dia,3500,MXN,personal,False,,True,todos,https://medioan
 OPERADOR DE AUDIO,P-002,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
 TÉCNICO DE AUDIO,P-003,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
 INGENIERO DE LUCES,P-004,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
-OPERADOR DE ILUMINACIÁêÆ,P-005,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
-TÉCNICO DE ILUMINACIÁêÆ,P-006,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
+OPERADOR DE ILUMINACIÓN,P-005,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
+TÉCNICO DE ILUMINACIÓN,P-006,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
 OPERADOR DE SWITCHER,P-007,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
 OPERADOR DE MAPPING,P-008,dia,3000,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
 OPERADOR DE STREAMING,P-009,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/,,,,,
@@ -137,3 +137,4 @@ FLETE 2.5   QUERÉTARO,O-006,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-007,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg,,,,,
 
 HOSPEDAJE ,O-004,dia,1200,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg,,,,,
+
