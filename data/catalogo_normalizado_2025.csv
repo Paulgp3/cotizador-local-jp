@@ -20,7 +20,7 @@ T CLUSTER BRACKET,A-018,dia,200,MXN,audio,True,,True,corporativo,https://medioan
 T BRACKET,A-019,dia,100,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/tbracket.jpeg,,,,,
 STAND ADAPTER,A-020,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/standadapter.jpeg,,,,,
 TV SPIGOT,A-021,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/tvspigot.jpeg,,,,,
-"SISTEMA DE AUDIO PARA DJ 200 PAX, 2 X Q7, 6 X QSUB, 3 X D12",A-022,dia,9800,MXN,paquete audio,True,,True,social,https://medioangular.com/cotizador/img/,,,,,
+"SISTEMA DE AUDIO PARA DJ 200 PAX,A-022,dia,9800,MXN,paquete audio,True,2 X Q7, 4 X QSUB, 2 X D12,True,social,https://medioangular.com/cotizador/img/,,,,,
 "SISTEMA DE AUDIO PARA DJ 300 PAX, MAIN 6 X T10, FRONT/OUT 2 X T10, 4 X QSUB, 3 X D12",A-023,dia,16200,MXN,paquete audio,True,,True,social,https://medioangular.com/cotizador/img/,,,,,
 "SISTEMA DE AUDIO PARA DJ  600 PAX, MAIN 12 X T10, 12 X QSUB, FRONT 2 X Q7, OUT 4 X CI80, 7 X D12",A-024,dia,32200,MXN,paquete audio,True,,True,social,https://medioangular.com/cotizador/img/,,,,,
 SISTEMA DE AUDIO HK NANO 300,A-025,dia,1500,MXN,paquete audio,True,,True,corporativo,https://medioangular.com/cotizador/img/nano300.jpeg,,,,,
@@ -137,4 +137,5 @@ FLETE 2.5   QUERÉTARO,O-006,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-007,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg,,,,,
 
 HOSPEDAJE ,O-004,dia,1200,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg,,,,,
+
 
