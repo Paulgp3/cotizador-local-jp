@@ -1,6 +1,11 @@
 /* public/app.js — Front-only (VARIANTS + JSON POST schema fixed) */
 (() => {
-  const API = { catalog: '/catalog', quote: '/quotes' };
+  const API_BASE = 'https://cotizador-local-jp.onrender.com';
+  const API = {
+  catalog: `${API_BASE}/catalog`,
+  quote:   `${API_BASE}/quotes`
+};
+
   const $ = (sel) => document.querySelector(sel);
 
   // ---------- Variante por URL/archivo ----------
