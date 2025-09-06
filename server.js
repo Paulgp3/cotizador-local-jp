@@ -200,7 +200,29 @@ const toBool = (v, def = true) => {
   if (!s) return def;
   return !["0","false","no","inactive","inactivo","f","off"].includes(s);
 };
+function readCsvSmart(path) {
+  const buf = fs.readFileSync(path);
 
+  // Intento 1: UTF-8
+  let txt = buf.toString('utf8');
+
+  // Heurístico: ¿se ve roto? (caracteres típicos de mala decodificación)
+  const looksBroken = /�|Ã.|Â.|â€“|â€”|Î|ç|Ç/.test(txt);
+  if (looksBroken) {
+    // Intento 2: tratar como Windows-1252
+    txt = iconv.decode(buf, 'win1252');
+  }
+
+  // Normaliza tildes a NFC
+  txt = txt.normalize('NFC');
+
+  // Ahora parsea
+  return parse(txt, {
+    columns: true,
+    skip_empty_lines: true,
+    bom: true
+  });
+}
 function normalizeRow(row){
   const pick = (keys)=>{
     const e = Object.entries(row);
