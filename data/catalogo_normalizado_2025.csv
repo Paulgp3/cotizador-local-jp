@@ -129,9 +129,9 @@ CENTRO DE CARGA,E-001,dia,1500,MXN,energia,True,,True,todos,https://medioangular
 CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
-COMUNICACI琮 BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
-COMUNICACI琮 BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
-COMUNICACI琮 BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
+COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
+COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
+COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
 RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/radioep450.jpeg
 ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/HANDMIC.jpeg
 INGENIERO DE AUDIO,P-001,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
@@ -157,3 +157,4 @@ FLETE 2.5   QUERETARO,O-006,dia,18000,MXN,otros,True,,True,todos,https://medioan
 FLETE 3.5  QUERETARO,O-007,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 
 HOSPEDAJE ,O-004,dia,1200,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
