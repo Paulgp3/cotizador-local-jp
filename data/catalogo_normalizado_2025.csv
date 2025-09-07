@@ -10,10 +10,10 @@ AMPLIFICADOR D&B D6 ,A-008,dia,900,MXN,audio,True,,True,corporativo,https://medi
 CONTROLADOR DE RED D&B R60,A-009,dia,500,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/r60.jpeg
 ALTAVOZ D&B Q1,A-010,dia,1000,MXN,audio,True,"Altavoz de arreglo en line pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x15° y un SPL de 139 dB.
 ",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
-ALTAVOZ D&B Q7,A-011,dia,1000,MXN,audio,True,Altavoz de arreglo en linea pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x40° y un SPL de 138 dB.,True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
+ALTAVOZ D&B Q7,A-011,dia,1000,MXN,audio,True,Altavoz de arreglo en lineal pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x40° y un SPL de 138 dB.,True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
 SUBWOOFER D&B QSUB,A-012,dia,800,MXN,audio,True,Subwoofer pasivo de baja compresión y diseño bass reflex con un SPL 133 dB.,True,corporativo,https://medioangular.com/cotizador/img/qsub.jpeg
 ALTAVOZ D&B T10,A-013,dia,900,MXN,audio,True,Altavoz pasivo de 2 vías que puede funcionar como fuente de arreglo lineal o como fuente puntual. Cuenta con una dispersión de 90° x 35° y un SPL de 129 dB.,True,corporativo,https://medioangular.com/cotizador/img/t10.jpeg
-ALTAVOZ D&B CI80,A-014,dia,500,MXN,audio,True,Altavoz de fuente puntual pasivo de 2 vías. Cuenta con una dispersión cónica y simŽtrica de 85¡ y un SPL de 129 dB.,True,corporativo,https://medioangular.com/cotizador/img/ci80.jpeg
+ALTAVOZ D&B CI80,A-014,dia,500,MXN,audio,True,Altavoz de fuente puntual pasivo de 2 vías. Cuenta con una dispersión cónica y simétrica de 85¡ y un SPL de 129 dB.,True,corporativo,https://medioangular.com/cotizador/img/ci80.jpeg
 ALTAVOZ D&B M4,A-015,dia,1000,MXN,audio,True,Monitor de escenario de alto rendimiento pasivo de 2 vías con diseño coaxial. Cuenta con una dispersión de 50° x 70° y un SPL de 140 dB.,True,corporativo,https://medioangular.com/cotizador/img/m4.jpeg
 BUMPER Q1,A-016,dia,400,MXN,audio,True,Accesorio de colgado para la serie Q,True,corporativo,https://medioangular.com/cotizador/img/bumperq.jpeg
 BUMPER T10,A-017,dia,400,MXN,audio,True,Accesorio de colgado para la serie T,True,corporativo,https://medioangular.com/cotizador/img/bumpert10.jpeg
@@ -41,17 +41,17 @@ SISTEMA DE AUDIO DELAY PERIMETRAL,A-038,dia,3000,MXN,paquete audio,True,"Sistema
 SISTEMA DE AUDIO 2.1 HK NANO 300,A-039,dia,1500,MXN,paquete audio,True,"Incluye 2 altavoces de fuente puntual, 1 subwoofer y una consola de tres canales integrada en el subwoofer.",True,todos,https://medioangular.com/cotizador/img/nano300.jpeg
 SISTEMA AUDIO 2.1 HK PERFORMER,A-040,dia,2500,MXN,paquete audio,True,"Sistema de sonido activo ""triphonic"" (un subwoofer y dos satélites).",True,todos,https://medioangular.com/cotizador/img/performer.jpeg
 MICRÓFONO INALAMBRICO BEYERDINAMIC TG 1000 ,A-041,dia,1000,MXN,audio,True,Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor,True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
-MICRÓFONOS SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado especificamente para la microfonia de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
-MICRÓFONOS SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura,  ""Clip on"" de la serie Beta diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
-MICRÓFONOS SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, diseñado para capturar bajas frecuencias con gran detalle. Es ideal para bombos y otros instrumentos de baja frecuencia.",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
-MICRÓFONOS SHURE BETA 57 A,A-045,dia,250,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, utilizado para amplificadores de guitarra, caja de batería, percusión, metales y voces.",True,corporativo,https://medioangular.com/cotizador/img/beta57.jpeg
-MICRÓFONOS SHURE BETA 58 A,A-046,dia,250,MXN,audio,True,Micrófono ideal para vocalistas principales y coristas en escenarios en vivo.,True,corporativo,https://medioangular.com/cotizador/img/beta58.jpeg
-MICRÓFONOS SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensador de superficie  con patrón polar de semicardioide, diseñado especificamente para la microfonia de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
-MICRÓFONOS SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S es un Micrófono de mano dinámico, cardioide, diseñado para voces y uso general en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/e815.jpeg
-MICRÓFONOS SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma peque–o, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
-BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonoss de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
+MICRÓFONO SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado especificamente para la microfonia de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
+MICRÓFONO SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura,  ""Clip on"" de la serie Beta diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
+MICRÓFONO SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, diseñado para capturar bajas frecuencias con gran detalle. Es ideal para bombos y otros instrumentos de baja frecuencia.",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
+MICRÓFONO SHURE BETA 57 A,A-045,dia,250,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, utilizado para amplificadores de guitarra, caja de batería, percusión, metales y voces.",True,corporativo,https://medioangular.com/cotizador/img/beta57.jpeg
+MICRÓFONO SHURE BETA 58 A,A-046,dia,250,MXN,audio,True,Micrófono ideal para vocalistas principales y coristas en escenarios en vivo.,True,corporativo,https://medioangular.com/cotizador/img/beta58.jpeg
+MICRÓFONO SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensador de superficie  con patrón polar de semicardioide, diseñado especificamente para la microfonia de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
+MICRÓFONO SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S es un Micrófono de mano dinámico, cardioide, diseñado para voces y uso general en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/e815.jpeg
+MICRÓFONO SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma peque–o, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
+BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonos de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
 DIADEMA DPA d:fineª 4088 ,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentaci—n.",True,corporativo,https://medioangular.com/cotizador/img/diadema dpa.jpeg
-TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,audio,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/l’nea XLR y 2 salidas principales TRS de 1/4"".
+TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,audio,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/línea XLR y 2 salidas principales TRS de 1/4"".
 ",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
 CAJA DIRECTA,A-053,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/CAJADIRECTA.jpeg
 "PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, POR METRO CUADRADO",V-001,dia,1800,MXN,video,True,"Pantalla LED de alta resolución pitch 2.9mm , dise–ada para la industria del alquiler y producci—n de eventos",True,corporativo,https://medioangular.com/cotizador/img/PL2.9.jpeg
@@ -116,15 +116,15 @@ SEGUIDOR,I-014,dia,2000,MXN,iluminación,True,,True,todos,https://medioangular.c
 PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,350,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/parled.jpeg
 BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,400,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
 MÁQUINA DE HUMO ANTARI F1,I-017,dia,800,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #1,I-018,dia,11500,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas m—viles Beam, 4 cabezas m—viles Wash, m‡quina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #2,I-019,dia,12300,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas m—viles Spot, 4 cabezas m—viles Wash, m‡quina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL2.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #3,I-020,dia,22500,MXN,paquete iluminaci—n,True,"4 truss, 4 cabezas m—viles Spot, 4 cabezas m—viles Beam, 8 cabezas m—viles Wash, m‡quina de humo y consola.
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #1,I-018,dia,11500,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #2,I-019,dia,12300,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas móviles Spot, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL2.jpeg
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #3,I-020,dia,22500,MXN,paquete iluminaci—n,True,"4 truss, 4 cabezas móviles Spot, 4 cabezas móviles Beam, 8 cabezas móviles Wash, máquina de humo y consola.
 ",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL3.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #1,I-021,dia,12700,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas m—viles Beam, 4 cabezas m—viles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP1.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #2,I-022,dia,13500,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas m—viles Spot, 4 cabezas m—viles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP2.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #3,I-023,dia,22700,MXN,paquete iluminaci—n,True,"4 truss, 4 cabezas m—viles Spot, 4 cabezas m—viles Beam, 8 cabezas m—viles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP3.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #4,I-024,dia,21900,MXN,paquete iluminaci—n,True,"4 truss, 8 cabezas m—viles Beam, 8 cabezas m—viles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP4.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #5,I-024,dia,23500,MXN,paquete iluminaci—n,True,"4 truss, 8 cabezas m—viles Spot, 8 cabezas m—viles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP5.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #1,I-021,dia,12700,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP1.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #2,I-022,dia,13500,MXN,paquete iluminaci—n,True,"2 truss, 4 cabezas móviles Spot, 4 cabezas móviles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP2.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #3,I-023,dia,22700,MXN,paquete iluminaci—n,True,"4 truss, 4 cabezas móviles Spot, 4 cabezas móviles Beam, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP3.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #4,I-024,dia,21900,MXN,paquete iluminaci—n,True,"4 truss, 8 cabezas móviles Beam, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP4.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #5,I-024,dia,23500,MXN,paquete iluminaci—n,True,"4 truss, 8 cabezas móviles Spot, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP5.jpeg
 PAQUETE DE ILUMINACIÓN ARQUITECTîNICA,I-025,dia,3500,MXN,paquete iluminaci—n,True,10 PAR LED.,True,todos,https://medioangular.com/cotizador/img/10par.jpeg
 ESTRUCTURA DE MK 3 METROS,R-001,dia,650,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
 ESTRUCTURA DE MK 1.5 METROS,R-002,dia,450,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
@@ -167,5 +167,6 @@ FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
