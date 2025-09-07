@@ -22,7 +22,7 @@ Q BRACKET,A-019,dia,150,MXN,audio,True,Accesorio para colocar 1 x Q7 sobre poste
 T BRACKET,A-020,dia,100,MXN,audio,True,Accesorio para colocar 1 x T10 sobre poste/clamp,True,corporativo,https://medioangular.com/cotizador/img/tbracket.jpeg
 STAND ADAPTER,A-021,dia,50,MXN,audio,True,Accesorio para colocar brakets de cualquier serie  sobre poste,True,corporativo,https://medioangular.com/cotizador/img/standadapter.jpeg
 TV SPIGOT,A-022,dia,50,MXN,audio,True,Accesorio para conectar brakets de cualquier serie  a clamp,True,corporativo,https://medioangular.com/cotizador/img/tvspigot2.jpeg
-CLAMP D&B,A-023,dia,100,MXN,audio,True,Accesorio para conectar brakets de cualquier serie  a clamp,True,corporativo,https://medioangular.com/cotizador/img/clamp.jpeg
+CLAMP D&B,A-023,dia,100,MXN,audio,True,Accesorio para colgar brakets de cualquier serie  a tubo,True,corporativo,https://medioangular.com/cotizador/img/clamp.jpeg
 Q FLYING ADAPTER,A-024,dia,200,MXN,audio,True,Accesorio para colgar 3 x Q1,True,corporativo,https://medioangular.com/cotizador/img/flyingadapter.jpeg
 SISTEMA DE AUDIO PARA DJ 100 PAX,A-025,dia,5800,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 2 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ100PAX.jpeg
 SISTEMA DE AUDIO PARA DJ 200 PAX,A-026,dia,7600,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ200PAX.jpeg
@@ -167,6 +167,7 @@ FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
