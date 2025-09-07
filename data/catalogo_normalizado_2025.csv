@@ -134,7 +134,7 @@ HAMBURGUESA,R-005,dia,50,MXN,rigging,True,,True,corporativo,https://medioangular
 HAMBURGUESA DOBLE,R-006,dia,100,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/HAMBURGUESADOBLE.jpeg
 TUBO,R-007,dia,50,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/tubo.jpeg
 DECK ESCENARIO POR METRO,D-001,dia,500,MXN,escenografia,True,Deck de escenario de aluminio,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
-PIPE AND DRAPE POR METRO,D-001,dia,450,MXN,escenografia,True,Telones negros,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
+PIPE AND DRAPE POR METRO,D-001,dia,450,MXN,escenografia,True,Telones negros,True,corporativo,https://medioangular.com/cotizador/img/pipeanddrape.jpeg
 CENTRO DE CARGA,E-001,dia,1500,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/CENTRO DE CARGA.jpeg
 CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
@@ -167,4 +167,5 @@ FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
