@@ -1,46 +1,22 @@
 name,sku,unit,price,currency,category,discountable,description,active,section,imageUrl
-CONSOLA DE AUDIO VENUE S3L X 16X8 CH,A-001,dia,4000,MXN,audio,True,"S3L-X  es una solución de mezcla digital compacta y potente, ideal para aplicaciones en vivo de pequeña a mediana escala.
-Entradas analógicas: 16  XLR micrófono/Linea
-Salidas analógicas: 8 (XLR) / linea",True,todos,https://medioangular.com/cotizador/img/consolas3l.jpeg
-STAGE RACK VENUE 16 X 8 CH,A-002,dia,2500,MXN,audio,True,"Stage 16 es un snake digital  para expansión de la consola S3L-X
-Entradas analógicas: 16  XLR micrófono/Linea
-Salidas analógicas: 8 (XLR) / linea",True,todos,https://medioangular.com/cotizador/img/stage16.jpeg
-SNAKE RAPCO 24 CH,A-003,dia,1000,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/snakeanalogo.jpeg
-CONSOLA DE AUDIO YAMAHA DM3 DANTE,A-004,dia,2500,MXN,audio,True,"Entradas analógicas: 16 (12x XLR + 4x XLR/TRS combo).
-Salidas analógicas: 8 (XLR).
-Dante: 2 puertos (EtherCon: primario/secundario) con capacidad de 16 entradas y 16 salidas.
-USB TO HOST: 1 (USB tipo B, USB 2.0) para grabación y reproducción de 18 pistas en PC/Mac.",True,todos,https://medioangular.com/cotizador/img/consoladm3.jpeg
-CONSOLA A&H ZEDi-10,A-005,dia,500,MXN,audio,True,"Mesa de mezclas analógica compacta y de alta calidad 
-Canales de Entrada: 4 entradas mono (micrófono/línea) y 2 entradas estéreo, Preamplificadores de micrófono GSPre, conocidos por su bajo ruido y alta dinámica, Los canales 3 y 4 tienen entradas de alta impedancia.
-Interfaz de Audio USB: Interfaz 4 entradas / 4 salidas de 24-bit/96kHz, lo que permite la grabación y reproducción multicanal.
-Salidas: Salidas principales XLR balanceadas, salida de monitor, salida de auriculares y salidas de grabación.",True,todos,https://medioangular.com/cotizador/img/consolazedi10.jpeg
-CONSOLA A&H 8 CH,A-006,dia,400,MXN,audio,True,"Mesa de mezclas analógica ultracompacta
-Canales de entrada: 2 canales mono (micrófono/línea): Estos canales tienen entradas de alta impedancia (Hi-Z)., 2 canales estéreo: Para fuentes de nivel de línea estéreo, 
-Interfaz de Audio USB:Interfaz 2 entradas / 2 salidas con calidad de 24-bit/96kHz.
-Permite grabar simultáneamente dos pistas en una computadora (por ejemplo, los canales 1 y 2) y reproducir audio estéreo desde el ordenador.
-Salidas Principales (Main Mix Out): Dos conectores XLR balanceados (izquierda y derecha)",True,todos,https://medioangular.com/cotizador/img/consolazedi8.jpeg
+CONSOLA DE AUDIO VENUE S3L X 16X8 CH,A-001,dia,4000,MXN,audio,True,"Consola de mezcla digital compacta, ideal para eventos en vivo de pequeña y mediana escala. Cuenta con 16 entradas analógicas XLR (mic/líne) y 8 salidas analógicas XLR (líne).",True,todos,https://medioangular.com/cotizador/img/consolas3l.jpeg
+STAGE RACK VENUE 16 X 8 CH,A-002,dia,2000,MXN,audio,True,Snake digital para expansión de la consola S3L-X. Cuenta con 16 entradas XLR (micrófono/línea) y 8 salidas XLR (línea).,True,todos,https://medioangular.com/cotizador/img/stage16.jpeg
+SNAKE RAPCO 24 CH,A-003,dia,500,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/snakeanalogo.jpeg
+CONSOLA DE AUDIO YAMAHA DM3 DANTE,A-004,dia,2000,MXN,audio,True,Consola de mezcla digital compacta con 16 entradas (12 XLR + 4 XLR/TRS combo) y 8 salidas (XLR). Capacidad Dante de 16x16 y una interfaz USB 2.0 (Tipo B) para grabación y reproducción de 18 pistas en PC/Mac.,True,todos,https://medioangular.com/cotizador/img/consoladm3.jpeg
+CONSOLA A&H ZEDi-10,A-005,dia,400,MXN,audio,True,"Consola de mezcla analógica compacta con 4 entradas mono (micrófono/línea) y 2 estéreo. Cuenta con 2 salidas principales XLR balanceadas, salidas de monitor, auriculares y grabación. La interfaz de audio integrada es de 4x4 a 24-bit/96kHz, lo que permite la grabación y reproducción multicanal.",True,todos,https://medioangular.com/cotizador/img/consolazedi10.jpeg
+CONSOLA A&H ZEDi-8,A-006,dia,350,MXN,audio,True,"Consola de mezcla analógica compacta con 2 entradas mono (micrófono/línea) y 2 estéreo. Incluye 2 salidas principales XLR balanceadas y una interfaz de audio de 2x2 a 24-bit/96kHz, lo que permite la grabación y reproducción multicanal.",True,todos,https://medioangular.com/cotizador/img/consolazedi8.jpeg
 AMPLIFICADOR D&B D12,A-007,dia,1000,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/d12.jpeg
 AMPLIFICADOR D&B D6 ,A-008,dia,900,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/d6.jpeg
-CONTROLADOR DE RED D&B R60,A-009,dia,800,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/r60.jpeg
-D&B Q1,A-010,dia,1000,MXN,audio,True,"D&b Q1 es un altavoz de arreglo en línea (line array) pasivo de 2 vías, parte de la serie Q de d&b audiotechnik.
-SPL139db 
-Dispersión de 75°x15°",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
-D&B Q7,A-011,dia,1000,MXN,audio,True,"D&b Q1 es un altavoz de arreglo en línea (line array) pasivo de 2 vías, parte de la serie Q de d&b audiotechnik.
-SPL138db 
-Dispersión de 75°x40°",True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
-D&B QSUB,A-012,dia,800,MXN,audio,True,"El d&b Q-SUB es un subwoofer pasivo de baja compresión y diseño bass-reflex.
-SPL 133 dB ",True,corporativo,https://medioangular.com/cotizador/img/qsub.jpeg
-D&B T10,A-013,dia,900,MXN,audio,True,"d&b T10 es un altavoz de 2 vías con un diseño único y versátil, que puede funcionar tanto como una fuente de arreglo lineal (line array) como una fuente puntual de alto rendimiento
-SPL 129 dB
-Dispersión  90° x 35° ",True,corporativo,https://medioangular.com/cotizador/img/t10.jpeg
-D&B CI80,A-014,dia,500,MXN,audio,True,"El d&b Ci80 es un altavoz de fuente puntual pasivo de 2 vías 
-SPL 129 dB
-Dispersión cónica y simétrica de 85°",True,corporativo,https://medioangular.com/cotizador/img/ci80.jpeg
-D&B M4,A-015,dia,1000,MXN,audio,True,"El d&b M4 es un monitor de escenario de alto rendimiento y 2 vías, reconocido en la industria del sonido en vivo por su claridad, potencia y diseño coaxial.
-SPL 140 dB
-Dispersión de 50° x 70°",True,corporativo,https://medioangular.com/cotizador/img/m4.jpeg
-BUMPER Q1,A-016,dia,300,MXN,audio,True,Accesorio de colgado para la serie Q,True,corporativo,https://medioangular.com/cotizador/img/bumperq.jpeg
-BUMPER T10,A-017,dia,300,MXN,audio,True,Accesorio de colgado para la serie T,True,corporativo,https://medioangular.com/cotizador/img/bumpert10.jpeg
+CONTROLADOR DE RED D&B R60,A-009,dia,500,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/r60.jpeg
+ALTAVOZ D&B Q1,A-010,dia,1000,MXN,audio,True,"Altavoz de arreglo en línea pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x15° y un SPL de 139 dB.
+",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
+ALTAVOZ D&B Q7,A-011,dia,1000,MXN,audio,True,Altavoz de arreglo en línea pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x40° y un SPL de 138 dB.,True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
+SUBWOOFER D&B QSUB,A-012,dia,800,MXN,audio,True,Subwoofer pasivo de baja compresión y diseño bass-reflex con un SPL 133 dB.,True,corporativo,https://medioangular.com/cotizador/img/qsub.jpeg
+ALTAVOZ D&B T10,A-013,dia,900,MXN,audio,True,Altavoz pasivo de 2 vías que puede funcionar como fuente de arreglo lineal o como fuente puntual. Cuenta con una dispersión de 90° x 35° y un SPL de 129 dB.,True,corporativo,https://medioangular.com/cotizador/img/t10.jpeg
+ALTAVOZ D&B CI80,A-014,dia,500,MXN,audio,True,Altavoz de fuente puntual pasivo de 2 vías. Cuenta con una dispersión cónica y simétrica de 85° y un SPL de 129 dB.,True,corporativo,https://medioangular.com/cotizador/img/ci80.jpeg
+ALTAVOZ D&B M4,A-015,dia,1000,MXN,audio,True,Monitor de escenario de alto rendimiento pasivo de 2 vías con diseño coaxial. Cuenta con una dispersión de 50° x 70° y un SPL de 140 dB.,True,corporativo,https://medioangular.com/cotizador/img/m4.jpeg
+BUMPER Q1,A-016,dia,400,MXN,audio,True,Accesorio de colgado para la serie Q,True,corporativo,https://medioangular.com/cotizador/img/bumperq.jpeg
+BUMPER T10,A-017,dia,400,MXN,audio,True,Accesorio de colgado para la serie T,True,corporativo,https://medioangular.com/cotizador/img/bumpert10.jpeg
 T CLUSTER BRACKET,A-018,dia,200,MXN,audio,True,Accesorio para colocar 3 x T10 sobre poste/clamp,True,corporativo,https://medioangular.com/cotizador/img/tclusterbracket.jpeg
 Q BRACKET,A-019,dia,150,MXN,audio,True,Accesorio para colocar 1 x Q7 sobre poste/clamp,True,corporativo,https://medioangular.com/cotizador/img/Qbracket.jpeg
 T BRACKET,A-020,dia,100,MXN,audio,True,Accesorio para colocar 1 x T10 sobre poste/clamp,True,corporativo,https://medioangular.com/cotizador/img/tbracket.jpeg
@@ -48,51 +24,50 @@ STAND ADAPTER,A-021,dia,50,MXN,audio,True,Accesorio para colocar brakets de cual
 TV SPIGOT,A-022,dia,50,MXN,audio,True,Accesorio para conectar brakets de cualquier serie  a clamp,True,corporativo,https://medioangular.com/cotizador/img/tvspigot2.jpeg
 CLAMP D&B,A-023,dia,100,MXN,audio,True,Accesorio para conectar brakets de cualquier serie  a clamp,True,corporativo,https://medioangular.com/cotizador/img/clamp.jpeg
 Q FLYING ADAPTER,A-024,dia,200,MXN,audio,True,Accesorio para colgar 3 x Q1,True,corporativo,https://medioangular.com/cotizador/img/flyingadapter.jpeg
-SISTEMA DE AUDIO PARA DJ 100 PAX,A-025,dia,,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 2 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ100PAX.jpeg
-SISTEMA DE AUDIO PARA DJ 200 PAX,A-026,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ200PAX.jpeg
-SISTEMA DE AUDIO PARA DJ 300 PAX,A-027,dia,,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 4 Sub, 2 Outfill  3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ300PAX.jpeg
-SISTEMA DE AUDIO PARA DJ 400 PAX,A-028,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 4 Sub, 3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ400PAX.jpeg
-SISTEMA DE AUDIO PARA DJ  500 PAX,A-029,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top lineal, 6 Sub, 3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ500PAX.jpeg
-SISTEMA DE AUDIO PARA 100 PAX,A-030,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 2 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP100PAX.jpeg
-SISTEMA DE AUDIO PARA 200 PAX,A-031,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP200PAX.jpeg
-SISTEMA DE AUDIO PARA 300 PAX,A-032,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 4 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP300PAX.jpeg
-SISTEMA DE AUDIO PARA 400 PAX,A-033,dia,,MXN,paquete audio,True,"Sistema de audio d&b  incluye 6 Top lineal, 4 Sub, 2 frontfill , 3 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP400PAX.jpeg
-SISTEMA DE AUDIO PARA 500 PAX,A-034,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 6 Sub, 2 frontfill , 2 delay , 5 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP500PAX.jpeg
-SISTEMA DE AUDIO PARA 800 PAX,A-035,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 12 Top lineal, 6 Sub, 2 frontfill , 5 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP800PAX.jpeg
-SISTEMA DE AUDIO PARA 1000 PAX,A-036,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 12 Top lineal, 12 Sub, 2 frontfill , 8 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP1000PAX.jpeg
-SISTEMA DE AUDIO DELAY 100 PAX,A-037,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top , 1 Amplificador",True,corporativo,https://medioangular.com/cotizador/img/DELAY100PAX.jpeg
-SISTEMA DE AUDIO DELAY PERIMETRAL,A-038,dia,,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top , 1 Amplificador",True,todos,https://medioangular.com/cotizador/img/PERIMETRAL.jpeg
-SISTEMA DE AUDIO 2.1 HK NANO 300,A-039,dia,1500,MXN,paquete audio,True,"Sistema de audio HK  incluye 2 Top puntual , 1 Sub.
-El sistema de sonido portátil HK AUDIO Lucas Nano 300 cuenta con una versátil sección de entrada que incluye una mesa de mezclas de tres canales integrada en el subwoofer",True,todos,https://medioangular.com/cotizador/img/nano300.jpeg
-SISTEMA AUDIO 2.1 HK PERFORMER,A-040,dia,2500,MXN,paquete audio,True,"HK Audio Lucas Performer es un sistema de sonido activo ""triphonic"" (subwoofer y dos satélites). Fue diseñado para ser una solución de PA portátil, potente y fácil de usar, ideal para músicos, DJs y presentadores.",True,todos,https://medioangular.com/cotizador/img/performer.jpeg
-MICROFONO INALAMBRICO BEYERDINAMIC TG 1000 ,A-041,dia,1000,MXN,audio,True,"El beyerdynamic TG 1000 es un sistema de micrófono inalámbrico digital de alta gama diseñado para aplicaciones profesionales en vivo, incluye transmisor de mano  y receptor",True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
-MICROFONOS SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Shure Beta 98D/S es un micrófono de condensador en miniatura, de alta calidad, diseñado específicamente para la microfonía de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
-MICROFONOS SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Shure Beta 98H/C es un micrófono de condensador en miniatura, también conocido como el ""Clip-on"" de la serie Beta. Al igual que el Beta 98D/S, está diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
-MICROFONOS SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"micrófono de instrumento dinámico, supercardioide, diseñado específicamente para capturar las bajas frecuencias con gran detalle, Su principal aplicación es la microfonía de bombos, pero también es muy útil para otros instrumentos de baja frecuencia.
-",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
-MICROFONOS SHURE BETA 57 A,A-045,dia,250,MXN,audio,True,"Shure Beta 57A es un micrófono de instrumento dinámico, supercardioide, diseñado para la microfonía de una amplia variedad de instrumentos tanto en estudio como en escenarios en vivo, amplificadores de guitarra,  caja de bateria, percusión, metales, voces.",True,corporativo,https://medioangular.com/cotizador/img/beta57.jpeg
-MICROFONOS SHURE BETA 58 A,A-046,dia,250,MXN,audio,True,Shure Beta 58A es el micrófono ideal para vocalistas principales y coristas en escenarios en vivo.,True,corporativo,https://medioangular.com/cotizador/img/beta58.jpeg
-MICROFONOS SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Shure Beta 91A es un micrófono de condensador de superficie (boundary microphone) con patrón polar de medio-cardioide, diseñado específicamente para la microfonía de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
+SISTEMA DE AUDIO PARA DJ 100 PAX,A-025,dia,5800,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 2 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ100PAX.jpeg
+SISTEMA DE AUDIO PARA DJ 200 PAX,A-026,dia,7600,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ200PAX.jpeg
+SISTEMA DE AUDIO PARA DJ 300 PAX,A-027,dia,10400,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 4 Sub, 2 Outfill  3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ300PAX.jpeg
+SISTEMA DE AUDIO PARA DJ 400 PAX,A-028,dia,11000,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 4 Sub, 3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ400PAX.jpeg
+SISTEMA DE AUDIO PARA DJ  500 PAX,A-029,dia,12200,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top lineal, 6 Sub, 3 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ500PAX.jpeg
+SISTEMA DE AUDIO PARA 100 PAX,A-030,dia,5400,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 2 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP100PAX.jpeg
+SISTEMA DE AUDIO PARA 200 PAX,A-031,dia,7200,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP200PAX.jpeg
+SISTEMA DE AUDIO PARA 300 PAX,A-032,dia,10600,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 4 Sub, 2 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP300PAX.jpeg
+SISTEMA DE AUDIO PARA 400 PAX,A-033,dia,13400,MXN,paquete audio,True,"Sistema de audio d&b  incluye 6 Top lineal, 4 Sub, 2 frontfill , 3 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP400PAX.jpeg
+SISTEMA DE AUDIO PARA 500 PAX,A-034,dia,18800,MXN,paquete audio,True,"Sistema de audio d&b incluye 6 Top lineal, 6 Sub, 2 frontfill , 2 delay , 5 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP500PAX.jpeg
+SISTEMA DE AUDIO PARA 800 PAX,A-035,dia,22600,MXN,paquete audio,True,"Sistema de audio d&b incluye 12 Top lineal, 6 Sub, 2 frontfill , 5 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP800PAX.jpeg
+SISTEMA DE AUDIO PARA 1000 PAX,A-036,dia,30600,MXN,paquete audio,True,"Sistema de audio d&b incluye 12 Top lineal, 12 Sub, 2 frontfill , 8 Amplificadores",True,corporativo,https://medioangular.com/cotizador/img/CORP1000PAX.jpeg
+SISTEMA DE AUDIO DELAY 100 PAX,A-037,dia,2800,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top , 1 Amplificador",True,corporativo,https://medioangular.com/cotizador/img/DELAY100PAX.jpeg
+SISTEMA DE AUDIO DELAY PERIMETRAL,A-038,dia,3000,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top , 1 Amplificador",True,todos,https://medioangular.com/cotizador/img/PERIMETRAL.jpeg
+SISTEMA DE AUDIO 2.1 HK NANO 300,A-039,dia,1500,MXN,paquete audio,True,"Incluye 2 altavoces de fuente puntual, 1 subwoofer y una consola de tres canales integrada en el subwoofer.",True,todos,https://medioangular.com/cotizador/img/nano300.jpeg
+SISTEMA AUDIO 2.1 HK PERFORMER,A-040,dia,2500,MXN,paquete audio,True,"Sistema de sonido activo ""triphonic"" (un subwoofer y dos satélites).",True,todos,https://medioangular.com/cotizador/img/performer.jpeg
+MICROFONO INALAMBRICO BEYERDINAMIC TG 1000 ,A-041,dia,1000,MXN,audio,True,Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor,True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
+MICROFONOS SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado específicamente para la microfonía de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
+MICROFONOS SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura,  ""Clip-on"" de la serie Beta diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
+MICROFONOS SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, diseñado para capturar bajas frecuencias con gran detalle. Es ideal para bombos y otros instrumentos de baja frecuencia.",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
+MICROFONOS SHURE BETA 57 A,A-045,dia,250,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, utilizado para amplificadores de guitarra, caja de batería, percusión, metales y voces.",True,corporativo,https://medioangular.com/cotizador/img/beta57.jpeg
+MICROFONOS SHURE BETA 58 A,A-046,dia,250,MXN,audio,True,Micrófono ideal para vocalistas principales y coristas en escenarios en vivo.,True,corporativo,https://medioangular.com/cotizador/img/beta58.jpeg
+MICROFONOS SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensador de superficie  con patrón polar de medio-cardioide, diseñado específicamente para la microfonía de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
 MICROFONOS SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S es un micrófono de mano dinámico, cardioide, diseñado para voces y uso general en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/e815.jpeg
-MICROFONOS SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma pequeño (lápiz) diseñado para uso profesional en estudio y en vivo.  Instrumentos de cuerda acústicos, platillos y overheads de batería , instrumentos de percusión, pianos, metales y maderas",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
-BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Se usa para micrófonos de solapa, de diadema o para conectar instrumentos. Es compacto y discreto, ideal para teatro, televisión y presentaciones.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
-DIADEMA DPA d:fine™ 4088 ,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide que lo hace ideal para aplicaciones en vivo y grabaciones donde se necesita un rechazo del sonido ambiente. Es un micrófono de alta calidad, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentación.",True,corporativo,https://medioangular.com/cotizador/img/diadema dpa.jpeg
-TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,audio,True,"Tarjeta de captura de audio, Entradas: 2 entradas de micrófono/instrumento/línea XLR, Salidas: 2 salidas principales TRS de 1/4""",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
+MICROFONOS SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma pequeño, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
+BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonos de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
+DIADEMA DPA d:fine™ 4088 ,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentación.",True,corporativo,https://medioangular.com/cotizador/img/diadema dpa.jpeg
+TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,audio,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/línea XLR y 2 salidas principales TRS de 1/4"".
+",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
 CAJA DIRECTA,A-053,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/CAJADIRECTA.jpeg
-"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, POR METRO CUADRADO",V-001,dia,2500,MXN,video,True,"Absen PL2.9 Lite es una pantalla LED de alta resolución y muy ligera, diseñada para la industria del alquiler y producción de eventos",True,corporativo,https://medioangular.com/cotizador/img/PL2.9.jpeg
-"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, POR METRO CUADRADO",V-002,dia,2000,MXN,video,True,"Absen DV Plus (D3.9 Pro) es una pantalla LED muy versátil y resistente, diseñada para soportar las exigencias de la industria de alquiler de eventos. Ofrece una alta calidad de imagen y una gran fiabilidad en una variedad de condiciones de iluminación y entorno",True,corporativo,https://medioangular.com/cotizador/img/DV3.9.jpeg
-"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 3 x 2 MTS",V-003,dia,,MXN,paquete video,True,"Incluye 6 metros de pantalla de leds 2.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
-"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 3 x 2 MTS",V-004,dia,,MXN,paquete video,True,"Incluye 6 metros de pantalla de leds 3.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
-"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 3.5 x 2 MTS",V-005,dia,,MXN,paquete video,True,"Incluye 7 metros de pantalla de leds 2.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
-"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 3.5 x 2 MTS",V-006,dia,,MXN,paquete video,True,"Incluye 7 metros de pantalla de leds 3.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
-"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 4 x 2.5 MTS",V-007,dia,,MXN,paquete video,True,"Incluye 10 metros de pantalla de leds 2.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
-"PANTALLA DE LEDS ABSEN DVPLUS 3.9 MM, 4 x 2.5 MTS",V-006,dia,,MXN,paquete video,True,"Incluye 10 metros de pantalla de leds 3.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
-"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 5 x 3 MTS",V-007,dia,,MXN,paquete video,True,"Incluye 15 metros de pantalla de leds 2.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
-"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 5 x 3 MTS",V-008,dia,,MXN,paquete video,True,"Incluye 15 metros de pantalla de leds 3.9mm, 1 tarjeta de led, 1 procesador de led",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
+"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, POR METRO CUADRADO",V-001,dia,1800,MXN,video,True,"Pantalla LED de alta resolución pitch 2.9mm , diseñada para la industria del alquiler y producción de eventos",True,corporativo,https://medioangular.com/cotizador/img/PL2.9.jpeg
+"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, POR METRO CUADRADO",V-002,dia,1500,MXN,video,True,"Pantalla LED muy versátil y resistente pitch 3.9mm,  ofrece una alta calidad de imagen y una gran fiabilidad en una variedad de condiciones de iluminación y entorno",True,corporativo,https://medioangular.com/cotizador/img/DV3.9.jpeg
+"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 3 x 2 MTS",V-003,dia,12500,MXN,paquete video,True,"Incluye 6 metros cuadrados de pantalla LED de 2.9 mm, una tarjeta de envío (LED sender card) y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
+"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 3 x 2 MTS",V-004,dia,10750,MXN,paquete video,True,"Incluye 6 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
+"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 3.5 x 2 MTS",V-005,dia,14350,MXN,paquete video,True,"Incluye 7 metros cuadrados de pantalla LED de 2.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
+"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 3.5 x 2 MTS",V-006,dia,12250,MXN,paquete video,True,"Incluye 7 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
+"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 4 x 2.5 MTS",V-007,dia,19750,MXN,paquete video,True,"Incluye 10 metros cuadrados de pantalla LED de 2.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
+"PANTALLA DE LEDS ABSEN DVPLUS 3.9 MM, 4 x 2.5 MTS",V-006,dia,16750,MXN,paquete video,True,"Incluye 10 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
+"PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 5 x 3 MTS",V-007,dia,28750,MXN,paquete video,True,"Incluye 15 metros cuadrados de pantalla LED de 2.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
+"PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 5 x 3 MTS",V-008,dia,24250,MXN,paquete video,True,"Incluye 15 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
 PROCESADOR LEDS MAGNIMAGE W4000 8K ,V-009,dia,3000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/W4000.jpeg
-PROCESADOR LEDS MAGNIMAGE 780 H 4K ,V-010,dia,2500,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/780H.jpeg
-PROCESADOR LEDS MAGNIMAGE 550-D HD,V-011,dia,1500,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/550D.jpeg
-TARJETA DE LEDS NOVASTAR MCTRL 660,V-012,dia,1000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/mtcrl660.jpeg
+PROCESADOR LEDS MAGNIMAGE 780 H 4K ,V-010,dia,2000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/780H.jpeg
+PROCESADOR LEDS MAGNIMAGE 550-D HD,V-011,dia,1000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/550D.jpeg
+TARJETA DE LEDS NOVASTAR MCTRL 660,V-012,dia,750,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/mtcrl660.jpeg
 BUMPER PARA COLGAR PANTALLA 2.9mm 50 CMS,V-013,dia,150,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/bumperabsen.jpeg
 BUMPER PARA COLGAR PANTALLA 3.9mm 50 CMS,V-014,dia,150,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/bumperabsen.jpeg
 ESCALERA PARA PANTALLA DE LEDS 1 MTS,V-015,dia,100,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
@@ -125,31 +100,32 @@ TARJETA CAPTURA WEB PRESENTER ,V-041,dia,800,MXN,video,True,,True,corporativo,ht
 CABLES DE RED DE 80 MTS,V-042,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CABLES DE RED DE 60 MTS,V-043,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminacion,True,Consola de Iluminación,True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
-CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,2500,MXN,iluminacion,True,Consola de Iluminación,True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
+CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,1500,MXN,iluminacion,True,Consola de Iluminación,True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
 LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
 SPLITTER,I-004,dia,500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/SPLITTER.jpeg
-LÁMPARA BEAM ROBE POINTE,I-005,dia,1200,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
-LÁMPARA CHAUVET SPOT MAVERICK MK2,I-006,dia,1500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/mk2spot.jpeg
-LÁMPARA ROBE LED WASH 300,I-007,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robewash.jpeg
-LÁMPARA CHAUVET ROUGE WASH R2,I-008,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/r2wash.jpeg
-CUEPIX WW4,I-009,dia,800,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/cuepixww4.jpeg
-LEEKO LED LIGHT SKY 8800-C42,I-010,dia,600,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekoled.jpeg
-LEEKO ETC 575,I-011,dia,400,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekojr.jpeg
-PAR ETC 575,I-012,dia,300,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/paretc.jpeg
+LÁMPARA BEAM ROBE POINTE,I-005,dia,1000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
+LÁMPARA CHAUVET SPOT MAVERICK MK2,I-006,dia,1200,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/mk2spot.jpeg
+LÁMPARA ROBE LED WASH 300,I-007,dia,900,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/robewash.jpeg
+LÁMPARA CHAUVET ROUGE WASH R2,I-008,dia,900,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/r2wash.jpeg
+CUEPIX WW4,I-009,dia,600,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/cuepixww4.jpeg
+LEEKO LED LIGHT SKY 8800-C42,I-010,dia,500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekoled.jpeg
+LEEKO ETC 575,I-011,dia,350,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/leekojr.jpeg
+PAR ETC 575,I-012,dia,250,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/paretc.jpeg
 DIMMER,I-013,dia,600,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/dimmer.jpeg
-SEGUIDOR,I-014,dia,2500,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/seguidor.jpeg
-PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,400,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/parled.jpeg
-BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,450,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
-MÁQUINA DE HUMO ANTARI F1,I-017,dia,900,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #1,I-018,dia,,MXN,paquete iluminación,True,2 TRUSS + 4 BEAM + 4 WASH + MÁQUINA DE HUMO  + CONSOLA,True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #2,I-019,dia,,MXN,paquete iluminación,True,2 TRUSS + 4 SPOT +  4 WASH + MÁQUINA DE HUMO + CONSOLA,True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL2.jpeg
-PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #3,I-020,dia,,MXN,paquete iluminación,True,4 TRUSS + 4 SPOT + 4 BEAM + 8 WASH + MÁQUINA DE HUMO + CONSOLA,True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL3.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #1,I-021,dia,,MXN,paquete iluminación,True,2 TRUSS + 4 BEAM + 4 WASH + 2 LEEKO +  CONSOLA,True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP1.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #2,I-022,dia,,MXN,paquete iluminación,True,2 TRUSS + 4 SPOT +  4 WASH + 2 LEEKO +  CONSOLA,True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP2.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #3,I-023,dia,,MXN,paquete iluminación,True,4 TRUSS + 4 SPOT + 4 BEAM + 8 WASH + 2 LEEKO +  CONSOLA,True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP3.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #4,I-024,dia,,MXN,paquete iluminación,True,4 TRUSS + 8 BEAM + 8 WASH + 2 LEEKO + CONSOLA,True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP4.jpeg
-PAQUETE DE ILUMINACIÓN CORPORATIVO #5,I-024,dia,,MXN,paquete iluminación,True,4 TRUSS + 8 SPOT + 8 WASH + 2 LEEKO + CONSOLA,True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP5.jpeg
-PAQUETE DE ILUMINACIÓN ARQUITECTÓNICA,I-025,dia,,MXN,paquete iluminación,True,10 PAR LED,True,todos,https://medioangular.com/cotizador/img/10par.jpeg
+SEGUIDOR,I-014,dia,2000,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/seguidor.jpeg
+PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,350,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/parled.jpeg
+BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,400,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
+MÁQUINA DE HUMO ANTARI F1,I-017,dia,800,MXN,iluminacion,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #1,I-018,dia,11500,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #2,I-019,dia,12300,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Spot, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL2.jpeg
+PAQUETE DE ILUMINACIÓN DJ PARA  PISTA #3,I-020,dia,22500,MXN,paquete iluminación,True,"4 truss, 4 cabezas móviles Spot, 4 cabezas móviles Beam, 8 cabezas móviles Wash, máquina de humo y consola.
+",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL3.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #1,I-021,dia,12700,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP1.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #2,I-022,dia,13500,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Spot, 4 cabezas móviles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP2.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #3,I-023,dia,22700,MXN,paquete iluminación,True,"4 truss, 4 cabezas móviles Spot, 4 cabezas móviles Beam, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP3.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #4,I-024,dia,21900,MXN,paquete iluminación,True,"4 truss, 8 cabezas móviles Beam, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP4.jpeg
+PAQUETE DE ILUMINACIÓN CORPORATIVO #5,I-024,dia,23500,MXN,paquete iluminación,True,"4 truss, 8 cabezas móviles Spot, 8 cabezas móviles Wash, 2 Leko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP5.jpeg
+PAQUETE DE ILUMINACIÓN ARQUITECTÓNICA,I-025,dia,3500,MXN,paquete iluminación,True,10 PAR LED.,True,todos,https://medioangular.com/cotizador/img/10par.jpeg
 ESTRUCTURA DE MK 3 METROS,R-001,dia,650,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
 ESTRUCTURA DE MK 1.5 METROS,R-002,dia,450,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/trussmk.jpeg
 CUBO 4 VIAS,R-003,dia,800,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/cubo.jpeg
@@ -158,14 +134,14 @@ HAMBURGUESA,R-005,dia,50,MXN,rigging,True,,True,corporativo,https://medioangular
 HAMBURGUESA DOBLE,R-006,dia,100,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/HAMBURGUESADOBLE.jpeg
 TUBO,R-007,dia,50,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/tubo.jpeg
 DECK ESCENARIO POR METRO,D-001,dia,500,MXN,escenografia,True,Deck de escenario de aluminio,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
-PIPE AND DRAPE POR METRO,D-001,dia,500,MXN,escenografia,True,Telones negros,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
+PIPE AND DRAPE POR METRO,D-001,dia,450,MXN,escenografia,True,Telones negros,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
 CENTRO DE CARGA,E-001,dia,1500,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/CENTRO DE CARGA.jpeg
 CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energia,True,,True,todos,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
 COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
 COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
-COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2500,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
+COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2000,MXN,comunicacion,True,,True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
 RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/radioep450.jpeg
 ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/HANDMIC.jpeg
 INGENIERO DE AUDIO,P-001,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
@@ -181,12 +157,12 @@ OPERADOR DE VIDEO,P-010,dia,2500,MXN,personal,False,,True,todos,https://medioang
 TÉCNICO DE VIDEO,P-011,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
 CAMARÓGRAFO,P-012,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
 VIATICOS,O-001,dia,550,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/viaticos.jpeg
-FLETE 2.5 CDMX,O-002,dia,4500,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
-FLETE 3.5 CDMX,O-003,dia,6500,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
-FLETE 2.5   MORELOS,O-004,dia,9000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
-FLETE 3.5  MORELOS,O-005,dia,13000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
-FLETE 2.5   VALLE DE BRAVO,O-006,dia,15000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
-FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
-FLETE 2.5   QUERETARO,O-008,dia,18000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
-FLETE 3.5  QUERETARO,O-009,dia,25000,MXN,otros,True,"Es necesario comunicarse con el equipo de soporte para confirmar, el tamaño de transporte requerido. ",True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
+FLETE 2.5 CDMX,O-002,dia,4500,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
+FLETE 3.5 CDMX,O-003,dia,6500,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
+FLETE 2.5   MORELOS,O-004,dia,9000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
+FLETE 3.5  MORELOS,O-005,dia,13000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
+FLETE 2.5   VALLE DE BRAVO,O-006,dia,15000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
+FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
+FLETE 2.5   QUERETARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
+FLETE 3.5  QUERETARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
