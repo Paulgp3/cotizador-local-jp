@@ -72,9 +72,9 @@ ESCALERA PARA PANTALLA DE LEDS 1 MTS,V-017,dia,100,MXN,video,True,,False,corpora
 ESCALERA PARA PANTALLA DE LEDS 1.5 MTS,V-018,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 ESCALERA PARA PANTALLA DE LEDS 2 MTS,V-019,dia,200,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 SERVIDOR DE MAPPING,V-020,dia,3500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/SERVER.jpeg
-SWITCHER DE VIDEO ROLAND V800 HD,V-021,dia,4500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/V800HD.jpeg
-SWITCHER  DE VIDEO MAGNIMAGE V6,V-022,dia,30000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/V6.jpeg
-SWITCHER DE VIDEO ATEM MINI PRO,V-023,dia,1500,MXN,streaming,True,,True,corporativo,https://medioangular.com/cotizador/img/ATEMMINI.jpeg
+SWITCHER DE VIDEO ROLAND V800 HD,V-021,dia,4500,MXN,video,True,"Switcher de video multiformato. (SDI,DVI,HDMI,COMPUESTO,RGB)",True,corporativo,https://medioangular.com/cotizador/img/V800HD.jpeg
+SWITCHER  DE VIDEO MAGNIMAGE V6,V-022,dia,30000,MXN,video,True,"Switcher & procesador de video profesional y conmutador diseñado para gestionar múltiples fuentes de video en eventos en vivo, presentaciones y grandes pantallas LED.",True,corporativo,https://medioangular.com/cotizador/img/V6.jpeg
+SWITCHER DE VIDEO ATEM MINI PRO,V-023,dia,1500,MXN,streaming,True,"Switcher compacto, diseñado para simplificar la producción multicámara para streaming en vivo. 4 entradas HDMI, salida HDMI, usb (webcam)",True,corporativo,https://medioangular.com/cotizador/img/ATEMMINI.jpeg
 LAPTOP,V-024,dia,1000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/LAPTOP.jpeg
 "LAPTOP MACKBOOK PRO 15"" LATE 2014",V-025,dia,1000,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 PLAY BACKPRO,V-026,dia,1000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/playback.jpeg
@@ -93,10 +93,11 @@ DISTRIBUIDOR DE HDMI 4 PUERTOS,V-038,dia,350,MXN,video,True,,True,corporativo,ht
 DISTRIBUIDOR SDI 4 PUERTOS,V-039,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/distrosdi.jpeg
 EXTEDER HDMI,V-040,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/EXTENDERHDMI.jpeg
 CÁMARA SONY PXWZ150 CCTV,V-041,dia,4000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/CAMARATV.jpeg
-"VIDEO ASSIST BLACK MAGIC 7"" 3G",V-042,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
-TARJETA CAPTURA WEB PRESENTER,V-043,dia,800,MXN,streaming,True,"Tarjeta de captura de video y audio diseñada para simplificar la transmisión de video en vivo a través de Internet.",True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
-CABLES DE RED DE 80 MTS,V-044,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
-CABLES DE RED DE 60 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
+PAQUETE DE CCTV,V-042,dia,11500,MXN,video,True,"1 Switcher y dos cámaras de video",True,corporativo,https://medioangular.com/cotizador/img/CCTV.jpeg
+"VIDEO ASSIST BLACK MAGIC 7"" 3G",V-043,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
+TARJETA CAPTURA WEB PRESENTER,V-044,dia,800,MXN,streaming,True,"Tarjeta de captura de video y audio diseñada para simplificar la transmisión de video en vivo a través de Internet.",True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
+CABLES DE RED DE 80 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
+CABLES DE RED DE 60 MTS,V-046,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
 CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,1500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
 LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminación,True,"Lámpara de LED de alta calidad, utilizada en producciones de cine, televisión y fotografía, permite ajustar la temperatura del color para que coincida con la luz ambiental, de 5600K a 3200K.",True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
@@ -162,6 +163,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
