@@ -138,7 +138,7 @@ CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energía,True,Centro de carga de 1
 FEEDER 25 MTS,E-003,dia,1000,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
 COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,"Sistema de intercomunicación de 4 diademas inalábricas full duplex y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
-COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,5500,MXN,comunicacion,True,"Sistema de intercomunicación inalámbrica full-duplex. 8 diademas inalámbricas y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
+COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,3500,MXN,comunicacion,True,"Sistema de intercomunicación inalámbrica full-duplex. 8 diademas inalámbricas y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
 COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2000,MXN,comunicacion,True,"Estación principal de intercomunicación alámbrica de 4 canales, incluye 5 diademas",True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
 RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/radioep450.jpeg
 ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/HANDMIC.jpeg
@@ -164,6 +164,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
