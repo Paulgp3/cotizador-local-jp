@@ -19,9 +19,9 @@ BUMPER T10,A-017,dia,400,MXN,audio,True,"Accesorio de colgado para la serie T",T
 T CLUSTER BRACKET,A-018,dia,200,MXN,audio,True,"Accesorio para colocar 3 x T10 sobre poste/clamp.",True,corporativo,https://medioangular.com/cotizador/img/tclusterbracket.jpeg
 Q BRACKET,A-019,dia,150,MXN,audio,True,"Accesorio para colocar 1 x Q7 sobre poste/clamp.",True,corporativo,https://medioangular.com/cotizador/img/Qbracket.jpeg
 T BRACKET,A-020,dia,100,MXN,audio,True,"Accesorio para colocar 1 x T10 sobre poste/clamp.",True,corporativo,https://medioangular.com/cotizador/img/tbracket.jpeg
-STAND ADAPTER,A-021,dia,50,MXN,audio,True,"Accesorio para colocar brakets de cualquier serie  sobre poste.",True,corporativo,https://medioangular.com/cotizador/img/standadapter.jpeg
-TV SPIGOT,A-022,dia,50,MXN,audio,True,"Accesorio para conectar brakets de cualquier serie  a clamp.",True,corporativo,https://medioangular.com/cotizador/img/tvspigot2.jpeg
-CLAMP D&B,A-023,dia,100,MXN,audio,True,"Accesorio para colgar brakets de cualquier serie  a tubo.",True,corporativo,https://medioangular.com/cotizador/img/clamp.jpeg
+STAND ADAPTER,A-021,dia,50,MXN,audio,True,"Accesorio para colocar brackets de cualquier serie  sobre poste.",True,corporativo,https://medioangular.com/cotizador/img/standadapter.jpeg
+TV SPIGOT,A-022,dia,50,MXN,audio,True,"Accesorio para conectar brackets de cualquier serie  a clamp.",True,corporativo,https://medioangular.com/cotizador/img/tvspigot2.jpeg
+CLAMP D&B,A-023,dia,100,MXN,audio,True,"Accesorio para colgar brackets de cualquier serie  a tubo.",True,corporativo,https://medioangular.com/cotizador/img/clamp.jpeg
 Q FLYING ADAPTER,A-024,dia,200,MXN,audio,True,"Accesorio para colgar 3 x Q1.",True,corporativo,https://medioangular.com/cotizador/img/flyingadapter.jpeg
 SISTEMA DE AUDIO PARA DJ 100 PAX,A-025,dia,5800,MXN,paquete audio,True,"Sistema de audio d&b  incluye 2 Top puntual , 2 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ100PAX.jpeg
 SISTEMA DE AUDIO PARA DJ 200 PAX,A-026,dia,7600,MXN,paquete audio,True,"Sistema de audio d&b incluye 2 Top puntual , 4 Sub, 2 Amplificadores, Consola 10 ch",True,social,https://medioangular.com/cotizador/img/DJ200PAX.jpeg
@@ -39,13 +39,13 @@ SISTEMA DE AUDIO DELAY 100 PAX,A-037,dia,2800,MXN,paquete audio,True,"Sistema de
 SISTEMA DE AUDIO DELAY PERIMETRAL,A-038,dia,3000,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top , 1 Amplificador",True,todos,https://medioangular.com/cotizador/img/PERIMETRAL.jpeg
 SISTEMA DE AUDIO 2.1 HK NANO 300,A-039,dia,1500,MXN,paquete audio,True,"Incluye 2 altavoces de fuente puntual, 1 subwoofer y una consola de tres canales integrada en el subwoofer.",True,todos,https://medioangular.com/cotizador/img/nano300.jpeg
 SISTEMA AUDIO 2.1 HK PERFORMER,A-040,dia,2500,MXN,paquete audio,True,"Sistema de sonido activo ""triphonic"" (un subwoofer y dos satélites).",True,todos,https://medioangular.com/cotizador/img/performer.jpeg
-MICRÓFONO INALAMBRICO BEYERDINAMIC TG 1000,A-041,dia,1000,MXN,audio,True,"Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor",True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
-MICRÓFONO SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado especificamente para la microfonia de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
+MICRÓFONO INALÁMBRICO BEYERDINAMIC TG 1000,A-041,dia,1000,MXN,audio,True,"Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor",True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
+MICRÓFONO SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado específicamente para la microfonía de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
 MICRÓFONO SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura,  ""Clip on"" de la serie Beta diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
 MICRÓFONO SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, diseñado para capturar bajas frecuencias con gran detalle. Es ideal para bombos y otros instrumentos de baja frecuencia.",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
 MICRÓFONO SHURE BETA 57 A,A-045,dia,250,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, utilizado para amplificadores de guitarra, caja de batería, percusión, metales y voces.",True,corporativo,https://medioangular.com/cotizador/img/beta57.jpeg
 MICRÓFONO SHURE BETA 58 A,A-046,dia,250,MXN,audio,True,"Micrófono ideal para vocalistas principales y coristas en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/beta58.jpeg
-MICRÓFONO SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensador de superficie  con patrón polar de semicardioide, diseñado especificamente para la microfonia de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
+MICRÓFONO SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensador de superficie  con patrón polar de semicardioide, diseñado específicamente para la microfonía de bombos y pianos.",True,corporativo,https://medioangular.com/cotizador/img/bata91a.jpeg
 MICRÓFONO SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S es un Micrófono de mano dinámico, cardioide, diseñado para voces y uso general en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/e815.jpeg
 MICRÓFONO SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma pequeño, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
 BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonos de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
@@ -164,6 +164,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
