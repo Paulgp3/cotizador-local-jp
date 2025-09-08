@@ -109,8 +109,7 @@ LÁMPARA CHAUVET ROUGE WASH R2,I-008,dia,900,MXN,iluminación,True,"Luminaria de
 CUEPIX WW4,I-009,dia,600,MXN,iluminación,True,"Luminaria de cabeza móvil tipo wash diseñada específicamente para producir una luz blanca cálida de alta calidad, ideal para crear una iluminación de escenario con un aspecto vintage y cálido,su enfoque principal es la pureza y uniformidad del blanco.",True,todos,https://medioangular.com/cotizador/img/cuepixww4.jpeg
 LEEKO LED LIGHT SKY 8800-C42,I-010,dia,500,MXN,iluminación,True,"Luminaria LED tipo profile elipsoidal RGBW,diseñado para crear un haz de luz preciso, enfocado y con bordes definidos.",True,todos,https://medioangular.com/cotizador/img/leekoled.jpeg
 LEEKO ETC 575,I-011,dia,350,MXN,iluminación,True,"Luminaria elipsoidal de perfil de descarga de alta calidad que ofrece precisión y calidad de haz de luz en un formato compacto y ligero, requiere de dimmer.",True,todos,https://medioangular.com/cotizador/img/leekojr.jpeg
-PAR ETC 575,I-012,dia,250,MXN,,True,iluminación,True,"Luminaria profesional de lámpara de  descarga que revolucionó el diseño de los tradicionales focos PAR, ofrece un rendimiento superior y una versatilidad sin precedentes.",todos,https://medioangular.com/cotizador/img/paretc.jpeg
-DIMMER,I-013,dia,600,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/dimmer.jpeg
+PAR ETC 575,I-012,dia,250,MXN,iluminación,True,"Luminaria profesional de lámpara de descarga que revolucionó el diseño de los tradicionales focos PAR; ofrece un rendimiento superior y una versatilidad sin precedentes.",True,todos,https://medioangular.com/cotizador/img/paretc.jpeg
 SEGUIDOR,I-014,dia,2000,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/seguidor.jpeg
 PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,350,MXN,iluminación,True,"Luminaria RGBW de tipo PAR LED de alta potencia, diseñado para el uso profesional en escenarios, teatros, eventos en vivo y producciones televisivas.",True,todos,https://medioangular.com/cotizador/img/parled.jpeg
 BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,400,MXN,iluminación,True,"Barra de luz LED ideal para iluminar paredes o telones, cicloramas y como luz de efecto en eventos, teatros y estudios.",True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
@@ -166,6 +165,7 @@ FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioa
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
