@@ -6,7 +6,7 @@ CONSOLA DE AUDIO YAMAHA DM3 DANTE,A-004,dia,2000,MXN,audio,True,"Consola de mezc
 CONSOLA A&H ZEDi-10,A-005,dia,400,MXN,audio,True,"Consola de mezcla analógica compacta con 4 entradas mono (micrófono/line) y 2 estéreo. Cuenta con 2 salidas principales XLR balanceadas, salidas de monitor, auriculares y grabación. La interfaz de audio integrada es de 4x4 a 24-bit/96kHz, lo que permite la grabación y reproducción multicanal.",True,todos,https://medioangular.com/cotizador/img/consolazedi10.jpeg
 CONSOLA A&H ZEDi-8,A-006,dia,350,MXN,audio,True,"Consola de mezcla analógica compacta con 2 entradas mono (micrófono/line) y 2 estéreo. Incluye 2 salidas principales XLR balanceadas y una interfaz de audio de 2x2 a 24-bit/96kHz, lo que permite la grabación y reproducción multicanal.",True,todos,https://medioangular.com/cotizador/img/consolazedi8.jpeg
 AMPLIFICADOR D&B D12,A-007,dia,1000,MXN,audio,True,"Amplificador de potencia de dos canales diseñado para su uso en sistemas de audio profesional con potencia media a alta, con 2 x 750 W a 8 Ω y 2 x 1200 W a 4 Ω",True,corporativo,https://medioangular.com/cotizador/img/d12.jpeg
-AMPLIFICADOR D&B D6 ,A-008,dia,900,MXN,audio,True,"Amplificador de potencia de dos canales diseñado para su uso en sistemas de audio profesional con potencia media a alta, con 2 x 750 W a 8 Ω y 2 x 1200 W a 4 Ω",True,corporativo,https://medioangular.com/cotizador/img/d6.jpeg
+AMPLIFICADOR D&B D6,A-008,dia,900,MXN,audio,True,"Amplificador de potencia de dos canales diseñado para su uso en sistemas de audio profesional con potencia media a alta, con 2 x 750 W a 8 Ω y 2 x 1200 W a 4 Ω",True,corporativo,https://medioangular.com/cotizador/img/d6.jpeg
 CONTROLADOR DE RED D&B R60,A-009,dia,500,MXN,audio,True,Interfaz de red que conecta el sistema de amplificadores y altavoces de d&b a una computadora,True,corporativo,https://medioangular.com/cotizador/img/r60.jpeg
 ALTAVOZ D&B Q1,A-010,dia,1000,MXN,audio,True,"Altavoz de arreglo en line pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x15° y un SPL de 139 dB.",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
 ALTAVOZ D&B Q7,A-011,dia,1000,MXN,audio,True,"Altavoz de arreglo en lineal pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x40° y un SPL de 138 dB.",True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
@@ -39,7 +39,7 @@ SISTEMA DE AUDIO DELAY 100 PAX,A-037,dia,2800,MXN,paquete audio,True,"Sistema de
 SISTEMA DE AUDIO DELAY PERIMETRAL,A-038,dia,3000,MXN,paquete audio,True,"Sistema de audio d&b incluye 4 Top , 1 Amplificador",True,todos,https://medioangular.com/cotizador/img/PERIMETRAL.jpeg
 SISTEMA DE AUDIO 2.1 HK NANO 300,A-039,dia,1500,MXN,paquete audio,True,"Incluye 2 altavoces de fuente puntual, 1 subwoofer y una consola de tres canales integrada en el subwoofer.",True,todos,https://medioangular.com/cotizador/img/nano300.jpeg
 SISTEMA AUDIO 2.1 HK PERFORMER,A-040,dia,2500,MXN,paquete audio,True,"Sistema de sonido activo ""triphonic"" (un subwoofer y dos satélites).",True,todos,https://medioangular.com/cotizador/img/performer.jpeg
-MICRÓFONO INALAMBRICO BEYERDINAMIC TG 1000 ,A-041,dia,1000,MXN,audio,True,"Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor",True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
+MICRÓFONO INALAMBRICO BEYERDINAMIC TG 1000,A-041,dia,1000,MXN,audio,True,"Micrófono inalámbrico digital de alta gama  incluye transmisor de mano  y receptor",True,corporativo,https://medioangular.com/cotizador/img/beyertg.jpeg
 MICRÓFONO SHURE BETA 98D/S,A-042,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura, diseñado especificamente para la microfonia de percusión y otros instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98ds.jpeg
 MICRÓFONO SHURE BETA 98H/C,A-043,dia,350,MXN,audio,True,"Micrófono de condensador en miniatura,  ""Clip on"" de la serie Beta diseñado para instrumentos",True,corporativo,https://medioangular.com/cotizador/img/beta98hc.jpeg
 MICRÓFONO SHURE BETA 52 A,A-044,dia,300,MXN,audio,True,"Micrófono de instrumento dinámico supercardioide, diseñado para capturar bajas frecuencias con gran detalle. Es ideal para bombos y otros instrumentos de baja frecuencia.",True,corporativo,https://medioangular.com/cotizador/img/beta52.jpeg
@@ -49,7 +49,7 @@ MICRÓFONO SHURE BETA 91 A,A-047,dia,300,MXN,audio,True,"Micrófono de condensad
 MICRÓFONO SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S es un Micrófono de mano dinámico, cardioide, diseñado para voces y uso general en escenarios en vivo.",True,corporativo,https://medioangular.com/cotizador/img/e815.jpeg
 MICRÓFONO SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma pequeño, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
 BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonos de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
-DIADEMA DPA d:fine. 4088 ,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentación.",True,corporativo,https://medioangular.com/cotizador/img/diademadpa.jpeg
+DIADEMA DPA d:fine. 4088,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentación.",True,corporativo,https://medioangular.com/cotizador/img/diademadpa.jpeg
 TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,streaming,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/línea XLR y 2 salidas principales TRS de 1/4. Aplicaciones grabación y streaming",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
 CAJA DIRECTA,A-053,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/CAJADIRECTA.jpeg
 "PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, POR METRO CUADRADO",V-001,dia,1800,MXN,video,True,"Pantalla LED de alta resolución pitch 2.9mm , diseñada para la industria del alquiler y producción de eventos",True,corporativo,https://medioangular.com/cotizador/img/PL2.9.jpeg
@@ -62,8 +62,8 @@ CAJA DIRECTA,A-053,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.
 "PANTALLA DE LEDS ABSEN DVPLUS 3.9 MM, 4 x 2.5 MTS",V-008,dia,16750,MXN,paquete video,True,"Incluye 10 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
 "PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, 5 x 3 MTS",V-009,dia,28750,MXN,paquete video,True,"Incluye 15 metros cuadrados de pantalla LED de 2.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/PL2.9.jpeg
 "PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, 5 x 3 MTS",V-010,dia,24250,MXN,paquete video,True,"Incluye 15 metros cuadrados de pantalla LED de 3.9 mm, una tarjeta de envío y un procesador de video.",True,todos,https://medioangular.com/cotizador/img/DV3.9.jpeg
-PROCESADOR LEDS MAGNIMAGE W4000 8K ,V-011,dia,3000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/W4000.jpeg
-PROCESADOR LEDS MAGNIMAGE 780 H 4K ,V-012,dia,2000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/780H.jpeg
+PROCESADOR LEDS MAGNIMAGE W4000 8K,V-011,dia,3000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/W4000.jpeg
+PROCESADOR LEDS MAGNIMAGE 780 H 4K,V-012,dia,2000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/780H.jpeg
 PROCESADOR LEDS MAGNIMAGE 550-D HD,V-013,dia,1000,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/550D.jpeg
 TARJETA DE LEDS NOVASTAR MCTRL 660,V-014,dia,750,MXN,video,True,,True,todos,https://medioangular.com/cotizador/img/mtcrl660.jpeg
 BUMPER PARA COLGAR PANTALLA 2.9mm 50 CMS,V-015,dia,150,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/bumperabsen.jpeg
@@ -81,8 +81,8 @@ PLAY BACKPRO,V-026,dia,1000,MXN,video,True,,True,corporativo,https://medioangula
 PERFECT CUE,V-027,dia,700,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PERFECTCUE.jpeg
 PERFECT CUE MINI,V-028,dia,700,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PERFECTCUEMINI.jpeg
 PANTALLA FAST FOLD 2X2,V-029,dia,1000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PLANTALLADALITE.jpeg
-PANTALLAS  FAST FOLD 3.05 X 2.29 BACK Y FRONT,V-030,dia,1200,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PLANTALLADALITE.jpeg
-PROYECTOR 3500 LUMENES ULTRA CORTO ,V-031,dia,1900,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PROYECTOR3500.jpeg
+PANTALLA FAST FOLD 3.05 X 2.29 BACK Y FRONT,V-030,dia,1200,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PLANTALLADALITE.jpeg
+PROYECTOR 3500 LUMENES ULTRA CORTO,V-031,dia,1900,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PROYECTOR3500.jpeg
 PROYECTOR 6000 LUMENES PANASONIC,V-032,dia,3750,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PANASONIC6000.jpeg
 "PANTALLA LCD  42"" PANASONIC",V-033,dia,1200,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PLASMA42.jpeg
 "PANTALLA LCD  55"" SAMSUNG",V-034,dia,1300,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/PLASMA55.jpeg
@@ -100,7 +100,7 @@ CABLES DE RED DE 80 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,
 CABLES DE RED DE 60 MTS,V-046,dia,150,MXN,video,True,,False,corporativo,
 SERVIDOR DE STREAMING,V-047,dia,7000,MXN,streaming,True,,True,corporativo,https://medioangular.com/cotizador/img/SERVERSTREAMING.jpeg
 CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
-CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,1500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
+CONSOLA ILUMINACIÓN CHAMSYS MAGIC Q LAPTOP,I-002,dia,1500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
 LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminación,True,"Lámpara de LED de alta calidad, utilizada en producciones de cine, televisión y fotografía, permite ajustar la temperatura del color para que coincida con la luz ambiental, de 5600K a 3200K.",True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
 SPLITTER,I-004,dia,500,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/SPLITTER.jpeg
 LÁMPARA BEAM ROBE POINTE,I-005,dia,1000,MXN,iluminación,True,"luminaria móvil de descarga que destaca por su versatilidad, ya que puede funcionar como un proyector de tipo Beam, Spot y Wash",True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
@@ -137,11 +137,11 @@ CENTRO DE CARGA,E-001,dia,1500,MXN,energía,True,Centro de carga de 220v y 630 a
 CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energía,True,Centro de carga de 110v y 90 amperes,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
-COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,"Sistema de intercomunicación de 4 diademas inalábricas full duplex y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
-COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,3500,MXN,comunicacion,True,"Sistema de intercomunicación inalámbrica full-duplex. 8 diademas inalámbricas y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
-COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2000,MXN,comunicacion,True,"Estación principal de intercomunicación alámbrica de 4 canales, incluye 5 diademas",True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
-RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/radioep450.jpeg
-ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicacion,True,,True,todos,https://medioangular.com/cotizador/img/HANDMIC.jpeg
+COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicación,True,"Sistema de intercomunicación de 4 diademas inalábricas full duplex y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
+COMUNICACIÓN BIDIRECCIONAL HOLLYLAND C1 PRO,C-002,dia,3500,MXN,comunicación,True,"Sistema de intercomunicación inalámbrica full-duplex. 8 diademas inalámbricas y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hollyland.jpeg
+COMUNICACIÓN BIDIRECCIONAL CLEARCOM MS704,C-003,dia,2000,MXN,comunicación,True,"Estación principal de intercomunicación alámbrica de 4 canales, incluye 5 diademas",True,corporativo,https://medioangular.com/cotizador/img/clearcom.jpeg
+RADIOS MOTOROLA EP-450,C-004,dia,250,MXN,comunicación,True,,True,todos,https://medioangular.com/cotizador/img/radioep450.jpeg
+ACCESORIO DE RADIO,C-005,dia,80,MXN,comunicación,True,,True,todos,https://medioangular.com/cotizador/img/HANDMIC.jpeg
 INGENIERO DE AUDIO,P-001,dia,3500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
 OPERADOR DE AUDIO,P-002,dia,2500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
 TÉCNICO DE AUDIO,P-003,dia,1500,MXN,personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg
@@ -163,7 +163,8 @@ FLETE 2.5   VALLE DE BRAVO,O-006,dia,15000,MXN,otros,True,,True,todos,https://me
 FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
-HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+HOSPEDAJE,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
