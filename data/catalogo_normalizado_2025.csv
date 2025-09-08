@@ -94,7 +94,7 @@ DISTRIBUIDOR SDI 4 PUERTOS,V-039,dia,350,MXN,video,True,,True,corporativo,https:
 EXTEDER HDMI,V-040,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/EXTENDERHDMI.jpeg
 CÁMARA SONY PXWZ150 CCTV,V-041,dia,3000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/CAMARATV.jpeg
 PAQUETE DE CCTV,V-042,dia,10500,MXN,paquete video,True,"1 Switcher y 2 cámaras de video",True,corporativo,https://medioangular.com/cotizador/img/CCTV.jpeg
-"VIDEO ASSIST BLACK MAGIC 7"" 3G",V-043,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
+"VIDEO ASSIST GRABADOR BLACK MAGIC 7"" 3G",V-043,dia,1200,MXN,video,True,"Monitor portátil, grabador profesional y visor para todo tipo de cámaras SDI o HDMI." ,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
 TARJETA CAPTURA WEB PRESENTER,V-044,dia,800,MXN,streaming,True,"Tarjeta de captura de video y audio diseñada para simplificar la transmisión de video en vivo a través de Internet.",True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
 CABLES DE RED DE 80 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CABLES DE RED DE 60 MTS,V-046,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
@@ -164,6 +164,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
