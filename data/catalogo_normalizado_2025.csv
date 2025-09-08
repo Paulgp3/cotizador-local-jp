@@ -50,7 +50,7 @@ MICRÓFONO SENNHEISER e815 sc,A-048,dia,250,MXN,audio,True,"Sennheiser e 815 S e
 MICRÓFONO SHURE SM 137 LC,A-049,dia,250,MXN,audio,True,"Micrófono de condensador de diafragma pequeño, utilizado para instrumentos de cuerda acústicos, platillos, overheads de batería, percusión, pianos, metales y maderas.",True,corporativo,https://medioangular.com/cotizador/img/sm137.jpeg
 BODY PACK BEYERDINAMIC TG L1000,A-050,dia,250,MXN,audio,True,"Transmisor de petaca de la serie TG, usado para micrófonos de solapa, de diadema o para conectar instrumentos.",True,corporativo,https://medioangular.com/cotizador/img/bodypack.jpeg
 DIADEMA DPA d:fine. 4088 ,A-051,dia,500,MXN,audio,True,"Micrófono de diadema de condensador con un patrón polar cardioide, diseñado para capturar la voz con una claridad excepcional mientras minimiza el riesgo de retroalimentación.",True,corporativo,https://medioangular.com/cotizador/img/diademadpa.jpeg
-TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,audio,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/línea XLR y 2 salidas principales TRS de 1/4. Aplicaciones grabación y streaming",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
+TARJETA DE AUDIO PRESONUS 24C,A-052,dia,800,MXN,streaming,True,"Tarjeta de captura de audio con 2 entradas de micrófono/instrumento/línea XLR y 2 salidas principales TRS de 1/4. Aplicaciones grabación y streaming",True,corporativo,https://medioangular.com/cotizador/img/presonus24.jpeg
 CAJA DIRECTA,A-053,dia,50,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/CAJADIRECTA.jpeg
 "PANTALLA DE LEDS ABSEN POLARIS 2.9 MM, POR METRO CUADRADO",V-001,dia,1800,MXN,video,True,"Pantalla LED de alta resolución pitch 2.9mm , diseñada para la industria del alquiler y producción de eventos",True,corporativo,https://medioangular.com/cotizador/img/PL2.9.jpeg
 "PANTALLA DE LEDS ABSEN DVPLUS 3.9  MM, POR METRO CUADRADO",V-002,dia,1500,MXN,video,True,"Pantalla LED muy versátil y resistente pitch 3.9mm,  ofrece una alta calidad de imagen y una gran fiabilidad en una variedad de condiciones de iluminación y entorno",True,corporativo,https://medioangular.com/cotizador/img/DV3.9.jpeg
@@ -74,7 +74,7 @@ ESCALERA PARA PANTALLA DE LEDS 2 MTS,V-019,dia,200,MXN,video,True,,False,corpora
 SERVIDOR DE MAPPING,V-020,dia,3500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/SERVER.jpeg
 SWITCHER DE VIDEO ROLAND V800 HD,V-021,dia,4500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/V800HD.jpeg
 SWITCHER  DE VIDEO MAGNIMAGE V6,V-022,dia,30000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/V6.jpeg
-SWITCHER DE VIDEO ATEM MINI PRO,V-023,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/ATEMMINI.jpeg
+SWITCHER DE VIDEO ATEM MINI PRO,V-023,dia,1500,MXN,streaming,True,,True,corporativo,https://medioangular.com/cotizador/img/ATEMMINI.jpeg
 LAPTOP,V-024,dia,1000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/LAPTOP.jpeg
 "LAPTOP MACKBOOK PRO 15"" LATE 2014",V-025,dia,1000,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 PLAY BACKPRO,V-026,dia,1000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/playback.jpeg
@@ -94,7 +94,7 @@ DISTRIBUIDOR SDI 4 PUERTOS,V-039,dia,350,MXN,video,True,,True,corporativo,https:
 EXTEDER HDMI,V-040,dia,350,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/EXTENDERHDMI.jpeg
 CÁMARA SONY PXWZ150 CCTV,V-041,dia,4000,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/CAMARATV.jpeg
 "VIDEO ASSIST BLACK MAGIC 7"" 3G",V-042,dia,1500,MXN,video,True,,True,corporativo,https://medioangular.com/cotizador/img/VIDEOASSIT.jpeg
-TARJETA CAPTURA WEB PRESENTER,V-043,dia,800,MXN,video,True,"Tarjeta de captura de video y audio diseñada para simplificar la transmisión de video en vivo a través de Internet.",True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
+TARJETA CAPTURA WEB PRESENTER,V-043,dia,800,MXN,streaming,True,"Tarjeta de captura de video y audio diseñada para simplificar la transmisión de video en vivo a través de Internet.",True,corporativo,https://medioangular.com/cotizador/img/webpresenter.jpeg
 CABLES DE RED DE 80 MTS,V-044,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CABLES DE RED DE 60 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
@@ -162,6 +162,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
