@@ -133,8 +133,8 @@ HAMBURGUESA DOBLE,R-006,dia,100,MXN,rigging,True,,True,corporativo,https://medio
 TUBO,R-007,dia,50,MXN,rigging,True,,True,corporativo,https://medioangular.com/cotizador/img/tubo.jpeg
 DECK ESCENARIO POR METRO,D-001,dia,500,MXN,escenografía,True,Deck de escenario de aluminio,True,corporativo,https://medioangular.com/cotizador/img/Deckescenario.jpeg
 PIPE AND DRAPE POR METRO,D-002,dia,450,MXN,escenografía,True,Telones negros,True,corporativo,https://medioangular.com/cotizador/img/pipeanddrape.jpeg
-CENTRO DE CARGA,E-001,dia,1500,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/CENTRODECARGA.jpeg
-CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
+CENTRO DE CARGA,E-001,dia,1500,MXN,energía,True,Centro de carga de 220v y 630 amperes.,True,todos,https://medioangular.com/cotizador/img/CENTRODECARGA.jpeg
+CENTRO DE CARGA MOTION LABS,E-002,dia,800,MXN,energía,True,Centro de carga de 110v y 90 amperes,True,todos,https://medioangular.com/cotizador/img/RACKPACK.jpeg
 FEEDER 25 MTS,E-003,dia,1000,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/feeder.jpeg
 YELLOW JACKETS,E-004,dia,200,MXN,energía,True,,True,todos,https://medioangular.com/cotizador/img/yellowwjacket.jpeg
 COMUNICACIÓN BIDIRECCIONAL HME DX200,C-001,dia,2500,MXN,comunicacion,True,"Sistema de intercomunicación de 4 diademas inalábricas full duplex y 1 en la base.",True,corporativo,https://medioangular.com/cotizador/img/hme.jpeg
@@ -164,6 +164,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
