@@ -99,7 +99,7 @@ CABLES DE RED DE 80 MTS,V-044,dia,150,MXN,video,True,,False,corporativo,https://
 CABLES DE RED DE 60 MTS,V-045,dia,150,MXN,video,True,,False,corporativo,https://medioangular.com/cotizador/img/
 CONSOLA ILUMINACIÓN CHAMSYS MQ60,I-001,dia,2500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/mq60.jpeg
 CONSOLA ILUMINACIÓN  CHAMSYS MAGIC Q LAPTOP,I-002,dia,1500,MXN,iluminación,True,"Consola de Iluminación",True,todos,https://medioangular.com/cotizador/img/magicQ.jpeg
-LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
+LAMPARA ASTRA BICOLOR,I-003,dia,1875,MXN,iluminación,True,"Lámpara de LED de alta calidad, utilizada en producciones de cine, televisión y fotografía, permite ajustar la temperatura del color para que coincida con la luz ambiental, de 5600K a 3200K.",True,todos,https://medioangular.com/cotizador/img/ASTRA.jpeg
 SPLITTER,I-004,dia,500,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/SPLITTER.jpeg
 LÁMPARA BEAM ROBE POINTE,I-005,dia,1000,MXN,iluminación,True,"luminaria móvil de descarga que destaca por su versatilidad, ya que puede funcionar como un proyector de tipo Beam, Spot y Wash",True,todos,https://medioangular.com/cotizador/img/robepointe.jpeg
 LÁMPARA CHAUVET SPOT MAVERICK MK2,I-006,dia,1200,MXN,iluminación,True,"Luminaria de cabeza móvil tipo spot de alta potencia, reconocida por su versatilidad y brillo, gracias a su motor LED.",True,todos,https://medioangular.com/cotizador/img/mk2spot.jpeg
@@ -162,6 +162,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
