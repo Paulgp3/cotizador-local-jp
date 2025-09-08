@@ -8,8 +8,7 @@ CONSOLA A&H ZEDi-8,A-006,dia,350,MXN,audio,True,"Consola de mezcla analógica co
 AMPLIFICADOR D&B D12,A-007,dia,1000,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/d12.jpeg
 AMPLIFICADOR D&B D6 ,A-008,dia,900,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/d6.jpeg
 CONTROLADOR DE RED D&B R60,A-009,dia,500,MXN,audio,True,,True,corporativo,https://medioangular.com/cotizador/img/r60.jpeg
-ALTAVOZ D&B Q1,A-010,dia,1000,MXN,audio,True,"Altavoz de arreglo en line pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x15° y un SPL de 139 dB.
-",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
+ALTAVOZ D&B Q1,A-010,dia,1000,MXN,audio,True,"Altavoz de arreglo en line pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x15° y un SPL de 139 dB.",True,corporativo,https://medioangular.com/cotizador/img/q1.jpeg
 ALTAVOZ D&B Q7,A-011,dia,1000,MXN,audio,True,"Altavoz de arreglo en lineal pasivo de 2 vías de la serie Q de d&b audiotechnik. Cuenta con una dispersión de 75°x40° y un SPL de 138 dB.",True,corporativo,https://medioangular.com/cotizador/img/q7.jpeg
 SUBWOOFER D&B QSUB,A-012,dia,800,MXN,audio,True,"Subwoofer pasivo de baja compresión y diseño bass reflex con un SPL 133 dB.",True,corporativo,https://medioangular.com/cotizador/img/qsub.jpeg
 ALTAVOZ D&B T10,A-013,dia,900,MXN,audio,True,"Altavoz pasivo de 2 vías que puede funcionar como fuente de arreglo lineal o como fuente puntual. Cuenta con una dispersión de 90° x 35° y un SPL de 129 dB.",True,corporativo,https://medioangular.com/cotizador/img/t10.jpeg
@@ -163,8 +162,8 @@ FLETE 2.5   VALLE DE BRAVO,O-006,dia,15000,MXN,otros,True,,True,todos,https://me
 FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
-
 HOSPEDAJE ,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
