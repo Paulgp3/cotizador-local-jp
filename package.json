@@ -42,6 +42,10 @@
     "render"
   ],
   "author": "Medio Angular",
-  "license": "ISC"
-  "overrides": { "axios": ">=1.12.0" }
+  "license": "ISC",
+  "overrides": {
+    "axios": ">=1.12.0",
+    "@sendgrid/client": { "axios": ">=1.12.0" },
+    "@sendgrid/mail":   { "axios": ">=1.12.0" }
+  }
 }
