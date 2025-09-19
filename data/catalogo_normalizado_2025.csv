@@ -115,7 +115,7 @@ SEGUIDOR,I-014,dia,2000,MXN,iluminación,True,,True,todos,https://medioangular.c
 PAR LED COLORADO QUAD ZOOM TOUR,I-015,dia,350,MXN,iluminación,True,"Luminaria RGBW de tipo PAR LED de alta potencia, diseñado para el uso profesional en escenarios, teatros, eventos en vivo y producciones televisivas.",True,todos,https://medioangular.com/cotizador/img/parled.jpeg
 BARRA DE LED COLORDASH BATTEN QUAD 12,I-016,dia,400,MXN,iluminación,True,"Barra de luz LED ideal para iluminar paredes o telones, cicloramas y como luz de efecto en eventos, teatros y estudios.",True,todos,https://medioangular.com/cotizador/img/barraled.jpeg
 MÁQUINA DE HUMO ANTARI F1,I-017,dia,800,MXN,iluminación,True,,True,todos,https://medioangular.com/cotizador/img/maquinahumo.jpeg
-"PAQUETE DE ILUMINACIÓN PRO DJ #1 2xTruss,4xBeam,4xWash,1xConsola,1xMáquina de Humo",I-018,dia,11500,MXN,paquete iluminación,True,,True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
+PAQUETE DE ILUMINACIÓN PRO DJ #1,I-018,dia,11500,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL1.jpeg
 PAQUETE DE ILUMINACIÓN PRO DJ #2,I-019,dia,12300,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Spot, 4 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL2.jpeg
 PAQUETE DE ILUMINACIÓN PRO DJ #3,I-020,dia,22500,MXN,paquete iluminación,True,"4 truss, 4 cabezas móviles Spot, 4 cabezas móviles Beam, 8 cabezas móviles Wash, máquina de humo y consola.",True,social,https://medioangular.com/cotizador/img/PAQUETESOCIAL3.jpeg
 PAQUETE DE ILUMINACIÓN CORPORATIVO #1,I-021,dia,12700,MXN,paquete iluminación,True,"2 truss, 4 cabezas móviles Beam, 4 cabezas móviles Wash, 2 Leeko y consola.",True,corporativo,https://medioangular.com/cotizador/img/PAQUETECORP1.jpeg
@@ -164,6 +164,7 @@ FLETE 3.5  VALLE DE BRAVO,O-007,dia,20000,MXN,otros,True,,True,todos,https://med
 FLETE 2.5   QUERÉTARO,O-008,dia,18000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/ram2500.jpeg
 FLETE 3.5  QUERÉTARO,O-009,dia,25000,MXN,otros,True,,True,todos,https://medioangular.com/cotizador/img/flete3500.jpeg
 HOSPEDAJE,O-010,dia,1100,MXN,otros,True,Hospedaje cuarto doble,True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg
+
 
 
 
