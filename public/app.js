@@ -1,6 +1,10 @@
 /* public/app.js — Front-only (VARIANTS + JSON POST schema fixed) */
 (() => {
-  const API_BASE = 'https://cotizador-local-jp.onrender.com';
+  const API_BASE =
+  window.API_BASE ||
+  ((location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? ''
+    : 'https://cotizador-local-jp.onrender.com');
   const API = {
   catalog: `${API_BASE}/catalog`,
   quote:   `${API_BASE}/quotes`
