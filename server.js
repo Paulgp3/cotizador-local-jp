@@ -312,12 +312,42 @@ function toDMY(s) {
   return String(s);
 }
 
-function daysDiscountRate(days){
-  if (days <= 1) return 0;
-  if (days === 2) return 0.15;
-  if (days >= 3 && days <= 6) return 0.20;
-  if (days >= 7 && days < 30) return 0.50;
-  return 0.60;
+function billableDaysByRentalModel(days) {
+  const d = Number(days || 1);
+
+  if (!Number.isFinite(d) || d <= 1) return 1;
+
+  // Fase 1: Impulso inicial
+  if (d === 2) return 2 * 0.85; // 1.7 días cobrables
+  if (d === 3) return 3 * 0.80; // 2.4 días cobrables
+  if (d === 4) return 4 * 0.70; // 2.8 días cobrables
+
+  // Fase 2 - Bronce: días 5 a 14
+  // Tope semanal de 3.5 días cobrables
+  if (d < 15) {
+    return (Math.floor(d / 7) * 3.5) + Math.min(3.5, d % 7);
+  }
+
+  // Fase 2 - Plata: días 15 a 30
+  // Tope semanal de 3.0 días cobrables
+  if (d < 31) {
+    return (Math.floor(d / 7) * 3.0) + Math.min(3.0, d % 7);
+  }
+
+  // Fase 3 - Oro: día 31 en adelante
+  // Tope semanal de 2.5 días cobrables
+  return (Math.floor(d / 7) * 2.5) + Math.min(2.5, d % 7);
+}
+
+function daysDiscountRate(days) {
+  const d = Number(days || 1);
+
+  if (!Number.isFinite(d) || d <= 0) return 0;
+
+  const billableDays = billableDaysByRentalModel(d);
+  const discountRate = 1 - (billableDays / d);
+
+  return Math.max(0, Math.min(discountRate, 1));
 }
 function isExcludedFromDiscount(line){
   const cat = String(line.category || "").toLowerCase();
