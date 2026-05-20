@@ -83,6 +83,88 @@
     .date-row{ display:flex; align-items:center; column-gap:.5rem; }
     .date-wrap{ flex:1 1 auto; min-width:0; }
     .date-open{ order:-1; margin-right:.5rem; align-self:center; }
+
+    /* Barra inferior de selección */
+    .selectionBar{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:999;
+      padding:12px 16px;
+      background:rgba(9,11,13,.96);
+      border-top:1px solid var(--ring);
+      box-shadow:0 -10px 30px rgba(0,0,0,.35);
+      transform:translateY(110%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .22s ease, opacity .22s ease;
+    }
+
+    .selectionBar.is-visible{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .selectionBar__inner{
+      max-width:1180px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .selectionBar__text{
+      color:var(--text);
+      font-weight:700;
+      font-size:15px;
+    }
+
+    .selectionBar__button{
+      min-height:44px;
+      border:0;
+      border-radius:999px;
+      padding:0 22px;
+      background:var(--brand);
+      color:#000;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .selectionBar__button:hover{
+      filter:brightness(1.05);
+    }
+
+    body{
+      padding-bottom:86px;
+    }
+
+    @media (max-width: 640px){
+      .selectionBar{
+        padding:10px 12px;
+      }
+
+      .selectionBar__inner{
+        align-items:stretch;
+        flex-direction:column;
+        gap:8px;
+      }
+
+      .selectionBar__text{
+        text-align:center;
+        font-size:14px;
+      }
+
+      .selectionBar__button{
+        width:100%;
+      }
+
+      body{
+        padding-bottom:118px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -138,31 +220,30 @@
           <div class="item">
             <label for="eventType">Tipo de evento *</label>
             <select id="eventType" name="event_type" class="selectFull" required>
-  <option value="" disabled selected>Selecciona...</option>
+              <option value="" disabled selected>Selecciona...</option>
 
-  <!-- Corporativo -->
-  <option>Kick-off / Reunión de planificación</option>
-  <option>Capacitación / Taller de desarrollo</option>
-  <option>Eventos de networking & Team building</option>
-  <option>Eventos con clientes</option>
-  <option>Lanzamientos de producto</option>
-  <option>Seminarios / conferencias especializadas</option>
-  <option>Convención anual</option>
-  <option>Eventos de responsabilidad social</option>
-  <option>Fiesta de fin de año</option>
-  <option>Otros</option>
+              <!-- Corporativo -->
+              <option>Kick-off / Reunión de planificación</option>
+              <option>Capacitación / Taller de desarrollo</option>
+              <option>Eventos de networking & Team building</option>
+              <option>Eventos con clientes</option>
+              <option>Lanzamientos de producto</option>
+              <option>Seminarios / conferencias especializadas</option>
+              <option>Convención anual</option>
+              <option>Eventos de responsabilidad social</option>
+              <option>Fiesta de fin de año</option>
+              <option>Otros</option>
 
-  <!-- Social (sin duplicar "Fiesta de fin de año") -->
-  <option>Boda</option>
-  <option>Graduación</option>
-  <option>Cumpleaños</option>
-  <option>Aniversario de boda</option>
-  <option>15 años</option>
-  <option>Baby Shower</option>
-  <option>Fiestas patrias</option>
-  <option>Halloween</option>
-</select>
-
+              <!-- Social (sin duplicar "Fiesta de fin de año") -->
+              <option>Boda</option>
+              <option>Graduación</option>
+              <option>Cumpleaños</option>
+              <option>Aniversario de boda</option>
+              <option>15 años</option>
+              <option>Baby Shower</option>
+              <option>Fiestas patrias</option>
+              <option>Halloween</option>
+            </select>
           </div>
           <div class="item">
             <label for="eventDate">Fecha del evento *</label>
@@ -215,9 +296,17 @@
     <footer style="text-align:center;color:var(--text);opacity:.85;margin:28px 0 8px">© Medio Angular</footer>
   </div>
 
+  <div id="selectionBar" class="selectionBar" aria-hidden="true">
+    <div class="selectionBar__inner">
+      <div class="selectionBar__text" id="selectionBarText">Tu selección: 0 productos agregados</div>
+      <button type="button" class="selectionBar__button" data-action="continue-selection">
+        Continuar
+      </button>
+    </div>
+  </div>
+
   <!-- Tu JS actual -->
   <script src="/public/app.js" defer></script>
 
 </body>
 </html>
-

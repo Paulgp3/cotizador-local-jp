@@ -103,6 +103,8 @@ const toNFC = (v) => {
     privacyLink:
       document.querySelector('[data-open-privacy]') ||
       document.querySelector('a[href$="avisoprivacidad.html"]'),
+    selectionBar: $('#selectionBar'),
+    selectionBarText: $('#selectionBarText'),
   };
 
   // ---------- Estado ----------
@@ -309,15 +311,16 @@ const toNFC = (v) => {
   }
 
   function renderCart() {
-    const tbody = els.cartRows;
-    if (!tbody) return;
-    tbody.innerHTML = '';
+  const tbody = els.cartRows;
+  if (!tbody) return;
+  tbody.innerHTML = '';
 
-    if (!CART.size) {
-      tbody.innerHTML = `<tr><td colspan="5" style="opacity:.8">Aún no has agregado productos.</td></tr>`;
-      if (els.send) els.send.disabled = true;
-      return;
-    }
+  if (!CART.size) {
+    tbody.innerHTML = `<tr><td colspan="5" style="opacity:.8">Aún no has agregado productos.</td></tr>`;
+    if (els.send) els.send.disabled = true;
+    updateSelectionBar();
+    return;
+  }
 
     const frag = document.createDocumentFragment();
     Array.from(CART.values()).forEach((row) => {
@@ -365,6 +368,7 @@ const toNFC = (v) => {
 
     tbody.appendChild(frag);
     if (els.send) els.send.disabled = false;
+    updateSelectionBar();
   }
 
   // ---------- Popup Aviso de Privacidad ----------
@@ -402,6 +406,39 @@ const toNFC = (v) => {
   }
 
   // ---------- Envío (JSON alineado al server) ----------
+  function updateSelectionBar() {
+    const count = CART.size;
+
+    if (!els.selectionBar || !els.selectionBarText) return;
+
+    if (count <= 0) {
+      els.selectionBar.classList.remove('is-visible');
+      els.selectionBar.setAttribute('aria-hidden', 'true');
+      return;
+    }
+
+    const label = count === 1
+      ? 'Tu selección: 1 producto agregado'
+      : `Tu selección: ${count} productos agregados`;
+
+    els.selectionBarText.textContent = label;
+    els.selectionBar.classList.add('is-visible');
+    els.selectionBar.setAttribute('aria-hidden', 'false');
+  }
+
+  function scrollToClientData() {
+    const target =
+      document.querySelector('#clientForm') ||
+      document.querySelector('[data-section="client-data"]') ||
+      document.querySelector('form');
+
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
   async function sendQuote() {
     if (!CART.size) return alert('Agrega al menos un producto.');
     if (!validateForm(true)) return els.form?.reportValidity?.();
@@ -561,6 +598,14 @@ const toNFC = (v) => {
     if (els.send) els.send.addEventListener('click', sendQuote);
     if (els.search) els.search.addEventListener('input', renderCatalog);
     if (els.category) els.category.addEventListener('change', renderCatalog);
+
+    document.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('[data-action="continue-selection"]');
+      if (!btn) return;
+
+      ev.preventDefault();
+      scrollToClientData();
+    });
   }
 
   document.readyState === 'loading'
