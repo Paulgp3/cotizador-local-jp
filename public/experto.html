@@ -65,6 +65,24 @@
     .privacy a{color:var(--brand);text-decoration:none}
     .privacy input{transform:translateY(3px)}
 
+    .stepActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .btn.secondary{
+      background:transparent;
+      color:var(--brand);
+      border:1px solid var(--brand);
+    }
+
+    .finalCard{
+      padding:18px;
+    }
+
     /* Fecha (picker nativo con botón dentro) */
     .date-wrap { position: relative; }
     .date-wrap input { padding-right: 2.4rem; }
@@ -142,6 +160,13 @@
     }
 
     @media (max-width: 640px){
+      .wrap{padding:16px}
+      .toolbar{flex-direction:column}
+      .toolbar .selectFull{width:100% !important}
+      .form .grid{grid-template-columns:1fr}
+      th,td{padding:12px}
+      th{font-size:16px}
+
       .selectionBar{
         padding:10px 12px;
       }
@@ -171,13 +196,13 @@
   <div class="wrap">
     <header style="margin-bottom:12px">
       <h1>Cotizador de Servicios</h1>
-      <p class="lead">Selecciona productos, completa tus datos y recibe la cotización por correo.</p>
+      <p class="lead">Selecciona productos, revisa tu selección, completa tus datos y recibe la cotización por correo.</p>
     </header>
 
     <!-- 1) Selección -->
-    <section class="card" style="padding:18px">
+    <section id="catalogSection" class="card" style="padding:18px">
       <h2>1) Selecciona equipos y servicios</h2>
-      <p class="hint">Usa el buscador o filtra por categoría. Luego agrega productos y pasa a <span class="accent">Tu selección</span>.</p>
+      <p class="hint">Usa el buscador o filtra por categoría. Agrega los productos que quieres cotizar.</p>
 
       <div class="toolbar">
         <div class="search">
@@ -190,10 +215,40 @@
       <div id="catalogGrid" class="grid catalog"></div>
     </section>
 
-    <!-- 2) Datos del cliente -->
-    <section class="card" style="margin-top:22px">
+    <!-- 2) Tu selección -->
+    <section id="cartSection" class="card" style="margin-top:22px;padding:18px">
+      <h2><span class="accent">2) Tu selección</span></h2>
+      <p class="hint">Revisa los productos agregados, ajusta cantidades y días de renta antes de continuar.</p>
+
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:140px">SKU</th>
+              <th>Descripción</th>
+              <th style="width:140px">Cant.</th>
+              <th style="width:140px">Días</th>
+              <th style="width:140px"></th>
+            </tr>
+          </thead>
+          <tbody id="cartRows"></tbody>
+        </table>
+      </div>
+
+      <div class="stepActions">
+        <button type="button" class="btn secondary" data-action="back-to-catalog">
+          Seguir agregando productos
+        </button>
+        <button type="button" class="btn" data-action="continue-client-data">
+          Continuar con datos
+        </button>
+      </div>
+    </section>
+
+    <!-- 3) Datos del cliente -->
+    <section id="clientDataSection" class="card" style="margin-top:22px">
       <form id="clientForm" class="form" novalidate>
-        <h2>2) Datos del cliente</h2>
+        <h2>3) Datos del cliente</h2>
         <p class="hint">Completa tus datos para enviarte la cotización.</p>
 
         <div class="grid">
@@ -234,7 +289,7 @@
               <option>Fiesta de fin de año</option>
               <option>Otros</option>
 
-              <!-- Social (sin duplicar "Fiesta de fin de año") -->
+              <!-- Social -->
               <option>Boda</option>
               <option>Graduación</option>
               <option>Cumpleaños</option>
@@ -259,36 +314,31 @@
             <input id="eventLocation" class="text" placeholder="Dirección o recinto" required />
           </div>
         </div>
+
+        <div class="stepActions">
+          <button type="button" class="btn" data-action="continue-final">
+            Continuar a envío
+          </button>
+        </div>
       </form>
     </section>
 
-    <!-- 3) Tu selección -->
-    <section class="card" style="margin-top:22px;padding:18px">
-      <h2><span class="accent">3) Tu selección</span></h2>
-      <p class="hint">Edita cantidades y días de renta y oprime <span class="accent">Enviar cotización</span>.</p>
-
-      <div style="overflow:auto">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:140px">SKU</th>
-              <th>Descripción</th>
-              <th style="width:140px">Cant.</th>
-              <th style="width:140px">Días</th>
-              <th style="width:140px"></th>
-            </tr>
-          </thead>
-          <tbody id="cartRows"></tbody>
-        </table>
-      </div>
+    <!-- 4) Aviso de privacidad / 5) Enviar -->
+    <section id="finalSection" class="card finalCard" style="margin-top:22px">
+      <h2>4) Aviso de privacidad</h2>
+      <p class="hint">Para poder enviar la cotización, acepta el aviso de privacidad.</p>
 
       <div class="actionsEnd">
         <label class="privacy">
           <input id="acceptPrivacy" type="checkbox" />
           <span>He leído y acepto el
-            <a href="/avisoprivacidad.html" data-open-privacy>Aviso de Privacidad</a>.
+            <a href="avisoprivacidad.html" data-open-privacy>Aviso de Privacidad</a>.
           </span>
         </label>
+
+        <h2 style="margin-top:12px">5) Enviar cotización</h2>
+        <p class="hint">Al enviar, recibirás tu cotización en el correo registrado.</p>
+
         <button id="sendQuote" type="button" class="btn" disabled>Enviar cotización</button>
       </div>
     </section>
@@ -299,14 +349,14 @@
   <div id="selectionBar" class="selectionBar" aria-hidden="true">
     <div class="selectionBar__inner">
       <div class="selectionBar__text" id="selectionBarText">Tu selección: 0 productos agregados</div>
-      <button type="button" class="selectionBar__button" data-action="continue-selection">
+      <button id="selectionBarButton" type="button" class="selectionBar__button" data-action="continue-selection">
         Continuar
       </button>
     </div>
   </div>
 
   <!-- Tu JS actual -->
-  <script src="/public/app.js" defer></script>
+  <script src="app.js?v=20260520-11" defer></script>
 
 </body>
 </html>

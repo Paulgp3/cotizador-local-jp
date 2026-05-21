@@ -1,14 +1,20 @@
 /* public/app.js — Front-only (VARIANTS + JSON POST schema fixed) */
 (() => {
+  const isLocalHost =
+    location.hostname === 'localhost' ||
+    location.hostname === '127.0.0.1' ||
+    /^192\.168\./.test(location.hostname) ||
+    /^10\./.test(location.hostname) ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(location.hostname);
+
   const API_BASE =
-  window.API_BASE ||
-  ((location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? ''
-    : 'https://cotizador-local-jp.onrender.com');
+    window.API_BASE ||
+    (isLocalHost ? '' : 'https://cotizador-local-jp.onrender.com');
+
   const API = {
-  catalog: `${API_BASE}/catalog`,
-  quote:   `${API_BASE}/quotes`
-};
+    catalog: `${API_BASE}/catalog`,
+    quote: `${API_BASE}/quotes`
+  };
 
   const $ = (sel) => document.querySelector(sel);
 
@@ -33,8 +39,8 @@
       'Evento de responsabilidad social',
       'Fiesta de fin de año',
       'Otro corporativo',
-      'Boda','Graduación','Cumpleaños','Aniversario de boda','15 años',
-      'Baby Shower','Fiestas patrias','Halloween','Otro social'
+      'Boda', 'Graduación', 'Cumpleaños', 'Aniversario de boda', '15 años',
+      'Baby Shower', 'Fiestas patrias', 'Halloween', 'Otro social'
     ],
     corporativo: [
       'Kick-off / Reunión de planificación',
@@ -49,37 +55,35 @@
       'Otro Corporativo'
     ],
     social: [
-      'Boda','Graduación','Cumpleaños','Aniversario de boda','15 años',
-      'Baby Shower','Fiestas patrias','Halloween','Otro Social'
+      'Boda', 'Graduación', 'Cumpleaños', 'Aniversario de boda', '15 años',
+      'Baby Shower', 'Fiestas patrias', 'Halloween', 'Otro Social'
     ]
   };
 
   // ---------- Helpers ----------
-  // Normaliza y corrige artefactos típicos (em dash y diacríticos en “ACIÓN”)
-const toNFC = (v) => {
-  if (typeof v !== 'string') return v;
-  let s = v.normalize('NFC');
+  const toNFC = (v) => {
+    if (typeof v !== 'string') return v;
+    let s = v.normalize('NFC');
 
-  // 1) Guión / en-dash / em-dash entre letras ⇒ ó/Ó  (Iluminaci—n → Iluminación)
-  s = s.replace(/(\p{L})[—–-](\p{L})/gu, (m, a, b) => {
-    const upper = a === a.toUpperCase() && b === b.toUpperCase();
-    return a + (upper ? 'Ó' : 'ó') + b;
-  });
+    s = s.replace(/(\p{L})[—–-](\p{L})/gu, (m, a, b) => {
+      const upper = a === a.toUpperCase() && b === b.toUpperCase();
+      return a + (upper ? 'Ó' : 'ó') + b;
+    });
 
-  // 2) ACI + (combinantes o î/Î/^/ˆ) + N  ⇒  ACIÓN  (ILUMINACÎN / ILUMINACIÎN → ILUMINACIÓN)
-  s = s
-    .replace(/ACI[\u0300-\u036F]+N/g, 'ACIÓN')
-    .replace(/aci[\u0300-\u036F]+n/g, 'ación')
-    .replace(/ACI[îÎ\u02C6\u0302\^ˆ]N/g, 'ACIÓN')
-    .replace(/aci[îÎ\u02C6\u0302\^ˆ]n/g, 'ación');
+    s = s
+      .replace(/ACI[\u0300-\u036F]+N/g, 'ACIÓN')
+      .replace(/aci[\u0300-\u036F]+n/g, 'ación')
+      .replace(/ACI[îÎ\u02C6\u0302\^ˆ]N/g, 'ACIÓN')
+      .replace(/aci[îÎ\u02C6\u0302\^ˆ]n/g, 'ación');
 
-  return s;
-};
+    return s;
+  };
 
   const intOr = (v, min = 1, def = 1) => {
     const n = parseInt(String(v).replace(/[^\d]/g, ''), 10);
     return Number.isNaN(n) ? def : Math.max(min, n);
   };
+
   const _norm = (s) => (s ?? '').toString().normalize('NFC').toLowerCase();
   const _tags = (s) => _norm(s).split(/[,\s/|]+/).filter(Boolean);
 
@@ -105,6 +109,7 @@ const toNFC = (v) => {
       document.querySelector('a[href$="avisoprivacidad.html"]'),
     selectionBar: $('#selectionBar'),
     selectionBarText: $('#selectionBarText'),
+    selectionBarButton: $('#selectionBarButton')
   };
 
   // ---------- Estado ----------
@@ -113,17 +118,26 @@ const toNFC = (v) => {
 
   // ---------- Filtro por variante ----------
   function passesVariant(it) {
-    if (VARIANT === 'experto') return true; // sin filtro
+    if (VARIANT === 'experto') return true;
+
     const t = _tags(it.section);
-    if (!t.length) return false; // si no trae section, ocúltalo en variantes
-    if (VARIANT === 'corporativo') return t.includes('corporativo') || t.includes('todos') || t.includes('ambos') || t.includes('all');
-    if (VARIANT === 'social')      return t.includes('social')      || t.includes('todos') || t.includes('ambos') || t.includes('all');
+    if (!t.length) return false;
+
+    if (VARIANT === 'corporativo') {
+      return t.includes('corporativo') || t.includes('todos') || t.includes('ambos') || t.includes('all');
+    }
+
+    if (VARIANT === 'social') {
+      return t.includes('social') || t.includes('todos') || t.includes('ambos') || t.includes('all');
+    }
+
     return true;
   }
 
   function applyEventTypeOptions() {
     const sel = els.eventType;
     if (!sel) return;
+
     const list = EVENT_TYPES[VARIANT] || EVENT_TYPES.experto;
     sel.innerHTML =
       `<option value="" disabled selected>Selecciona...</option>` +
@@ -137,15 +151,13 @@ const toNFC = (v) => {
       const data = await res.json();
 
       CATALOG = Array.isArray(data) ? data.map((r) => {
-        // Normaliza category y section (deriva section si backend no la manda)
         const categoryRaw = r.category ?? r.Categoria ?? '';
         let sectionRaw = r.section ?? r.seccion ?? r.section_name ?? r.sectionName ?? '';
 
-        // Si no vino section, intenta derivarla desde category cuando ahí vienen las etiquetas
         if (!sectionRaw) {
           const catLower = String(categoryRaw || '').toLowerCase();
           if (/(^|[,\s])(?:corporativo|social|todos|ambos|all)(?=($|[,\s]))/.test(catLower)) {
-            sectionRaw = categoryRaw; // úsalo como section
+            sectionRaw = categoryRaw;
           }
         }
 
@@ -172,11 +184,12 @@ const toNFC = (v) => {
   function fillCategories() {
     const sel = els.category;
     if (!sel) return;
-    // Solo categorías de los productos visibles para la variante
+
     const base = CATALOG.filter(passesVariant);
     const cats = Array.from(
       new Set(base.map((x) => String(x.category || '').trim()).filter(Boolean))
     ).sort((a, b) => a.localeCompare(b, 'es'));
+
     sel.innerHTML =
       `<option value="">Todas</option>` +
       cats.map((c) => `<option value="${c}">${c}</option>`).join('');
@@ -199,32 +212,45 @@ const toNFC = (v) => {
         (it.name || '').toLowerCase().includes(q) ||
         (it.desc || '').toLowerCase().includes(q) ||
         (it.category || '').toLowerCase().includes(q);
+
       return okCat && hit;
     });
 
     grid.innerHTML = '';
+
     if (!rows.length) {
       grid.innerHTML = '<div style="opacity:.85">No se encontraron resultados.</div>';
       return;
     }
 
     const frag = document.createDocumentFragment();
+
     rows.forEach((item) => {
       const card = document.createElement('div');
       card.className = 'product';
 
       const imgBox = document.createElement('div');
       imgBox.className = 'imgBox';
+
       const img = document.createElement('img');
       const imgSrc = item.image || item.imageUrl || item.image_url;
+
       if (imgSrc) {
         img.src = imgSrc;
         img.alt = item.name || item.sku;
-        img.onerror = () => { img.remove(); const ph = document.createElement('div'); ph.className = 'ph'; imgBox.appendChild(ph); };
+        img.onerror = () => {
+          img.remove();
+          const ph = document.createElement('div');
+          ph.className = 'ph';
+          imgBox.appendChild(ph);
+        };
         imgBox.appendChild(img);
       } else {
-        const ph = document.createElement('div'); ph.className = 'ph'; imgBox.appendChild(ph);
+        const ph = document.createElement('div');
+        ph.className = 'ph';
+        imgBox.appendChild(ph);
       }
+
       card.appendChild(imgBox);
 
       const title = document.createElement('div');
@@ -246,6 +272,7 @@ const toNFC = (v) => {
       const qtyField = document.createElement('div');
       qtyField.className = 'field';
       qtyField.innerHTML = `<label>Cantidad</label><input type="number" min="1" value="1" class="input" />`;
+
       const daysField = document.createElement('div');
       daysField.className = 'field';
       daysField.innerHTML = `<label>Días</label><input type="number" min="1" value="1" class="input" />`;
@@ -256,18 +283,23 @@ const toNFC = (v) => {
 
       const line2 = document.createElement('div');
       line2.className = 'line';
+
       const addBtn = document.createElement('button');
       addBtn.className = 'btn';
       addBtn.type = 'button';
       addBtn.textContent = 'Agregar';
+
       addBtn.addEventListener('click', () => {
-        const qty  = qtyField.querySelector('input')?.value;
+        const qty = qtyField.querySelector('input')?.value;
         const days = daysField.querySelector('input')?.value;
+
         addToCart(item, qty, days);
+
         card.dataset.added = '1';
         addBtn.textContent = 'Agregado ✓';
         addBtn.disabled = true;
       });
+
       line2.appendChild(addBtn);
       controls.appendChild(line2);
 
@@ -288,6 +320,7 @@ const toNFC = (v) => {
   // ---------- Carrito ----------
   function addToCart(item, qty, days) {
     if (!item?.sku) return;
+
     if (CART.has(item.sku)) {
       const cur = CART.get(item.sku);
       cur.qty = intOr(qty, 1, cur.qty || 1);
@@ -301,6 +334,7 @@ const toNFC = (v) => {
         days: intOr(days, 1, 1),
       });
     }
+
     renderCart();
   }
 
@@ -311,18 +345,20 @@ const toNFC = (v) => {
   }
 
   function renderCart() {
-  const tbody = els.cartRows;
-  if (!tbody) return;
-  tbody.innerHTML = '';
+    const tbody = els.cartRows;
+    if (!tbody) return;
 
-  if (!CART.size) {
-    tbody.innerHTML = `<tr><td colspan="5" style="opacity:.8">Aún no has agregado productos.</td></tr>`;
-    if (els.send) els.send.disabled = true;
-    updateSelectionBar();
-    return;
-  }
+    tbody.innerHTML = '';
+
+    if (!CART.size) {
+      tbody.innerHTML = `<tr><td colspan="5" style="opacity:.8">Aún no has agregado productos.</td></tr>`;
+      if (els.send) els.send.disabled = true;
+      updateSelectionBar();
+      return;
+    }
 
     const frag = document.createDocumentFragment();
+
     Array.from(CART.values()).forEach((row) => {
       const tr = document.createElement('tr');
 
@@ -338,7 +374,9 @@ const toNFC = (v) => {
       inQty.min = '1';
       inQty.value = row.qty;
       inQty.className = 'input';
-      inQty.addEventListener('change', () => { row.qty = intOr(inQty.value, 1, 1); });
+      inQty.addEventListener('change', () => {
+        row.qty = intOr(inQty.value, 1, 1);
+      });
       tdQty.appendChild(inQty);
 
       const tdDays = document.createElement('td');
@@ -347,7 +385,9 @@ const toNFC = (v) => {
       inDays.min = '1';
       inDays.value = row.days;
       inDays.className = 'input';
-      inDays.addEventListener('change', () => { row.days = intOr(inDays.value, 1, 1); });
+      inDays.addEventListener('change', () => {
+        row.days = intOr(inDays.value, 1, 1);
+      });
       tdDays.appendChild(inDays);
 
       const tdActions = document.createElement('td');
@@ -367,7 +407,9 @@ const toNFC = (v) => {
     });
 
     tbody.appendChild(frag);
+
     if (els.send) els.send.disabled = false;
+
     updateSelectionBar();
   }
 
@@ -375,9 +417,12 @@ const toNFC = (v) => {
   (function privacyPopup() {
     const link = els.privacyLink;
     if (!link) return;
+
     link.addEventListener('click', (e) => {
       e.preventDefault();
+
       const w = window.open(link.getAttribute('href'), 'privacy', 'width=720,height=600');
+
       if (!w) location.href = link.getAttribute('href');
     });
   })();
@@ -393,7 +438,9 @@ const toNFC = (v) => {
       eventLocation: !!els.eventLocation?.value.trim(),
       privacy: !!els.acceptPrivacy?.checked,
     };
+
     const ok = r.name && r.email && r.email2 && r.eventType && r.eventDate && r.eventLocation && r.privacy;
+
     if (show) {
       els.name?.setCustomValidity(r.name ? '' : 'Requerido');
       els.email?.setCustomValidity(r.email ? '' : 'Correo inválido');
@@ -402,18 +449,18 @@ const toNFC = (v) => {
       els.eventDate?.setCustomValidity(r.eventDate ? '' : 'Indica la fecha');
       els.eventLocation?.setCustomValidity(r.eventLocation ? '' : 'Indica la ubicación');
     }
+
     return ok;
   }
 
-  // ---------- Envío (JSON alineado al server) ----------
+  // ---------- Navegación de flujo ----------
   function updateSelectionBar() {
     const count = CART.size;
 
     if (!els.selectionBar || !els.selectionBarText) return;
 
     if (count <= 0) {
-      els.selectionBar.classList.remove('is-visible');
-      els.selectionBar.setAttribute('aria-hidden', 'true');
+      hideSelectionBar();
       return;
     }
 
@@ -422,16 +469,24 @@ const toNFC = (v) => {
       : `Tu selección: ${count} productos agregados`;
 
     els.selectionBarText.textContent = label;
+
+    if (els.selectionBarButton) {
+      els.selectionBarButton.textContent = 'Continuar';
+    }
+
     els.selectionBar.classList.add('is-visible');
     els.selectionBar.setAttribute('aria-hidden', 'false');
   }
 
-  function scrollToClientData() {
-    const target =
-      document.querySelector('#clientForm') ||
-      document.querySelector('[data-section="client-data"]') ||
-      document.querySelector('form');
+  function hideSelectionBar() {
+    if (!els.selectionBar) return;
 
+    els.selectionBar.classList.remove('is-visible');
+    els.selectionBar.setAttribute('aria-hidden', 'true');
+  }
+
+  function scrollToSection(selector) {
+    const target = document.querySelector(selector);
     if (!target) return;
 
     target.scrollIntoView({
@@ -439,6 +494,8 @@ const toNFC = (v) => {
       block: 'start'
     });
   }
+
+  // ---------- Envío (JSON alineado al server) ----------
   async function sendQuote() {
     if (!CART.size) return alert('Agrega al menos un producto.');
     if (!validateForm(true)) return els.form?.reportValidity?.();
@@ -450,11 +507,16 @@ const toNFC = (v) => {
       days: intOr(x.days, 1, 1),
     }));
 
-    // dd/mm/aaaa -> yyyy-mm-dd
     const raw = toNFC(els.eventDate?.value || '');
     let dateISO = raw;
     const m = raw.match(/^(\d{1,2})[\/\-. ](\d{1,2})[\/\-. ](\d{4})$/);
-    if (m) { const D=m[1].padStart(2,'0'), M=m[2].padStart(2,'0'), Y=m[3]; dateISO = `${Y}-${M}-${D}`; }
+
+    if (m) {
+      const D = m[1].padStart(2, '0');
+      const M = m[2].padStart(2, '0');
+      const Y = m[3];
+      dateISO = `${Y}-${M}-${D}`;
+    }
 
     const payload = {
       client: {
@@ -467,24 +529,35 @@ const toNFC = (v) => {
         eventLocation: toNFC(els.eventLocation?.value || ''),
       },
       items
-      // discountRate/Fixed/deliveryFee opcionales aquí si los usas
     };
 
     try {
       if (els.send) els.send.disabled = true;
+
       const res = await fetch(API.quote, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const text = await res.text().catch(()=>'');
+
+      const text = await res.text().catch(() => '');
+
       if (!res.ok) {
-        console.error('POST /quotes falló', { status: res.status, statusText: res.statusText, body: text });
-        alert(`No se pudo enviar la cotización.\nHTTP ${res.status} ${res.statusText}\n${text.slice(0,400)}`);
+        console.error('POST /quotes falló', {
+          status: res.status,
+          statusText: res.statusText,
+          body: text
+        });
+
+        alert(`No se pudo enviar la cotización.\nHTTP ${res.status} ${res.statusText}\n${text.slice(0, 400)}`);
         return;
       }
+
       alert('¡Cotización enviada! Revisa tu correo.');
-      CART.clear(); renderCart();
+
+      CART.clear();
+      renderCart();
+      renderCatalog();
     } catch (e) {
       console.error('Send quote error:', e);
       alert('Ocurrió un problema al enviar la cotización. Intenta más tarde.');
@@ -498,6 +571,7 @@ const toNFC = (v) => {
     const inp = els.eventDate;
     if (!inp) return;
     if (document.getElementById('btnEventCalendar')) return;
+
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.title = 'Elegir fecha';
@@ -509,10 +583,15 @@ const toNFC = (v) => {
     btn.style.border = '1px solid #444';
     btn.style.background = 'transparent';
     btn.style.cursor = 'pointer';
+
     inp.insertAdjacentElement('afterend', btn);
+
     btn.addEventListener('click', () => {
       if (typeof inp.showPicker === 'function') inp.showPicker();
-      else { inp.focus(); try { inp.click(); } catch {} }
+      else {
+        inp.focus();
+        try { inp.click(); } catch {}
+      }
     });
   }
 
@@ -521,11 +600,15 @@ const toNFC = (v) => {
     const textInput = document.querySelector(
       '#eventDate, input[name="event_date"], input[placeholder*="dd"][placeholder*="aaaa"]'
     );
+
     if (!textInput) return;
 
-    try { if (textInput.type === 'date') textInput.type = 'text'; } catch {}
+    try {
+      if (textInput.type === 'date') textInput.type = 'text';
+    } catch {}
 
     let wrap = textInput.closest('.date-wrap');
+
     if (!wrap) {
       wrap = document.createElement('div');
       wrap.className = 'date-wrap';
@@ -534,6 +617,7 @@ const toNFC = (v) => {
     }
 
     let native = wrap.querySelector('input[type="date"][data-native-picker]');
+
     if (!native) {
       native = document.createElement('input');
       native.type = 'date';
@@ -544,26 +628,36 @@ const toNFC = (v) => {
     }
 
     Object.assign(native.style, {
-      position: 'fixed', left: '8px', top: '8px',
-      width: '1px', height: '1px', opacity: '0.01',
-      border: 0, padding: 0, margin: 0, background: 'transparent',
+      position: 'fixed',
+      left: '8px',
+      top: '8px',
+      width: '1px',
+      height: '1px',
+      opacity: '0.01',
+      border: 0,
+      padding: 0,
+      margin: 0,
+      background: 'transparent',
     });
 
     const syncToNative = () => {
       const m = (textInput.value || '')
         .trim()
         .match(/^(\d{1,2})[\/\-. ](\d{1,2})[\/\-. ](\d{4})$/);
+
       if (m) {
-        const D = m[1].padStart(2, '0'),
-              M = m[2].padStart(2, '0'),
-              Y = m[3];
+        const D = m[1].padStart(2, '0');
+        const M = m[2].padStart(2, '0');
+        const Y = m[3];
         native.value = `${Y}-${M}-${D}`;
       }
     };
+
     textInput.addEventListener('blur', syncToNative);
 
     native.addEventListener('change', () => {
       const v = native.value;
+
       if (/^\d{4}-\d{2}-\d{2}$/.test(v)) {
         const [Y, M, D] = v.split('-');
         textInput.value = `${D}/${M}/${Y}`;
@@ -573,14 +667,17 @@ const toNFC = (v) => {
     });
 
     const opener = document.getElementById('btnEventCalendar');
+
     if (opener) {
       const openPicker = (e) => {
         e.preventDefault();
         e.stopPropagation();
+
         requestAnimationFrame(() => {
           native.showPicker?.() || native.click?.() || native.focus();
         });
       };
+
       ['pointerdown', 'mousedown', 'touchstart', 'click'].forEach((evt) =>
         opener.addEventListener(evt, openPicker, { passive: false })
       );
@@ -600,11 +697,34 @@ const toNFC = (v) => {
     if (els.category) els.category.addEventListener('change', renderCatalog);
 
     document.addEventListener('click', (ev) => {
-      const btn = ev.target.closest('[data-action="continue-selection"]');
-      if (!btn) return;
+      const continueSelectionBtn = ev.target.closest('[data-action="continue-selection"]');
+      if (continueSelectionBtn) {
+        ev.preventDefault();
+        scrollToSection('#cartSection');
+        hideSelectionBar();
+        return;
+      }
 
-      ev.preventDefault();
-      scrollToClientData();
+      const backToCatalogBtn = ev.target.closest('[data-action="back-to-catalog"]');
+      if (backToCatalogBtn) {
+        ev.preventDefault();
+        scrollToSection('#catalogSection');
+        updateSelectionBar();
+        return;
+      }
+
+      const continueClientDataBtn = ev.target.closest('[data-action="continue-client-data"]');
+      if (continueClientDataBtn) {
+        ev.preventDefault();
+        scrollToSection('#clientDataSection');
+        return;
+      }
+
+      const continueFinalBtn = ev.target.closest('[data-action="continue-final"]');
+      if (continueFinalBtn) {
+        ev.preventDefault();
+        scrollToSection('#finalSection');
+      }
     });
   }
 
