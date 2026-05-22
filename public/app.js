@@ -87,6 +87,97 @@
   const _norm = (s) => (s ?? '').toString().normalize('NFC').toLowerCase();
   const _tags = (s) => _norm(s).split(/[,\s/|]+/).filter(Boolean);
 
+  // ---------- Fecha: formato y validación ----------
+  function formatDateInputValue(value) {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 8);
+
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+
+    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  }
+
+  function parseDMYDate(value) {
+    const raw = String(value || '').trim();
+    const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(raw);
+
+    if (!match) return null;
+
+    const day = Number(match[1]);
+    const month = Number(match[2]);
+    const year = Number(match[3]);
+
+    if (!Number.isInteger(day) || !Number.isInteger(month) || !Number.isInteger(year)) return null;
+    if (year < 1900 || year > 2100) return null;
+    if (month < 1 || month > 12) return null;
+    if (day < 1 || day > 31) return null;
+
+    const date = new Date(year, month - 1, day);
+
+    const isSameDate =
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day;
+
+    if (!isSameDate) return null;
+
+    return { day, month, year, date };
+  }
+
+  function isValidEventDate(value) {
+    return !!parseDMYDate(value);
+  }
+
+  function eventDateToISO(value) {
+    const parsed = parseDMYDate(value);
+    if (!parsed) return '';
+
+    const D = String(parsed.day).padStart(2, '0');
+    const M = String(parsed.month).padStart(2, '0');
+    const Y = String(parsed.year);
+
+    return `${Y}-${M}-${D}`;
+  }
+
+  function setEventDateValidity(show = false) {
+    const inp = els.eventDate;
+    if (!inp) return false;
+
+    const value = String(inp.value || '').trim();
+    const ok = isValidEventDate(value);
+
+    if (show) {
+      inp.setCustomValidity(ok ? '' : 'Ingresa una fecha válida con formato dd/mm/aaaa.');
+    } else if (ok) {
+      inp.setCustomValidity('');
+    }
+
+    return ok;
+  }
+
+  function attachEventDateMask() {
+    const inp = els.eventDate;
+    if (!inp) return;
+
+    inp.setAttribute('inputmode', 'numeric');
+    inp.setAttribute('maxlength', '10');
+    inp.setAttribute('placeholder', 'dd / mm / aaaa');
+
+    inp.addEventListener('input', () => {
+      const formatted = formatDateInputValue(inp.value);
+      inp.value = formatted;
+
+      if (formatted.length === 10 && isValidEventDate(formatted)) {
+        inp.setCustomValidity('');
+      }
+    });
+
+    inp.addEventListener('blur', () => {
+      inp.value = formatDateInputValue(inp.value);
+      setEventDateValidity(true);
+    });
+  }
+
   // ---------- DOM ----------
   const els = {
     grid: $('#catalogGrid') || $('#grid') || $('.catalog'),
@@ -434,7 +525,7 @@
       email: !!els.email?.value.trim() && els.email.value.includes('@'),
       email2: (els.email2?.value.trim() || '') === (els.email?.value.trim() || ''),
       eventType: !!els.eventType?.value,
-      eventDate: !!els.eventDate?.value,
+      eventDate: setEventDateValidity(show),
       eventLocation: !!els.eventLocation?.value.trim(),
       privacy: !!els.acceptPrivacy?.checked,
     };
@@ -446,7 +537,6 @@
       els.email?.setCustomValidity(r.email ? '' : 'Correo inválido');
       els.email2?.setCustomValidity(r.email2 ? '' : 'Debe coincidir');
       els.eventType?.setCustomValidity(r.eventType ? '' : 'Selecciona un tipo');
-      els.eventDate?.setCustomValidity(r.eventDate ? '' : 'Indica la fecha');
       els.eventLocation?.setCustomValidity(r.eventLocation ? '' : 'Indica la ubicación');
     }
 
@@ -498,6 +588,11 @@
   // ---------- Envío (JSON alineado al server) ----------
   async function sendQuote() {
     if (!CART.size) return alert('Agrega al menos un producto.');
+
+    if (els.eventDate) {
+      els.eventDate.value = formatDateInputValue(els.eventDate.value);
+    }
+
     if (!validateForm(true)) return els.form?.reportValidity?.();
     if (!els.acceptPrivacy?.checked) return alert('Debes aceptar el Aviso de Privacidad.');
 
@@ -507,15 +602,12 @@
       days: intOr(x.days, 1, 1),
     }));
 
-    const raw = toNFC(els.eventDate?.value || '');
-    let dateISO = raw;
-    const m = raw.match(/^(\d{1,2})[\/\-. ](\d{1,2})[\/\-. ](\d{4})$/);
+    const dateISO = eventDateToISO(els.eventDate?.value || '');
 
-    if (m) {
-      const D = m[1].padStart(2, '0');
-      const M = m[2].padStart(2, '0');
-      const Y = m[3];
-      dateISO = `${Y}-${M}-${D}`;
+    if (!dateISO) {
+      els.eventDate?.setCustomValidity('Ingresa una fecha válida con formato dd/mm/aaaa.');
+      els.form?.reportValidity?.();
+      return;
     }
 
     const payload = {
@@ -553,7 +645,7 @@
         return;
       }
 
-      alert('¡Cotización enviada! Revisa tu correo.');
+      alert('¡Cotización enviada! Revisa tu bandeja de entrada; si no la encuentras, revisa también SPAM.');
 
       CART.clear();
       renderCart();
@@ -641,14 +733,12 @@
     });
 
     const syncToNative = () => {
-      const m = (textInput.value || '')
-        .trim()
-        .match(/^(\d{1,2})[\/\-. ](\d{1,2})[\/\-. ](\d{4})$/);
+      const parsed = parseDMYDate(textInput.value);
 
-      if (m) {
-        const D = m[1].padStart(2, '0');
-        const M = m[2].padStart(2, '0');
-        const Y = m[3];
+      if (parsed) {
+        const D = String(parsed.day).padStart(2, '0');
+        const M = String(parsed.month).padStart(2, '0');
+        const Y = String(parsed.year);
         native.value = `${Y}-${M}-${D}`;
       }
     };
@@ -661,6 +751,7 @@
       if (/^\d{4}-\d{2}-\d{2}$/.test(v)) {
         const [Y, M, D] = v.split('-');
         textInput.value = `${D}/${M}/${Y}`;
+        textInput.setCustomValidity('');
         textInput.dispatchEvent(new Event('input', { bubbles: true }));
         textInput.dispatchEvent(new Event('change', { bubbles: true }));
       }
@@ -674,7 +765,12 @@
         e.stopPropagation();
 
         requestAnimationFrame(() => {
-          native.showPicker?.() || native.click?.() || native.focus();
+          if (typeof native.showPicker === 'function') {
+            native.showPicker();
+          } else {
+            native.focus();
+            native.click();
+          }
         });
       };
 
@@ -687,6 +783,7 @@
   // ---------- Init ----------
   function init() {
     applyEventTypeOptions();
+    attachEventDateMask();
     hookupExternalCalendarButton();
     injectDateButton();
     loadCatalog();

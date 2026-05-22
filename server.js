@@ -601,7 +601,7 @@ function computeTotals({ items, discountRate=0, discountFixed=0, discountApplyTo
 async function sendQuoteEmail({ toEmail, clientName, eventLabel, quoteId, pdfPath }){
   if (!SEND_EMAILS || !SG_KEY || !toEmail) return { sent:false, reason:"disabled-or-missing-key-or-recipient" };
 
-  const subject = `${clientName}, tu cotización de equipo para ${eventLabel || "tu evento"}`;
+  const subject = `Cotización de renta de equipo para ${eventLabel || "tu evento"}`;
   const attachments = [{
     content: fs.readFileSync(pdfPath).toString("base64"),
     filename: `${quoteId}.pdf`,

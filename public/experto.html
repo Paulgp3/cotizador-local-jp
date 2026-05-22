@@ -159,7 +159,7 @@
       padding-bottom:86px;
     }
 
-    @media (max-width: 640px){
+       @media (max-width: 640px){
       .wrap{padding:16px}
       .toolbar{flex-direction:column}
       .toolbar .selectFull{width:100% !important}
@@ -188,6 +188,92 @@
 
       body{
         padding-bottom:118px;
+      }
+
+      /* Tu selección en móvil: tabla convertida a cards */
+      #cartSection table,
+      #cartSection thead,
+      #cartSection tbody,
+      #cartSection th,
+      #cartSection td,
+      #cartSection tr{
+        display:block;
+      }
+
+      #cartSection thead{
+        display:none;
+      }
+
+      #cartSection table{
+        border-collapse:separate;
+        border-spacing:0;
+      }
+
+      #cartSection tbody tr{
+        background:rgba(255,255,255,.04);
+        border:1px solid var(--ring);
+        border-radius:14px;
+        padding:12px;
+        margin-bottom:14px;
+      }
+
+      #cartSection td{
+        border-bottom:0;
+        padding:8px 0;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        text-align:right;
+      }
+
+      #cartSection td::before{
+        content:'';
+        flex:0 0 auto;
+        color:var(--brand);
+        font-weight:800;
+        text-align:left;
+      }
+
+      #cartSection td:nth-child(1)::before{
+        content:'SKU';
+      }
+
+      #cartSection td:nth-child(2)::before{
+        content:'Producto';
+      }
+
+      #cartSection td:nth-child(3)::before{
+        content:'Cantidad';
+      }
+
+      #cartSection td:nth-child(4)::before{
+        content:'Días';
+      }
+
+      #cartSection td:nth-child(5)::before{
+        content:'';
+      }
+
+      #cartSection td:nth-child(2){
+        align-items:flex-start;
+        flex-direction:column;
+        text-align:left;
+        font-weight:700;
+      }
+
+      #cartSection td:nth-child(2)::before{
+        margin-bottom:2px;
+      }
+
+      #cartSection td .input{
+        width:120px;
+        max-width:45vw;
+      }
+
+      #cartSection td .btn{
+        width:100%;
+        margin-top:4px;
       }
     }
   </style>
