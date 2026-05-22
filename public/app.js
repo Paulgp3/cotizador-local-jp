@@ -65,11 +65,6 @@
     if (typeof v !== 'string') return v;
     let s = v.normalize('NFC');
 
-    s = s.replace(/(\p{L})[—–-](\p{L})/gu, (m, a, b) => {
-      const upper = a === a.toUpperCase() && b === b.toUpperCase();
-      return a + (upper ? 'Ó' : 'ó') + b;
-    });
-
     s = s
       .replace(/ACI[\u0300-\u036F]+N/g, 'ACIÓN')
       .replace(/aci[\u0300-\u036F]+n/g, 'ación')
