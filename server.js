@@ -1,6 +1,6 @@
 // server.js — Cotizador Medio Angular (ESM)
 // Incluye: PDF, SendGrid, exportación XLSX con ZIP y token admin, firma de PDFs
-// Seguridad: CORS restringido, validación robusta, privacidad obligatoria, logs sin PII, reload protegido, ZIP fail-closed.
+// Seguridad: CORS restringido, validación robusta, privacidad obligatoria, logs sin PII, reload protegido, ZIP fail-closed, honeypot anti-bot.
 
 import express from "express";
 import cors from "cors";
@@ -135,9 +135,13 @@ app.use(morgan("dev"));
 // Rate limit para /quotes
 const quotesLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 30,
+  max: 20,
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  message: {
+    ok: false,
+    error: "Demasiados intentos. Por favor intenta nuevamente en unos minutos."
+  }
 });
 
 // ---------------------------- Static (front) ----------------------------
@@ -593,6 +597,7 @@ const QuoteInSchema = z.object({
   acceptPrivacy: z.literal(true, {
     errorMap: () => ({ message: "Debes aceptar el Aviso de Privacidad." })
   }),
+  website: z.string().trim().max(200).optional().default(""),
   discountRate: z.number().min(0).max(1).optional().default(0),
   discountFixed: z.number().nonnegative().max(10000000).optional().default(0),
   discountApplyTo: z.enum(["discountable","all"]).optional().default("discountable"),
@@ -884,11 +889,13 @@ app.use("/quotes", (req, _res, next) => {
   const notes         = first(b.notes, b.observaciones);
 
   const acceptPrivacy = !!(b.acceptPrivacy ?? b.privacy ?? b["accept-privacy"] ?? b["accept_privacy"]);
+  const website = String(first(b.website, b.homepage, b.url, b.companyWebsite, b.company_website) || "").trim();
 
   req.body = {
     client,
     items,
     acceptPrivacy,
+    website,
     ...(discountRate  !== undefined ? { discountRate }  : {}),
     ...(discountFixed !== undefined ? { discountFixed } : {}),
     ...(deliveryFee   !== undefined ? { deliveryFee }   : {}),
@@ -900,7 +907,8 @@ app.use("/quotes", (req, _res, next) => {
     hasEmail: !!req.body.client?.email,
     eventType: req.body.client?.eventType || null,
     itemsCount: Array.isArray(req.body.items) ? req.body.items.length : 0,
-    acceptPrivacy: !!req.body.acceptPrivacy
+    acceptPrivacy: !!req.body.acceptPrivacy,
+    honeypotFilled: !!req.body.website
   });
 
   next();
@@ -913,6 +921,19 @@ app.post("/quotes", quotesLimiter, async (req,res)=>{
     return res.status(400).json({ error: parsed.error.flatten() });
   }
   const data = parsed.data;
+
+  if (data.website) {
+    console.warn("HONEYPOT /quotes filtrado ->", {
+      eventType: data.client?.eventType || null,
+      itemsCount: Array.isArray(data.items) ? data.items.length : 0
+    });
+
+    return res.json({
+      ok: true,
+      received: true,
+      emailed: false
+    });
+  }
 
   const { lines, missing } = buildLines(data.items);
   if (missing.length) return res.status(400).json({ error: `Productos no encontrados: ${missing.join(", ")}` });

@@ -1,4 +1,4 @@
-/* public/app.js — Front-only (VARIANTS + JSON POST schema fixed) */
+/* public/app.js — Front-only (VARIANTS + JSON POST schema fixed + honeypot anti-bot) */
 (() => {
   const isLocalHost =
     location.hostname === 'localhost' ||
@@ -173,6 +173,37 @@
     });
   }
 
+  // ---------- Honeypot anti-bot ----------
+  function ensureHoneypotField() {
+    let input =
+      document.querySelector('#website') ||
+      document.querySelector('input[name="website"]');
+
+    if (input) return input;
+
+    input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'website';
+    input.name = 'website';
+    input.autocomplete = 'off';
+    input.tabIndex = -1;
+    input.setAttribute('aria-hidden', 'true');
+
+    Object.assign(input.style, {
+      position: 'absolute',
+      left: '-9999px',
+      top: 'auto',
+      width: '1px',
+      height: '1px',
+      opacity: '0',
+      pointerEvents: 'none'
+    });
+
+    document.body.appendChild(input);
+
+    return input;
+  }
+
   // ---------- DOM ----------
   const els = {
     grid: $('#catalogGrid') || $('#grid') || $('.catalog'),
@@ -195,7 +226,8 @@
       document.querySelector('a[href$="avisoprivacidad.html"]'),
     selectionBar: $('#selectionBar'),
     selectionBarText: $('#selectionBarText'),
-    selectionBarButton: $('#selectionBarButton')
+    selectionBarButton: $('#selectionBarButton'),
+    honeypot: null
   };
 
   // ---------- Estado ----------
@@ -225,9 +257,22 @@
     if (!sel) return;
 
     const list = EVENT_TYPES[VARIANT] || EVENT_TYPES.experto;
-    sel.innerHTML =
-      `<option value="" disabled selected>Selecciona...</option>` +
-      list.map(s => `<option value="${s}">${s}</option>`).join('');
+
+    sel.innerHTML = '';
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Selecciona...';
+    sel.appendChild(placeholder);
+
+    list.forEach((eventType) => {
+      const option = document.createElement('option');
+      option.value = eventType;
+      option.textContent = eventType;
+      sel.appendChild(option);
+    });
   }
 
   // ---------- Catálogo ----------
@@ -276,9 +321,19 @@
       new Set(base.map((x) => String(x.category || '').trim()).filter(Boolean))
     ).sort((a, b) => a.localeCompare(b, 'es'));
 
-    sel.innerHTML =
-      `<option value="">Todas</option>` +
-      cats.map((c) => `<option value="${c}">${c}</option>`).join('');
+    sel.innerHTML = '';
+
+    const all = document.createElement('option');
+    all.value = '';
+    all.textContent = 'Todas';
+    sel.appendChild(all);
+
+    cats.forEach((cat) => {
+      const option = document.createElement('option');
+      option.value = cat;
+      option.textContent = cat;
+      sel.appendChild(option);
+    });
   }
 
   function renderCatalog() {
@@ -305,7 +360,10 @@
     grid.innerHTML = '';
 
     if (!rows.length) {
-      grid.innerHTML = '<div style="opacity:.85">No se encontraron resultados.</div>';
+      const empty = document.createElement('div');
+      empty.style.opacity = '.85';
+      empty.textContent = 'No se encontraron resultados.';
+      grid.appendChild(empty);
       return;
     }
 
@@ -357,11 +415,33 @@
 
       const qtyField = document.createElement('div');
       qtyField.className = 'field';
-      qtyField.innerHTML = `<label>Cantidad</label><input type="number" min="1" value="1" class="input" />`;
+
+      const qtyLabel = document.createElement('label');
+      qtyLabel.textContent = 'Cantidad';
+
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.min = '1';
+      qtyInput.value = '1';
+      qtyInput.className = 'input';
+
+      qtyField.appendChild(qtyLabel);
+      qtyField.appendChild(qtyInput);
 
       const daysField = document.createElement('div');
       daysField.className = 'field';
-      daysField.innerHTML = `<label>Días</label><input type="number" min="1" value="1" class="input" />`;
+
+      const daysLabel = document.createElement('label');
+      daysLabel.textContent = 'Días';
+
+      const daysInput = document.createElement('input');
+      daysInput.type = 'number';
+      daysInput.min = '1';
+      daysInput.value = '1';
+      daysInput.className = 'input';
+
+      daysField.appendChild(daysLabel);
+      daysField.appendChild(daysInput);
 
       line1.appendChild(qtyField);
       line1.appendChild(daysField);
@@ -376,10 +456,7 @@
       addBtn.textContent = 'Agregar';
 
       addBtn.addEventListener('click', () => {
-        const qty = qtyField.querySelector('input')?.value;
-        const days = daysField.querySelector('input')?.value;
-
-        addToCart(item, qty, days);
+        addToCart(item, qtyInput.value, daysInput.value);
 
         card.dataset.added = '1';
         addBtn.textContent = 'Agregado ✓';
@@ -437,7 +514,14 @@
     tbody.innerHTML = '';
 
     if (!CART.size) {
-      tbody.innerHTML = `<tr><td colspan="5" style="opacity:.8">Aún no has agregado productos.</td></tr>`;
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 5;
+      td.style.opacity = '.8';
+      td.textContent = 'Aún no has agregado productos.';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+
       if (els.send) els.send.disabled = true;
       updateSelectionBar();
       return;
@@ -616,7 +700,8 @@
         eventLocation: toNFC(els.eventLocation?.value || ''),
       },
       items,
-      acceptPrivacy: !!els.acceptPrivacy?.checked
+      acceptPrivacy: !!els.acceptPrivacy?.checked,
+      website: els.honeypot?.value || ''
     };
 
     try {
@@ -778,6 +863,8 @@
 
   // ---------- Init ----------
   function init() {
+    els.honeypot = ensureHoneypotField();
+
     applyEventTypeOptions();
     attachEventDateMask();
     hookupExternalCalendarButton();
