@@ -1,48 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aviso de Privacidad – Medio Angular</title>
-<style>
-  :root{
-    --bg:#0d0d0d; --bg-2:#151515; --card:#1a1a1a; --edge:#2b2b2b;
-    --ink:#f2f2f2; --muted:rgba(255,255,255,.78);
-    --brand:#f58442; --brand-700:#d56e2f;
-  }
-  html,body{
-    margin:0;padding:0;background:
-      radial-gradient(1200px 600px at 50% -240px, rgba(255,255,255,.035), transparent 70%),
-      linear-gradient(var(--bg-2), var(--bg));
-    color:var(--ink); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, Helvetica, sans-serif;
-  }
-  .wrap{max-width:900px;margin:40px auto 60px;padding:0 20px;}
-  .card{
-    background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:24px;
-    box-shadow: 0 1px 0 #000 inset, 0 0 0 1px rgba(255,255,255,.04);
-  }
-  h1{color:var(--brand);margin:0 0 10px}
-  h2{color:var(--brand);margin:28px 0 10px;font-size:20px}
-  p,li{line-height:1.65;color:var(--muted)}
-  ul{margin:8px 0 0 18px}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aviso de Privacidad · Medio Angular</title>
+  <meta name="description" content="Aviso de privacidad del cotizador en línea de Medio Angular.">
 
-  /* Enlaces SIEMPRE naranja (incluye visitado) */
-  a, a:visited{color:var(--brand);text-decoration:none}
-  a:hover{color:var(--brand-700);text-decoration:underline}
+  <link rel="icon" href="data:," />
 
-  .actions{margin-top:22px}
-  .btn{
-    display:inline-block;background:var(--brand);color:#0b0b0b;
-    padding:11px 14px;border-radius:10px;text-decoration:none;font-weight:800;border:0;cursor:pointer
-  }
-  .btn:hover{background:var(--brand-700)}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f1f1f1;
+      --panel:#ffffff;
+      --text:#111111;
+      --muted:#666666;
+      --line:#dedede;
+      --brand:#ff8f16;
+      --brand-dark:#e87500;
+      --shadow:0 14px 34px rgba(0,0,0,.08);
+      --radius:24px;
+      --font-main:'Gotham','Montserrat','Avenir Next',Avenir,'Helvetica Neue',Helvetica,Arial,system-ui,sans-serif;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html,body{
+      min-height:100%;
+    }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--font-main);
+      line-height:1.55;
+    }
+
+    a,
+    a:visited{
+      color:var(--brand-dark);
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .topbar__inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brandLogo{
+      width:96px;
+      height:auto;
+      display:block;
+    }
+
+    .homeLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:700;
+      font-size:14px;
+      white-space:nowrap;
+      padding:10px 16px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+    }
+
+    .homeLink:hover{
+      border-color:var(--brand);
+      color:var(--brand-dark);
+      background:#fff7ef;
+      text-decoration:none;
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:46px 24px 64px;
+    }
+
+    .hero{
+      margin-bottom:24px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(42px,6vw,76px);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      font-weight:400;
+      color:var(--text);
+    }
+
+    .lead{
+      margin:14px 0 0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:18px;
+      font-weight:400;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    h2{
+      margin:34px 0 10px;
+      color:var(--text);
+      font-size:24px;
+      line-height:1.18;
+      letter-spacing:-.025em;
+      font-weight:700;
+    }
+
+    h2:first-of-type{
+      margin-top:28px;
+    }
+
+    p,
+    li{
+      color:var(--muted);
+      font-size:16px;
+      font-weight:400;
+    }
+
+    p{
+      margin:0 0 16px;
+    }
+
+    ul{
+      margin:8px 0 0 20px;
+      padding:0;
+    }
+
+    li{
+      margin:6px 0;
+    }
+
+    strong{
+      color:var(--text);
+      font-weight:700;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:30px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:46px;
+      padding:12px 18px;
+      border-radius:999px;
+      border:0;
+      background:var(--brand);
+      color:#000;
+      font-family:var(--font-main);
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .btn:hover{
+      background:var(--brand-dark);
+      text-decoration:none;
+    }
+
+    .btn.secondary{
+      background:#fff;
+      border:1px solid var(--brand);
+      color:var(--brand-dark);
+    }
+
+    .btn.secondary:hover{
+      background:#fff7ef;
+    }
+
+    .footerNote{
+      margin-top:22px;
+      text-align:center;
+      color:#777;
+      font-size:13px;
+    }
+
+    @media (max-width:720px){
+      .topbar__inner{
+        padding:14px 16px;
+      }
+
+      .brandLogo{
+        width:76px;
+      }
+
+      .homeLink{
+        font-size:13px;
+        padding:8px 10px;
+      }
+
+      .wrap{
+        padding:32px 16px 46px;
+      }
+
+      h1{
+        font-size:40px;
+        line-height:1.06;
+      }
+
+      .lead{
+        font-size:15px;
+      }
+
+      .card{
+        padding:22px;
+        border-radius:22px;
+      }
+
+      h2{
+        font-size:22px;
+      }
+
+      p,
+      li{
+        font-size:15px;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card">
-      <h1>Aviso de Privacidad</h1>
 
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <img class="brandLogo" src="https://medioangular.com/cotizador/img/logo.jpeg" alt="Medio Angular" />
+
+      <a class="homeLink" href="https://www.medioangular.com/">
+        ← Regresar al Home
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Aviso de Privacidad</h1>
+      <p class="lead">
+        Información sobre el tratamiento de datos personales dentro del cotizador en línea de Medio Angular.
+      </p>
+    </section>
+
+    <section class="card">
       <p><strong>Medio Angular Comunicaciones SA de CV</strong>, con domicilio en Cda. De San Jerónimo No. 17, Col. San Jerónimo Lídice, C.P. 10200, Delegación Magdalena Contreras, México, D.F., es responsable del tratamiento de los datos personales que nos proporciones a través de nuestro cotizador en línea.</p>
 
       <h2>Datos que recabamos</h2>
@@ -75,11 +326,30 @@
       <p>Al enviar tus datos, aceptas los términos de este aviso de privacidad.</p>
 
       <div class="actions">
-        <button id="btnVolver" class="btn">← Volver</button>
+        <button id="btnVolver" class="btn" type="button">← Volver al cotizador</button>
+        <a class="btn secondary" href="https://www.medioangular.com/">Regresar al Home</a>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <script src="/public/aviso.js" defer></script>
+    <p class="footerNote">
+      Medio Angular · Producción técnica para eventos sociales y corporativos en México
+    </p>
+  </main>
+
+  <script>
+    document.getElementById('btnVolver')?.addEventListener('click', () => {
+      if (window.opener && !window.opener.closed) {
+        window.close();
+        return;
+      }
+
+      if (window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+
+      window.location.href = 'https://www.medioangular.com/';
+    });
+  </script>
 </body>
 </html>
