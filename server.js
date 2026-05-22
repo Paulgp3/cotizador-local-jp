@@ -31,6 +31,8 @@ const __dirname  = path.dirname(__filename);
 
 // ---------------------------- Config ----------------------------
 const app = express();
+app.set("trust proxy", 1);
+
 const PORT = Number(process.env.PORT || 4000);
 
 const IVA_RATE = Number(process.env.IVA_RATE ?? 0.16);
