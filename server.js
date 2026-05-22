@@ -1,6 +1,6 @@
 // server.js — Cotizador Medio Angular (ESM)
 // Incluye: PDF, SendGrid, exportación XLSX con ZIP y token admin, firma de PDFs
-// AJUSTE: Catálogo con "description" y compatibilidad imageUrl/image_url.
+// Seguridad: CORS restringido, validación robusta, privacidad obligatoria, logs sin PII, reload protegido, ZIP fail-closed.
 
 import express from "express";
 import cors from "cors";
@@ -36,7 +36,22 @@ const PORT = Number(process.env.PORT || 4000);
 const IVA_RATE = Number(process.env.IVA_RATE ?? 0.16);
 const DEFAULT_DEPOSIT_RATE = Number(process.env.DEFAULT_DEPOSIT_RATE ?? 0);
 
-const CORS_ORIGIN     = process.env.CORS_ORIGIN || "*";
+const CORS_ORIGINS = (process.env.CORS_ORIGIN || process.env.CORS_ORIGINS || "https://medioangular.com,https://www.medioangular.com")
+  .split(",")
+  .map(s => s.trim())
+  .filter(Boolean);
+
+const isAllowedCorsOrigin = (origin = "") => {
+  if (!origin) return true;
+
+  if (CORS_ORIGINS.includes(origin)) return true;
+
+  const isDev = process.env.NODE_ENV !== "production";
+  if (isDev && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
+
+  return false;
+};
+
 const QUOTE_BASE_URL  = process.env.QUOTE_BASE_URL || `http://localhost:${PORT}`;
 
 const COMPANY_NAME    = process.env.COMPANY_NAME || "Medio Angular";
@@ -46,7 +61,8 @@ const COMPANY_WEBSITE = process.env.COMPANY_WEBSITE || "www.medioangular.com";
 
 const HEADER_IMAGE_PATH = process.env.HEADER_IMAGE_PATH || "";
 
-const FILE_SIGNING_SECRET   = process.env.FILE_SIGNING_SECRET || "cambia-esto-por-un-secreto-largo-unico-32+chars";
+const DEFAULT_FILE_SIGNING_SECRET = "cambia-esto-por-un-secreto-largo-unico-32+chars";
+const FILE_SIGNING_SECRET = process.env.FILE_SIGNING_SECRET || DEFAULT_FILE_SIGNING_SECRET;
 const FILE_URL_TTL_MINUTES  = Number(process.env.FILE_URL_TTL_MINUTES || 10080);
 
 const SEND_EMAILS = String(process.env.SEND_EMAILS || "false").toLowerCase() === "true";
@@ -70,6 +86,27 @@ const EXPORTS_ZIP_PASSWORD= process.env.EXPORTS_ZIP_PASSWORD || "";
 
 const ADMIN_TOKEN = (process.env.ADMIN_TOKEN || "").trim();
 
+if (process.env.NODE_ENV === "production") {
+  if (!FILE_SIGNING_SECRET || FILE_SIGNING_SECRET === DEFAULT_FILE_SIGNING_SECRET || FILE_SIGNING_SECRET.length < 32) {
+    console.error("FILE_SIGNING_SECRET debe configurarse en producción y tener al menos 32 caracteres.");
+    process.exit(1);
+  }
+
+  if (!ADMIN_TOKEN || ADMIN_TOKEN.length < 24) {
+    console.error("ADMIN_TOKEN debe configurarse en producción y tener al menos 24 caracteres.");
+    process.exit(1);
+  }
+}
+
+// ---------------------------- Admin middleware ----------------------------
+function requireAdmin(req,res,next){
+  const t = (req.headers["x-admin-token"] || "").toString().trim();
+  if (!ADMIN_TOKEN || t !== ADMIN_TOKEN) {
+    return res.status(401).json({ ok:false, error:"Unauthorized" });
+  }
+  next();
+}
+
 // ---------------------------- Middlewares ----------------------------
 app.use(helmet({
   contentSecurityPolicy: {
@@ -81,7 +118,15 @@ app.use(helmet({
     }
   }
 }));
-app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+
+app.use(cors({
+  origin(origin, callback) {
+    if (isAllowedCorsOrigin(origin)) return callback(null, true);
+    return callback(new Error("CORS origin not allowed"));
+  },
+  credentials: false
+}));
+
 app.use(express.json({ limit: "3mb" }));
 app.use(morgan("dev"));
 
@@ -200,29 +245,26 @@ const toBool = (v, def = true) => {
   if (!s) return def;
   return !["0","false","no","inactive","inactivo","f","off"].includes(s);
 };
-function readCsvSmart(path) {
-  const buf = fs.readFileSync(path);
 
-  // Intento 1: UTF-8
-  let txt = buf.toString('utf8');
+function readCsvSmart(filePath) {
+  const buf = fs.readFileSync(filePath);
 
-  // Heurístico: ¿se ve roto? (caracteres típicos de mala decodificación)
+  let txt = buf.toString("utf8");
   const looksBroken = /�|Ã.|Â.|â€“|â€”|Î|ç|Ç/.test(txt);
+
   if (looksBroken) {
-    // Intento 2: tratar como Windows-1252
-    txt = iconv.decode(buf, 'win1252');
+    txt = iconv.decode(buf, "win1252");
   }
 
-  // Normaliza tildes a NFC
-  txt = txt.normalize('NFC');
+  txt = txt.normalize("NFC");
 
-  // Ahora parsea
-  return parse(txt, {
+  return parseCSV(txt, {
     columns: true,
     skip_empty_lines: true,
     bom: true
   });
 }
+
 function normalizeRow(row){
   const pick = (keys)=>{
     const e = Object.entries(row);
@@ -251,7 +293,7 @@ function normalizeRow(row){
     sku: String(sku||"").trim(),
     name: String(name||"").trim(),
     category: String(category||"").trim(),
-    section: String(section||"").trim(), 
+    section: String(section||"").trim(),
     dailyPrice,
     depositRate: isNaN(depositRate) ? DEFAULT_DEPOSIT_RATE : depositRate,
     imageUrl,
@@ -271,11 +313,7 @@ function loadCatalog(){
       return (Array.isArray(raw)?raw:[]).map(normalizeRow).filter(x=>x.active);
     }
     if (p.endsWith(".csv")){
-      const buf = fs.readFileSync(p);
-      let csvStr = buf.toString("utf8");
-      if (/[ÃÂ�]/.test(csvStr)) { try { csvStr = iconv.decode(buf,"win1252"); } catch {} }
-      if (csvStr.charCodeAt(0) === 0xFEFF) csvStr = csvStr.slice(1);
-      const rows = parseCSV(csvStr,{columns:true,skip_empty_lines:true});
+      const rows = readCsvSmart(p);
       return rows.map(normalizeRow).filter(x=>x.active);
     }
   }catch(e){
@@ -317,25 +355,18 @@ function billableDaysByRentalModel(days) {
 
   if (!Number.isFinite(d) || d <= 1) return 1;
 
-  // Fase 1: Impulso inicial
-  if (d === 2) return 2 * 0.85; // 1.7 días cobrables
-  if (d === 3) return 3 * 0.80; // 2.4 días cobrables
-  if (d === 4) return 4 * 0.70; // 2.8 días cobrables
+  if (d === 2) return 2 * 0.85;
+  if (d === 3) return 3 * 0.80;
+  if (d === 4) return 4 * 0.70;
 
-  // Fase 2 - Bronce: días 5 a 14
-  // Tope semanal de 3.5 días cobrables
   if (d < 15) {
     return (Math.floor(d / 7) * 3.5) + Math.min(3.5, d % 7);
   }
 
-  // Fase 2 - Plata: días 15 a 30
-  // Tope semanal de 3.0 días cobrables
   if (d < 31) {
     return (Math.floor(d / 7) * 3.0) + Math.min(3.0, d % 7);
   }
 
-  // Fase 3 - Oro: día 31 en adelante
-  // Tope semanal de 2.5 días cobrables
   return (Math.floor(d / 7) * 2.5) + Math.min(2.5, d % 7);
 }
 
@@ -349,6 +380,7 @@ function daysDiscountRate(days) {
 
   return Math.max(0, Math.min(discountRate, 1));
 }
+
 function isExcludedFromDiscount(line){
   const cat = String(line.category || "").toLowerCase();
   const name = String(line.name || "").toLowerCase();
@@ -368,6 +400,7 @@ function resolveHeaderImage(){
   ].filter(Boolean);
   return pths.find(p => fs.existsSync(p)) || null;
 }
+
 function resolveLogoImage(){
   const candidates = ["logo.png","logo.jpg","logo.jpeg"].map(f=>path.join(__dirname,"public",f)).concat(
     ["logo.png","logo.jpg","logo.jpeg"].map(f=>path.join(__dirname,f))
@@ -378,7 +411,8 @@ function resolveLogoImage(){
 const b64url = (buf)=> Buffer.from(buf).toString("base64").replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/g,"");
 const signIdAndExp = (id, expTs)=> {
   const h = crypto.createHmac("sha256", FILE_SIGNING_SECRET);
-  h.update(`${id}:${expTs}`); return b64url(h.digest());
+  h.update(`${id}:${expTs}`);
+  return b64url(h.digest());
 };
 const isSafeFileName = (name)=> /^[A-Za-z0-9._-]+$/.test(name);
 
@@ -519,29 +553,49 @@ function createQuotePDF({ quoteId, client, calc }){
 }
 
 // ---------------------------- Cálculos ----------------------------
+const cleanString = (max) =>
+  z.string()
+    .trim()
+    .min(1)
+    .max(max)
+    .transform(s => s.normalize("NFC"));
+
+const OptionalCleanString = (max) =>
+  z.string()
+    .trim()
+    .max(max)
+    .transform(s => s.normalize("NFC"))
+    .optional()
+    .nullable();
+
 const ClientSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  company: z.string().optional().nullable(),
-  phone: z.string().optional().nullable(),
-  eventType: z.string().min(1),
-  eventDate: z.string().min(1),
-  eventLocation: z.string().min(1)
+  name: cleanString(120),
+  email: z.string().trim().email().max(180).transform(s => s.toLowerCase()),
+  company: OptionalCleanString(120),
+  phone: OptionalCleanString(30),
+  eventType: cleanString(120),
+  eventDate: z.string().trim().regex(/^\d{4}-\d{2}-\d{2}$/, "Fecha inválida. Usa formato YYYY-MM-DD."),
+  eventLocation: cleanString(250)
 });
+
 const ItemInSchema = z.object({
-  sku: z.string().optional().nullable(),
-  name: z.string().optional().nullable(),
-  qty: z.number().int().positive(),
-  days: z.number().int().positive()
+  sku: z.string().trim().max(80).optional().nullable(),
+  name: z.string().trim().max(180).optional().nullable(),
+  qty: z.number().int().positive().max(999),
+  days: z.number().int().positive().max(365)
 });
+
 const QuoteInSchema = z.object({
   client: ClientSchema,
-  items: z.array(ItemInSchema).min(1),
+  items: z.array(ItemInSchema).min(1).max(100),
+  acceptPrivacy: z.literal(true, {
+    errorMap: () => ({ message: "Debes aceptar el Aviso de Privacidad." })
+  }),
   discountRate: z.number().min(0).max(1).optional().default(0),
-  discountFixed: z.number().nonnegative().optional().default(0),
+  discountFixed: z.number().nonnegative().max(10000000).optional().default(0),
   discountApplyTo: z.enum(["discountable","all"]).optional().default("discountable"),
-  deliveryFee: z.number().nonnegative().optional().default(0),
-  notes: z.string().optional().nullable(),
+  deliveryFee: z.number().nonnegative().max(10000000).optional().default(0),
+  notes: z.string().trim().max(1000).optional().nullable(),
 });
 
 function buildLines(items){
@@ -720,7 +774,7 @@ app.get("/api/health", (_req,res)=>{
 });
 
 app.get("/catalog", (_req,res)=> res.json(CATALOG));
-app.post("/catalog/reload", (_req,res)=> res.json({ ok:true, total: reloadCatalog() }));
+app.post("/catalog/reload", requireAdmin, (_req,res)=> res.json({ ok:true, total: reloadCatalog() }));
 
 app.get("/pdf/:id", (req,res)=>{
   const id = req.params.id || "";
@@ -743,9 +797,9 @@ app.get("/pdf/:id", (req,res)=>{
 
 // ---------------------------- Normalizador /quotes ----------------------------
 const upload = multer();
-app.use("/quotes", upload.none());                                 // multipart/form-data
-app.use("/quotes", express.urlencoded({ extended: true }));         // x-www-form-urlencoded
-app.use("/quotes", express.json());                                 // application/json
+app.use("/quotes", upload.none());
+app.use("/quotes", express.urlencoded({ extended: true }));
+app.use("/quotes", express.json());
 
 app.use("/quotes", (req, _res, next) => {
   const b = req.body || {};
@@ -839,13 +893,20 @@ app.use("/quotes", (req, _res, next) => {
     ...(notes         !== undefined ? { notes }         : {}),
   };
 
-  console.log("NORMALIZED /quotes ->", JSON.stringify(req.body));
+  console.log("NORMALIZED /quotes ->", {
+    hasClient: !!req.body.client,
+    hasEmail: !!req.body.client?.email,
+    eventType: req.body.client?.eventType || null,
+    itemsCount: Array.isArray(req.body.items) ? req.body.items.length : 0,
+    acceptPrivacy: !!req.body.acceptPrivacy
+  });
+
   next();
 });
 
-// Crear cotización (con rate-limit)
+// Crear cotización
 app.post("/quotes", quotesLimiter, async (req,res)=>{
-  const parsed = (QuoteInSchema.safeParse(req.body));
+  const parsed = QuoteInSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: parsed.error.flatten() });
   }
@@ -939,14 +1000,6 @@ app.post("/quotes", quotesLimiter, async (req,res)=>{
 });
 
 // --------- Admin export protegido con token y ZIP opcional ----------
-function requireAdmin(req,res,next){
-  const t = (req.headers["x-admin-token"] || "").toString().trim();
-  if (!ADMIN_TOKEN || t !== ADMIN_TOKEN) {
-    return res.status(401).json({ ok:false, error:"Unauthorized" });
-  }
-  next();
-}
-
 async function exportClientsXlsx() {
   const rows = stExportRows.all();
 
@@ -1001,11 +1054,11 @@ async function exportClientsXlsx() {
 
     if (EXPORTS_ZIP_PASSWORD) {
       try {
-        const { default: archiverEncrypted } = await import('archiver-zip-encrypted');
-        archiver.registerFormat('zip-encrypted', archiverEncrypted);
-        const zip = archiver.create('zip-encrypted', {
+        const { default: archiverEncrypted } = await import("archiver-zip-encrypted");
+        archiver.registerFormat("zip-encrypted", archiverEncrypted);
+        const zip = archiver.create("zip-encrypted", {
           zlib: { level: 9 },
-          encryptionMethod: 'aes256',
+          encryptionMethod: "aes256",
           password: EXPORTS_ZIP_PASSWORD
         });
         zip.on("error", reject);
@@ -1013,8 +1066,8 @@ async function exportClientsXlsx() {
         zip.file(xlsxPath, { name: path.basename(xlsxPath) });
         zip.finalize();
         return;
-      } catch {
-        console.warn("archiver-zip-encrypted no disponible, se generará ZIP sin cifrar.");
+      } catch (err) {
+        return reject(new Error("No se pudo generar ZIP cifrado. Export cancelado por seguridad: " + (err?.message || err)));
       }
     }
 

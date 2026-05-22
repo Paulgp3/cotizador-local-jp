@@ -620,7 +620,8 @@
         eventDate: dateISO,
         eventLocation: toNFC(els.eventLocation?.value || ''),
       },
-      items
+      items,
+      acceptPrivacy: !!els.acceptPrivacy?.checked
     };
 
     try {
