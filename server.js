@@ -1,6 +1,8 @@
 // server.js — Cotizador Medio Angular (ESM)
 // Incluye: PDF, SendGrid, exportación XLSX con ZIP y token admin, firma de PDFs
 // Seguridad: CORS restringido, validación robusta, privacidad obligatoria, logs sin PII, reload protegido, ZIP fail-closed, honeypot anti-bot.
+// Catálogo: lee sort_group y sort_order para orden comercial.
+// Operación: exige aceptación de cotización estimada y validación por especialista.
 
 import express from "express";
 import cors from "cors";
@@ -252,6 +254,12 @@ const toBool = (v, def = true) => {
   return !["0","false","no","inactive","inactivo","f","off"].includes(s);
 };
 
+const toCatalogNumber = (v, fallback = 999) => {
+  if (v === undefined || v === null || String(v).trim() === "") return fallback;
+  const n = Number(String(v).trim().replace(",", "."));
+  return Number.isFinite(n) ? n : fallback;
+};
+
 function readCsvSmart(filePath) {
   const buf = fs.readFileSync(filePath);
 
@@ -274,7 +282,7 @@ function readCsvSmart(filePath) {
 function normalizeRow(row){
   const pick = (keys)=>{
     const e = Object.entries(row);
-    const f = e.find(([k]) => keys.includes(String(k).toLowerCase()));
+    const f = e.find(([k]) => keys.includes(String(k).toLowerCase().trim()));
     return f ? f[1] : undefined;
   };
 
@@ -290,8 +298,14 @@ function normalizeRow(row){
   const discountable = pick(["discountable","descontable","aplica descuento"]);
   const desc = pick(["description","descripcion","descripción","desc"]) || "";
 
+  const sortGroupRaw = pick(["sort_group","sortgroup","sort group","grupo_orden","orden_grupo"]);
+  const sortOrderRaw = pick(["sort_order","sortorder","sort order","orden","orden_producto"]);
+
   const dailyPrice  = Number(String(price||"").replace(/[^\d.,-]/g,"").replace(",", ".")) || 0;
   const depositRate = (deposit!=null && deposit!=="") ? Number(String(deposit).toString().replace(",", ".")) : DEFAULT_DEPOSIT_RATE;
+
+  const sortGroup = toCatalogNumber(sortGroupRaw, 999);
+  const sortOrder = toCatalogNumber(sortOrderRaw, 999);
 
   const imageUrl = String(image||"").trim();
 
@@ -307,6 +321,11 @@ function normalizeRow(row){
     description: String(desc).trim(),
     active: toBool(active,true),
     discountable: toBool(discountable,true),
+
+    sortGroup,
+    sortOrder,
+    sort_group: sortGroup,
+    sort_order: sortOrder,
   };
 }
 
@@ -467,14 +486,38 @@ function createQuotePDF({ quoteId, client, calc }){
     doc.moveTo(startX, y).lineTo(startX + contentW, y).stroke();
     y += 12;
 
-    const gap = 18;
+    const rowGap = 7;
     const leftW = Math.floor(contentW * 0.5) - 8;
     const rightX = startX + leftW + 16;
+    const rightW = contentW - leftW - 16;
+
     const putRow = (left, right) => {
       if (!(left || right)) return;
-      doc.fontSize(11).text(left || "", startX, y, { width:leftW });
-      doc.fontSize(11).text(right|| "", rightX, y, { width:contentW-leftW-16 });
-      y += gap;
+
+      const leftText = String(left || "");
+      const rightText = String(right || "");
+
+      doc.fontSize(11);
+
+      const hLeft = leftText
+        ? doc.heightOfString(leftText, { width: leftW })
+        : doc.currentLineHeight();
+
+      const hRight = rightText
+        ? doc.heightOfString(rightText, { width: rightW })
+        : doc.currentLineHeight();
+
+      const rowH = Math.max(doc.currentLineHeight(), hLeft, hRight);
+
+      if (y + rowH + rowGap > doc.page.height - 90) {
+        doc.addPage();
+        y = doc.page.margins.top;
+      }
+
+      doc.fontSize(11).text(leftText, startX, y, { width: leftW });
+      doc.fontSize(11).text(rightText, rightX, y, { width: rightW });
+
+      y += rowH + rowGap;
     };
 
     const eventDateDMY = toDMY(client.eventDate);
@@ -539,13 +582,30 @@ function createQuotePDF({ quoteId, client, calc }){
     row("Total:", calc.total, true);
 
     y += 10;
-    doc.fontSize(10).text("Observaciones:", startX, y); y += 14;
+
+    const obsTitle = "Observaciones:";
+    const obsTitleH = 14;
+
     const obsTxt = [
-      "Esta cotización es de carácter informativo. Para verificar los costos finales, por favor comunícate con nosotros al 55 3099 7587 o por WhatsApp al 55 4055 9280.",
-      "Con gusto te asistiremos, ya que los precios pueden variar dependiendo de la logística y las condiciones del montaje.",
-      "Servicios sujetos a disponibilidad.",
-      "Vigencia de la cotización: 15 días."
+      "Esta cotización es un avance de la propuesta final, generado con base en la selección de servicios realizada en el cotizador. Su objetivo es brindarte una referencia inicial de inversión, equipo y servicios relacionados para tu evento.",
+      "Un especialista de Medio Angular se pondrá en contacto para ayudarte a revisar y definir los detalles finales del proyecto, con el fin de asegurar que la experiencia, el servicio y la solución técnica cumplan con tus expectativas.",
+      "Durante esta revisión se validarán las necesidades reales del evento, el equipo adecuado para cubrir correctamente el espacio, la logística de montaje y desmontaje, fechas, horarios, accesos, tiempos de carga, montajes especiales y condiciones reales del recinto.",
+      "Los conceptos de operación, montaje y logística —incluyendo personal técnico, viáticos, hospedajes, transportes, fletes u otros costos operativos— pueden variar según la ubicación, duración y complejidad del evento.",
+      "Por seguridad técnica, cuidado del equipo y correcta ejecución del evento, la renta de equipo normalmente requiere transporte, montaje, operación o supervisión por parte de nuestro equipo técnico.",
+      "Servicios sujetos a disponibilidad. Vigencia de la cotización: 15 días."
     ].join("\n");
+
+    doc.fontSize(9);
+    const obsH = doc.heightOfString(obsTxt, { width: contentW, align: "left" });
+
+    if (y + obsTitleH + obsH > doc.page.height - 65) {
+      doc.addPage();
+      y = doc.page.margins.top;
+    }
+
+    doc.fontSize(10).fillColor("black").text(obsTitle, startX, y);
+    y += obsTitleH;
+
     doc.fontSize(9).fillColor("gray").text(obsTxt, startX, y, { width: contentW, align:"left" }).fillColor("black");
 
     const footer = [COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_WEBSITE].filter(Boolean).join(" • ");
@@ -596,6 +656,9 @@ const QuoteInSchema = z.object({
   items: z.array(ItemInSchema).min(1).max(100),
   acceptPrivacy: z.literal(true, {
     errorMap: () => ({ message: "Debes aceptar el Aviso de Privacidad." })
+  }),
+  acceptEstimateTerms: z.literal(true, {
+    errorMap: () => ({ message: "Debes aceptar que esta cotización es estimada y será validada por un especialista." })
   }),
   website: z.string().trim().max(200).optional().default(""),
   discountRate: z.number().min(0).max(1).optional().default(0),
@@ -719,24 +782,40 @@ async function sendQuoteEmail({ toEmail, clientName, eventLabel, quoteId, pdfPat
     }
   }
 
+  const safeClientName = clientName || "cliente";
+  const safeEventLabel = eventLabel || "tu evento";
+
   const blocks = [];
+
   blocks.push(
-    `<p style="margin:0 0 8px">Hola ${clientName},</p>`,
+    `<p style="margin:0 0 8px">Hola ${safeClientName},</p>`,
+
     `<p style="margin:0 0 8px">¡Gracias por usar nuestro cotizador!</p>`,
-    `<p style="margin:0 0 8px">Como lo solicitaste, adjuntamos la propuesta estimada para tu evento: ${eventLabel || "—"}.</p>`,
-    `<p style="margin:0 0 8px">En Medio Angular, sabemos que cada proyecto es único y que el éxito de un evento depende de cada detalle. Por ello, esta cotización es un punto de partida para que tengas una idea de costos y el equipo recomendado.</p>`,
-    `<p style="margin:0 0 8px">Para asegurar que el proyecto se adapte perfectamente a tu visión y necesidades, te invitamos a agendar una llamada de 15 minutos con uno de nuestros especialistas. En esta llamada podremos:</p>`,
+
+    `<p style="margin:0 0 8px">Como lo solicitaste, adjuntamos el avance de cotización para tu evento: ${safeEventLabel}.</p>`,
+
+    `<p style="margin:0 0 8px">En Medio Angular sabemos que cada proyecto es único y que el éxito de un evento depende de cada detalle. Por ello, esta cotización funciona como una primera base para revisar inversión, equipo recomendado y servicios relacionados.</p>`,
+
+    `<p style="margin:0 0 8px">Un especialista de Medio Angular se pondrá en contacto contigo para ayudarte a revisar y definir los detalles finales del proyecto, con el fin de asegurar que la experiencia, el servicio y la solución técnica cumplan con tus expectativas.</p>`,
+
+    `<p style="margin:0 0 8px">Durante esta revisión podremos:</p>`,
+
     `<ul style="margin:0 0 8px 18px;padding:0">
-       <li>Garantizar que tu proyecto cuente con la selección de equipo ideal para su éxito.</li>
-       <li>Revisar la logística, la ubicación de tu evento y los detalles del montaje.</li>
-       <li>Revisar los costos finales y ofrecerte la mejor solución.</li>
-       <li>Aclarar cualquier duda técnica que tengas sobre el montaje o el funcionamiento de los equipos.</li>
-     </ul>`,
-    SG_CALENDLY
-      ? `<p style="margin:0 0 8px">Puedes agendar la llamada aquí: ${SG_CALENDLY}</p>`
-      : `<p style="margin:0 0 8px">Puedes responder directamente a este correo para que nosotros te contactemos.</p>`,
+      <li>Confirmar que tu proyecto cuente con la selección de equipo ideal para su éxito.</li>
+      <li>Revisar la logística, ubicación, accesos, horarios, montaje y desmontaje del evento.</li>
+      <li>Validar la cantidad de personal técnico y operativo, transporte, fletes, viáticos u hospedajes que puedan requerirse.</li>
+      <li>Revisar los costos finales y ofrecerte la mejor solución de acuerdo con las condiciones reales del proyecto.</li>
+      <li>Aclarar cualquier duda técnica que tengas sobre el montaje o funcionamiento de los equipos.</li>
+    </ul>`,
+
+    `<p style="margin:0 0 8px">Una vez revisados estos puntos, te haremos llegar la cotización final para tu evento.</p>`,
+
+    `<p style="margin:0 0 8px">También puedes responder directamente a este correo si deseas compartirnos algún detalle adicional.</p>`,
+
     `<p style="margin:16px 0 6px">Saludos cordiales,</p>`,
+
     logoHtml,
+
     `<p style="margin:0 0 8px">Equipo de Medio Angular<br>Of. ${COMPANY_PHONE}<br>${COMPANY_EMAIL}<br>${COMPANY_WEBSITE}</p>`
   );
 
@@ -815,11 +894,20 @@ app.use("/quotes", (req, _res, next) => {
     if (typeof x === "string") { try { return JSON.parse(x); } catch { return x; } }
     return x;
   };
+
   const toNum = (v) => {
     if (v === undefined || v === null || v === "") return undefined;
     const n = Number(String(v).replace(/[^\d.-]/g, ""));
     return Number.isFinite(n) ? n : undefined;
   };
+
+  const toIncomingBool = (v) => {
+    if (v === true) return true;
+    if (v === false) return false;
+    const s = String(v ?? "").trim().toLowerCase();
+    return ["true", "1", "yes", "si", "sí", "on"].includes(s);
+  };
+
   const first = (...vals) => vals.find(v => v !== undefined && v !== null && v !== "");
 
   const pick = (prefix, key, fallback) =>
@@ -888,13 +976,21 @@ app.use("/quotes", (req, _res, next) => {
   const deliveryFee   = toNum(b.deliveryFee);
   const notes         = first(b.notes, b.observaciones);
 
-  const acceptPrivacy = !!(b.acceptPrivacy ?? b.privacy ?? b["accept-privacy"] ?? b["accept_privacy"]);
+  const acceptPrivacy = toIncomingBool(first(b.acceptPrivacy, b.privacy, b["accept-privacy"], b["accept_privacy"]));
+  const acceptEstimateTerms = toIncomingBool(first(
+    b.acceptEstimateTerms,
+    b.estimateTerms,
+    b["accept-estimate-terms"],
+    b["accept_estimate_terms"]
+  ));
+
   const website = String(first(b.website, b.homepage, b.url, b.companyWebsite, b.company_website) || "").trim();
 
   req.body = {
     client,
     items,
     acceptPrivacy,
+    acceptEstimateTerms,
     website,
     ...(discountRate  !== undefined ? { discountRate }  : {}),
     ...(discountFixed !== undefined ? { discountFixed } : {}),
@@ -908,6 +1004,7 @@ app.use("/quotes", (req, _res, next) => {
     eventType: req.body.client?.eventType || null,
     itemsCount: Array.isArray(req.body.items) ? req.body.items.length : 0,
     acceptPrivacy: !!req.body.acceptPrivacy,
+    acceptEstimateTerms: !!req.body.acceptEstimateTerms,
     honeypotFilled: !!req.body.website
   });
 
