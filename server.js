@@ -441,15 +441,54 @@ const signIdAndExp = (id, expTs)=> {
 };
 const isSafeFileName = (name)=> /^[A-Za-z0-9._-]+$/.test(name);
 
-const SEQ_FILE = path.join(DATA_DIR, "sequence.json");
-function readSeq(){ try{ return JSON.parse(fs.readFileSync(SEQ_FILE,"utf8")).last ?? 99; } catch{ return 99; } }
-function writeSeq(n){ fs.writeFileSync(SEQ_FILE, JSON.stringify({ last:n }, null, 2)); }
-function nextSeq(){ const n = readSeq()+1; writeSeq(n); return n; }
+function quotePrefixFromClient(client){
+  const section = String(
+    client?.quoteSection ||
+    client?.section ||
+    client?.variant ||
+    client?.source ||
+    ""
+  ).toLowerCase();
+
+  const type = String(client?.eventType || "").toLowerCase();
+
+  if (section.includes("social")) return "S";
+  if (section.includes("corporativo") || section.includes("corporate")) return "C";
+
+  const socialTypes = [
+    "boda",
+    "graduación",
+    "graduacion",
+    "cumpleaños",
+    "cumpleanos",
+    "aniversario",
+    "15 años",
+    "15 anos",
+    "baby shower",
+    "fiestas patrias",
+    "halloween",
+    "otro social"
+  ];
+
+  if (socialTypes.some((t) => type.includes(t))) return "S";
+
+  return "C";
+}
+
+function nextQuoteIdForPrefix(prefix){
+  const row = db.prepare(`
+    SELECT COALESCE(MAX(CAST(SUBSTR(quote_id, 3) AS INTEGER)), 99) AS last_num
+    FROM quotes
+    WHERE quote_id LIKE ?
+  `).get(`${prefix}-%`);
+
+  const last = Number(row?.last_num || 99);
+  return `${prefix}-${last + 1}`;
+}
+
 function buildQuoteId(client){
-  const t = String(client?.eventType || "").toLowerCase();
-  const prefix = t.includes("corpor") ? "C" : (t.includes("social") ? "S" : "O");
-  const seq = nextSeq();
-  return `${prefix}-${seq}`;
+  const prefix = quotePrefixFromClient(client);
+  return nextQuoteIdForPrefix(prefix);
 }
 
 // ---------------------------- PDF ----------------------------
