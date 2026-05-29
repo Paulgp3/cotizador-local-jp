@@ -585,8 +585,21 @@ function createQuotePDF({ quoteId, client, calc }){
 
     for (const l of calc.lines){
       doc.fontSize(10);
+
+      const isPackageLine =
+        String(l.category || "").toLowerCase().includes("paquete") ||
+        String(l.name || "").toLowerCase().includes("paquete");
+
+      const lineName = String(l.name || "");
+      const lineDescription = String(l.description || "").trim();
+
+      const descText =
+        isPackageLine && lineDescription
+          ? `${lineName}\n${lineDescription}`
+          : lineName;
+
       const hSku  = doc.heightOfString(String(l.sku || ""), { width: skuW });
-      const hDesc = doc.heightOfString(String(l.name || ""), { width: descW });
+      const hDesc = doc.heightOfString(descText, { width: descW });
       const hCant = doc.heightOfString(String(l.qty), { width: cantW });
       const hDias = doc.heightOfString(String(l.days), { width: diasW });
       const hPU   = doc.heightOfString(peso(l.dailyPrice), { width: puW });
@@ -596,7 +609,7 @@ function createQuotePDF({ quoteId, client, calc }){
       if (y + rowH > doc.page.height - 180){ doc.addPage(); y = doc.y; }
 
       doc.text(String(l.sku || ""), xSku, y, { width: skuW });
-      doc.text(String(l.name || ""), xDesc, y, { width: descW });
+      doc.text(descText, xDesc, y, { width: descW });
       doc.text(String(l.qty), xCant, y, { width: cantW, align: "right" });
       doc.text(String(l.days), xDias, y, { width: diasW, align: "right" });
       doc.text(peso(l.dailyPrice), xPU, y, { width: puW, align: "right" });
@@ -713,7 +726,10 @@ function buildLines(items){
     const prod = findProduct({ sku: it.sku, name: it.name });
     if (!prod) { missing.push(it.sku || it.name || "?"); return null; }
     return {
-      sku: prod.sku, name: prod.name, category: prod.category,
+      sku: prod.sku,
+      name: prod.name,
+      category: prod.category,
+      description: prod.description || "",
       dailyPrice: Number(prod.dailyPrice || 0),
       depositRate: Number(prod.depositRate || DEFAULT_DEPOSIT_RATE),
       discountable: prod.discountable !== false,
