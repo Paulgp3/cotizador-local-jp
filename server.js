@@ -337,10 +337,23 @@ function loadCatalog(){
       const raw = JSON.parse(fs.readFileSync(p,"utf8"));
       return (Array.isArray(raw)?raw:[]).map(normalizeRow).filter(x=>x.active);
     }
-    if (p.endsWith(".csv")){
-      const rows = readCsvSmart(p);
-      return rows.map(normalizeRow).filter(x=>x.active);
-    }
+  if (p.endsWith(".csv")){
+  const rows = readCsvSmart(p);
+
+  console.log("================================");
+  console.log("CATALOGO USADO:", p);
+  console.log("ROWS:", rows.length);
+
+  const futbol = rows.filter(r =>
+    JSON.stringify(r).toLowerCase().includes("futbol")
+  );
+
+  console.log("FUTBOL:", futbol.length);
+
+  console.log("================================");
+
+  return rows.map(normalizeRow).filter(x=>x.active);
+}
   }catch(e){
     console.error("Error cargando catálogo:", e);
   }
