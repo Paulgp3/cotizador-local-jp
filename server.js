@@ -585,7 +585,74 @@ function createQuotePDF({ quoteId, client, calc }){
     headerCell("Total", xTot, totW, "right");
     y += 16; doc.moveTo(startX, y).lineTo(startX + contentW, y).stroke(); y += 6;
 
-    for (const l of calc.lines){
+    const CATEGORY_NAMES = {
+  "paquete de temporada": "PAQUETES",
+  "audio": "AUDIO",
+  "video": "VIDEO",
+  "iluminación": "ILUMINACIÓN",
+  "iluminacion": "ILUMINACIÓN",
+  "rigging": "RIGGING",
+  "escenografía": "ESCENOGRAFÍA",
+  "escenografia": "ESCENOGRAFÍA",
+  "personal": "PERSONAL",
+  "viáticos": "VIÁTICOS",
+  "viaticos": "VIÁTICOS",
+  "transportes": "TRANSPORTES",
+  "fletes": "FLETES Y TRANSPORTES"
+};
+
+const sortedLines = [...calc.lines].sort((a, b) => {
+  const ga = Number(a.sortGroup || 999);
+  const gb = Number(b.sortGroup || 999);
+
+  if (ga !== gb) return ga - gb;
+
+  const oa = Number(a.sortOrder || 999);
+  const ob = Number(b.sortOrder || 999);
+
+  if (oa !== ob) return oa - ob;
+
+  return String(a.name || "").localeCompare(String(b.name || ""));
+});
+
+let currentCategory = null;
+
+    for (const l of sortedLines){
+      const categoryKey = String(l.category || "").trim().toLowerCase();
+
+if (categoryKey !== currentCategory) {
+
+  currentCategory = categoryKey;
+
+  const categoryTitle =
+    CATEGORY_NAMES[categoryKey] ||
+    String(l.category || "").toUpperCase();
+
+  if (y + 24 > doc.page.height - 180) {
+    doc.addPage();
+    y = doc.y;
+  }
+
+  y += 4;
+
+  doc
+    .fontSize(11)
+    .fillColor("#003366")
+    .text(categoryTitle, startX, y, {
+      width: contentW
+    });
+
+  y += 14;
+
+  doc
+    .moveTo(startX, y)
+    .lineTo(startX + contentW, y)
+    .stroke();
+
+  y += 6;
+
+  doc.fillColor("black");
+}
       doc.fontSize(10);
 
       const isPackageLine =
@@ -724,21 +791,41 @@ const QuoteInSchema = z.object({
 
 function buildLines(items){
   const missing = [];
-  const lines = items.map(it=>{
-    const prod = findProduct({ sku: it.sku, name: it.name });
-    if (!prod) { missing.push(it.sku || it.name || "?"); return null; }
+
+  const lines = items.map(it => {
+    const prod = findProduct({
+      sku: it.sku,
+      name: it.name
+    });
+
+    if (!prod) {
+      missing.push(it.sku || it.name || "?");
+      return null;
+    }
+
     return {
       sku: prod.sku,
       name: prod.name,
       category: prod.category,
       description: prod.description || "",
+
+      // Orden comercial del catálogo
+      sortGroup: Number(prod.sortGroup || 999),
+      sortOrder: Number(prod.sortOrder || 999),
+
       dailyPrice: Number(prod.dailyPrice || 0),
       depositRate: Number(prod.depositRate || DEFAULT_DEPOSIT_RATE),
       discountable: prod.discountable !== false,
-      qty: it.qty, days: it.days
+
+      qty: it.qty,
+      days: it.days
     };
   }).filter(Boolean);
-  return { lines, missing };
+
+  return {
+    lines,
+    missing
+  };
 }
 
 function computeTotals({ items, discountRate=0, discountFixed=0, discountApplyTo="discountable", deliveryFee=0 }){
