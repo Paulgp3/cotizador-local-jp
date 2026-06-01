@@ -242,10 +242,12 @@ ORDER BY q.created_at DESC, q.id DESC
 `);
 
 // ---------------------------- Catálogo ----------------------------
+const CATALOG_DIR = path.join(__dirname, "catalog");
+
 const CANDIDATE_FILES = [
-  path.join(DATA_DIR, "catalogo_normalizado_2025.csv"),
-  path.join(DATA_DIR, "catalog.csv"),
-  path.join(DATA_DIR, "catalog.json")
+  path.join(CATALOG_DIR, "catalogo_normalizado_2025.csv"),
+  path.join(CATALOG_DIR, "catalog.csv"),
+  path.join(CATALOG_DIR, "catalog.json")
 ];
 
 const toBool = (v, def = true) => {
