@@ -12,21 +12,21 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "@sendgrid/mail": "^8.1.5",
+    "@sendgrid/mail": "^8.1.6",
     "archiver": "^6.0.2",
     "archiver-zip-encrypted": "^2.0.0",
     "better-sqlite3": "^9.6.0",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "csv-parse": "^5.6.0",
-    "dayjs": "^1.11.18",
+    "dayjs": "^1.11.21",
     "dotenv": "^16.6.1",
     "exceljs": "^4.4.0",
-    "express": "^4.21.2",
+    "express": "^4.22.2",
     "express-rate-limit": "^7.5.1",
     "helmet": "^7.2.0",
     "iconv-lite": "^0.7.0",
     "morgan": "^1.10.1",
-    "multer": "^2.0.2",
+    "multer": "^2.1.1",
     "node-cron": "^3.0.3",
     "pdfkit": "^0.14.0",
     "zod": "^3.25.76"
@@ -45,7 +45,11 @@
   "license": "ISC",
   "overrides": {
     "axios": ">=1.12.0",
-    "@sendgrid/client": { "axios": ">=1.12.0" },
-    "@sendgrid/mail":   { "axios": ">=1.12.0" }
+    "@sendgrid/client": {
+      "axios": ">=1.12.0"
+    },
+    "@sendgrid/mail": {
+      "axios": ">=1.12.0"
+    }
   }
 }
