@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="es" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizador de servicios para eventos sociales · Medio Angular</title>
+  <meta name="description" content="Cotizador de servicios audiovisuales para eventos sociales. Renta de audio, video, iluminación, pantallas LED, DJ, sonido, iluminación ambiental y producción técnica para bodas, graduaciones, XV años y celebraciones en México.">
+
+  <link rel="icon" href="data:," />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f1f1f1;
+      --panel:#ffffff;
+      --panel-soft:#fafafa;
+      --text:#111111;
+      --muted:#6f6f6f;
+      --line:#dedede;
+      --ring:#d8d8d8;
+      --brand:#ff8f16;
+      --brand-dark:#e87500;
+      --dark:#171717;
+      --danger:#e53935;
+      --success:#1f8f4d;
+      --shadow:0 14px 34px rgba(0,0,0,.08);
+      --radius:22px;
+      --font-main:'Gotham','Montserrat','Avenir Next',Avenir,'Helvetica Neue',Helvetica,Arial,system-ui,sans-serif;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html,body{
+      min-height:100%;
+    }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--font-main);
+      line-height:1.35;
+      padding-bottom:86px;
+    }
+
+    a{
+      color:inherit;
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+
+    .topbar__inner{
+      max-width:1280px;
+      margin:0 auto;
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brandLockup{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      min-width:0;
+    }
+
+    .brandLogo{
+      width:96px;
+      height:auto;
+      display:block;
+    }
+
+    .backLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:700;
+      font-size:14px;
+      white-space:nowrap;
+      padding:10px 16px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+    }
+
+    .backLink:hover{
+      border-color:var(--brand);
+      color:var(--brand-dark);
+      background:#fff7ef;
+    }
+
+    .wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:46px 24px 24px;
+    }
+
+    .hero{
+      display:block;
+      margin-bottom:28px;
+    }
+
+    h1{
+    margin:0;
+    font-family:var(--font-main);
+    font-size:clamp(42px,6vw,78px);
+    line-height:1.02;
+    letter-spacing:-.035em;
+    font-weight:400;
+    color:var(--text);
+    max-width:1100px;
+    }
+
+    .lead{
+      max-width:860px;
+      margin:16px 0 0;
+      color:#333333;
+      font-size:18px;
+      font-weight:400;
+    }
+
+    .seoIntro{
+      margin:0 0 28px;
+      padding:18px 22px;
+      background:#fff7ef;
+      border:1px solid rgba(255,143,22,.42);
+      border-radius:18px;
+      color:#4a3b2c;
+      font-size:16px;
+      font-weight:400;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .stepper{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      margin:20px 0 28px;
+      box-shadow:var(--shadow);
+    }
+
+    .stepper__inner{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      align-items:center;
+      gap:14px;
+    }
+
+    .step{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:15px;
+      min-width:0;
+    }
+
+    .step:not(:last-child)::after{
+      content:'';
+      height:1px;
+      background:var(--line);
+      flex:1;
+      margin-left:8px;
+    }
+
+    .step__num{
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--line);
+      background:#f2f2f2;
+      color:#555;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .step.is-active{
+      color:var(--brand);
+    }
+
+    .step.is-active .step__num{
+      color:#fff;
+      background:var(--brand);
+      border-color:var(--brand);
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    section.card{
+      padding:24px;
+    }
+
+    h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-.025em;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .hint{
+      margin:6px 0 18px;
+      color:var(--muted);
+      font-size:15px;
+      font-weight:400;
+    }
+
+    .toolbar{
+      display:flex;
+      gap:12px;
+      margin:8px 0 22px;
+    }
+
+    .search{
+      flex:1;
+      display:flex;
+      gap:8px;
+    }
+
+    .search input{
+      flex:1;
+    }
+
+    .text,
+    .selectFull,
+    .input{
+      width:100%;
+      border:1px solid var(--ring);
+      background:#fff;
+      color:var(--text);
+      border-radius:14px;
+      font-size:15px;
+      font-family:var(--font-main);
+      outline:none;
+      transition:border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .text,
+    .selectFull{
+      padding:14px 15px;
+    }
+
+    .input{
+      width:110px;
+      padding:10px 12px;
+      text-align:center;
+    }
+
+    .text:focus,
+    .selectFull:focus,
+    .input:focus{
+      border-color:var(--brand);
+      box-shadow:0 0 0 4px rgba(255,143,22,.16);
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .grid.catalog{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .product{
+      display:flex;
+      flex-direction:column;
+      padding:14px;
+      min-height:470px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      box-shadow:0 10px 24px rgba(0,0,0,.07);
+      overflow:hidden;
+    }
+
+    .imgBox{
+      background:#f2f2f0;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border:1px solid #eeeeee;
+    }
+
+    .imgBox img{
+      width:100%;
+      height:240px;
+      object-fit:contain;
+      display:block;
+      background:#fff;
+    }
+
+    .imgBox .ph{
+      width:100%;
+      height:240px;
+      background:linear-gradient(135deg,#f7f7f6,#e9e9e6);
+    }
+
+    .title{
+      margin:14px 4px 6px;
+      font-weight:800;
+      font-size:18px;
+      line-height:1.22;
+      color:var(--text);
+    }
+
+    .desc{
+      margin:0 4px 14px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:400;
+    }
+
+    .controls{
+      margin-top:auto;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:stretch;
+    }
+
+    .line{
+      display:flex;
+      gap:10px;
+      align-items:flex-end;
+    }
+
+    .field{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .field label{
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 4px 2px;
+      font-weight:700;
+    }
+
+    .btn{
+      cursor:pointer;
+      border:0;
+      border-radius:999px;
+      background:var(--brand);
+      color:#000;
+      font-family:var(--font-main);
+      font-weight:800;
+      letter-spacing:.01em;
+      padding:13px 18px;
+      min-height:46px;
+      transition:transform .12s ease, filter .12s ease, opacity .12s ease;
+    }
+
+    .btn:hover{
+      filter:brightness(1.03);
+      transform:translateY(-1px);
+    }
+
+    .btn[disabled]{
+      opacity:.52;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .btn.secondary{
+      background:#fff;
+      color:var(--brand-dark);
+      border:1px solid var(--brand);
+    }
+
+    .btn.danger{
+      background:#fff3f3;
+      color:var(--danger);
+      border:1px solid rgba(229,57,53,.25);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+    }
+
+    th,td{
+      padding:16px;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      vertical-align:middle;
+    }
+
+    th{
+      font-size:15px;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    td{
+      color:var(--text);
+      font-size:15px;
+      font-weight:500;
+    }
+
+    .stepActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:18px;
+    }
+
+    .form{
+      padding:0;
+    }
+
+    .form .grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .form .grid .item{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      color:var(--text);
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .date-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .date-wrap{
+      position:relative;
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .date-open{
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator{
+      display:none !important;
+      opacity:0 !important;
+      pointer-events:none !important;
+    }
+
+    input[type="date"]{
+      appearance:none;
+      -webkit-appearance:none;
+      background-image:none !important;
+    }
+
+    .finalCard{
+      padding:22px;
+    }
+
+    .actionsEnd{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .privacy{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:var(--text);
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .privacy input{
+      transform:translateY(3px);
+    }
+
+    .privacy a{
+      color:var(--brand-dark);
+      font-weight:800;
+      text-decoration:none;
+    }
+
+    .sendBox{
+      width:100%;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-top:10px;
+      padding:18px;
+      border-radius:18px;
+      background:#fff7ef;
+      border:1px solid rgba(255,143,22,.25);
+    }
+
+    .sendBox p{
+      margin:0;
+      color:#5a4630;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .sendBox .btn{
+      min-width:220px;
+    }
+
+    .notice{
+      margin-top:22px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--muted);
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:14px;
+      font-weight:500;
+      box-shadow:var(--shadow);
+    }
+
+    .notice strong{
+      color:var(--text);
+      font-weight:800;
+    }
+
+    .selectionBar{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:999;
+      padding:12px 16px;
+      background:rgba(255,255,255,.96);
+      border-top:1px solid var(--line);
+      box-shadow:0 -10px 30px rgba(0,0,0,.16);
+      transform:translateY(110%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .22s ease, opacity .22s ease;
+      backdrop-filter:blur(14px);
+    }
+
+    .selectionBar.is-visible{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .selectionBar__inner{
+      max-width:960px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:999px;
+      padding:10px 12px 10px 22px;
+    }
+
+    .selectionBar__text{
+      color:var(--text);
+      font-weight:800;
+      font-size:15px;
+    }
+
+    .selectionBar__button{
+      min-height:46px;
+      border:0;
+      border-radius:999px;
+      padding:0 24px;
+      background:var(--brand);
+      color:#000;
+      font-family:var(--font-main);
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    @media (max-width:1100px){
+      .grid.catalog{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:720px){
+      .grid.catalog{
+        grid-template-columns:1fr;
+      }
+
+      .topbar__inner{
+        padding:14px 16px;
+      }
+
+      .brandLogo{
+        width:76px;
+      }
+
+      .backLink{
+        font-size:13px;
+        padding:8px 10px;
+      }
+
+      .wrap{
+        padding:28px 16px 16px;
+      }
+
+      h1{
+        font-size:38px;
+        line-height:1.08;
+      }
+
+      .lead{
+        font-size:15px;
+      }
+
+      .seoIntro{
+        font-size:14px;
+        padding:14px 16px;
+      }
+
+      .stepper{
+        padding:14px;
+      }
+
+      .stepper__inner{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .step:not(:last-child)::after{
+        display:none;
+      }
+
+      .toolbar{
+        flex-direction:column;
+      }
+
+      .toolbar .selectFull{
+        width:100% !important;
+      }
+
+      section.card{
+        padding:18px;
+      }
+
+      .form .grid{
+        grid-template-columns:1fr;
+      }
+
+      .line{
+        gap:8px;
+      }
+
+      .input{
+        width:100%;
+      }
+
+      .stepActions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .stepActions .btn{
+        width:100%;
+      }
+
+      .sendBox{
+        align-items:stretch;
+      }
+
+      .sendBox .btn{
+        width:100%;
+      }
+
+      .selectionBar{
+        padding:10px 12px;
+      }
+
+      .selectionBar__inner{
+        border-radius:22px;
+        align-items:stretch;
+        flex-direction:column;
+        gap:10px;
+        padding:14px;
+      }
+
+      .selectionBar__text{
+        text-align:center;
+        font-size:14px;
+      }
+
+      .selectionBar__button{
+        width:100%;
+      }
+
+      body{
+        padding-bottom:126px;
+      }
+
+      /* Tu selección en móvil: tabla convertida a cards */
+      #cartSection table,
+      #cartSection thead,
+      #cartSection tbody,
+      #cartSection th,
+      #cartSection td,
+      #cartSection tr{
+        display:block;
+      }
+
+      #cartSection thead{
+        display:none;
+      }
+
+      #cartSection table{
+        border-collapse:separate;
+        border-spacing:0;
+        background:transparent;
+      }
+
+      #cartSection tbody tr{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:18px;
+        padding:14px;
+        margin-bottom:14px;
+        box-shadow:0 8px 22px rgba(0,0,0,.08);
+      }
+
+      #cartSection td{
+        border-bottom:0;
+        padding:8px 0;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        text-align:right;
+      }
+
+      #cartSection td::before{
+        content:'';
+        flex:0 0 auto;
+        color:var(--brand-dark);
+        font-weight:900;
+        text-align:left;
+      }
+
+      #cartSection td:nth-child(1)::before{
+        content:'SKU';
+      }
+
+      #cartSection td:nth-child(2)::before{
+        content:'Producto';
+      }
+
+      #cartSection td:nth-child(3)::before{
+        content:'Cantidad';
+      }
+
+      #cartSection td:nth-child(4)::before{
+        content:'Días';
+      }
+
+      #cartSection td:nth-child(5)::before{
+        content:'';
+      }
+
+      #cartSection td:nth-child(2){
+        align-items:flex-start;
+        flex-direction:column;
+        text-align:left;
+        font-weight:800;
+      }
+
+      #cartSection td:nth-child(2)::before{
+        margin-bottom:2px;
+      }
+
+      #cartSection td .input{
+        width:120px;
+        max-width:45vw;
+      }
+
+      #cartSection td .btn{
+        width:100%;
+        margin-top:4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brandLockup">
+        <img class="brandLogo" src="https://medioangular.com/cotizador/img/logo.jpeg" alt="Medio Angular" />
+      </div>
+
+      <a class="backLink" href="https://www.medioangular.com/">
+        ← Regresar al Home
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Cotizador de servicios para eventos sociales</h1>
+        <p class="lead">
+          Selecciona equipos y servicios para tu evento social, revisa tu selección y recibe tu cotización por correo.
+        </p>
+      </div>
+    </section>
+
+    <p class="seoIntro">
+      Cotiza servicios audiovisuales para eventos sociales: audio, video, iluminación, pantallas LED,
+      DJ, sonido, iluminación ambiental y producción técnica para bodas, graduaciones, XV años, cumpleaños,
+      aniversarios y celebraciones especiales.
+    </p>
+
+    <nav class="stepper" aria-label="Flujo del cotizador">
+      <div class="stepper__inner">
+        <div class="step is-active">
+          <span class="step__num">1</span>
+          <span>Selección</span>
+        </div>
+        <div class="step">
+          <span class="step__num">2</span>
+          <span>Tu selección</span>
+        </div>
+        <div class="step">
+          <span class="step__num">3</span>
+          <span>Datos</span>
+        </div>
+        <div class="step">
+          <span class="step__num">4</span>
+          <span>Envío</span>
+        </div>
+      </div>
+    </nav>
+
+    <section id="catalogSection" class="card">
+      <h2>1) Selecciona equipos y servicios</h2>
+      <p class="hint">Usa el buscador o filtra por categoría. Agrega los productos que quieres cotizar.</p>
+
+      <div class="toolbar">
+        <div class="search">
+          <input id="search" type="search" class="text" placeholder="Buscar por nombre, SKU o descripción..." />
+        </div>
+
+        <select id="filterCategory" class="selectFull" style="width:260px">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div id="catalogGrid" class="grid catalog"></div>
+    </section>
+
+    <section id="cartSection" class="card" style="margin-top:24px">
+      <h2>2) Tu selección</h2>
+      <p class="hint">Revisa los productos agregados, ajusta cantidades y días de renta antes de continuar.</p>
+
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:140px">SKU</th>
+              <th>Descripción</th>
+              <th style="width:140px">Cant.</th>
+              <th style="width:140px">Días</th>
+              <th style="width:140px"></th>
+            </tr>
+          </thead>
+          <tbody id="cartRows"></tbody>
+        </table>
+      </div>
+
+      <div class="stepActions">
+        <button type="button" class="btn secondary" data-action="back-to-catalog">
+          Seguir agregando productos
+        </button>
+
+        <button type="button" class="btn" data-action="continue-client-data">
+          Continuar con datos
+        </button>
+      </div>
+    </section>
+
+    <section id="clientDataSection" class="card" style="margin-top:24px">
+      <form id="clientForm" class="form" novalidate>
+        <h2>3) Datos del cliente</h2>
+        <p class="hint">Completa tus datos para enviarte la cotización.</p>
+
+        <div class="grid">
+          <div class="item">
+            <label for="name">Nombre completo *</label>
+            <input id="name" class="text" placeholder="Nombre completo" required />
+          </div>
+
+          <div class="item">
+            <label for="company">Empresa <span style="color:var(--muted)">(opcional)</span></label>
+            <input id="company" class="text" placeholder="Razón social o empresa" />
+          </div>
+
+          <div class="item">
+            <label for="email">Correo electrónico *</label>
+            <input id="email" type="email" class="text" placeholder="tucorreo@dominio.com" required />
+          </div>
+
+          <div class="item">
+            <label for="email2">Confirma tu correo *</label>
+            <input id="email2" type="email" class="text" placeholder="Repite tu correo" required />
+          </div>
+
+          <div class="item">
+            <label for="phone">Teléfono <span style="color:var(--muted)">(opcional)</span></label>
+            <input id="phone" class="text" placeholder="10 dígitos" />
+          </div>
+
+          <div class="item">
+            <label for="eventType">Tipo de evento *</label>
+            <select id="eventType" name="event_type" class="selectFull" required>
+              <option value="" disabled selected>Selecciona...</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <label for="eventDate">Fecha del evento *</label>
+            <div class="date-row">
+              <button id="btnEventCalendar" type="button" class="date-open" aria-label="Abrir calendario">📅</button>
+              <div class="date-wrap">
+                <input id="eventDate" type="text" inputmode="numeric" class="text" placeholder="dd / mm / aaaa" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <label for="eventLocation">Ubicación del evento *</label>
+            <input id="eventLocation" class="text" placeholder="Dirección, recinto o ciudad" required />
+          </div>
+        </div>
+
+        <div class="stepActions">
+          <button type="button" class="btn" data-action="continue-final">
+            Continuar a envío
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="finalSection" class="card finalCard" style="margin-top:24px">
+      <h2>4) Aviso de privacidad</h2>
+      <p class="hint">Para poder enviar la cotización, acepta el aviso de privacidad.</p>
+
+      <div class="actionsEnd">
+        <label class="privacy">
+          <input id="acceptPrivacy" type="checkbox" />
+          <span>He leído y acepto el
+            <a href="avisoprivacidad.html" data-open-privacy>Aviso de Privacidad</a>.
+          </span>
+        </label>
+
+        <div class="sendBox">
+          <div>
+            <h2 style="margin-bottom:6px">5) Enviar cotización</h2>
+            <p>
+              Al enviar, recibirás tu cotización por correo. Revisa tu bandeja de entrada;
+              si no la encuentras, revisa también SPAM.
+            </p>
+          </div>
+
+          <button id="sendQuote" type="button" class="btn" disabled>
+            Enviar cotización
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="notice">
+      <span>ⓘ</span>
+      <div>
+        <strong>Importante:</strong>
+        Todas las rentas requieren personal operativo, viáticos y fletes. Para eventos fuera de CDMX pueden aplicar hospedajes según la logística del proyecto.
+      </div>
+    </div>
+  </main>
+
+  <div id="selectionBar" class="selectionBar" aria-hidden="true">
+    <div class="selectionBar__inner">
+      <div class="selectionBar__text" id="selectionBarText">Tu selección: 0 productos agregados</div>
+      <button id="selectionBarButton" type="button" class="selectionBar__button" data-action="continue-selection">
+        Continuar
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js?v=20260522-16" charset="UTF-8" defer></script>
+</body>
+</html>

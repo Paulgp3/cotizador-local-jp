@@ -1,0 +1,971 @@
+/* public/app.js — Front-only (VARIANTS + JSON POST schema fixed + honeypot + catalog sorting) */
+(() => {
+  const isLocalHost =
+    location.hostname === 'localhost' ||
+    location.hostname === '127.0.0.1' ||
+    /^192\.168\./.test(location.hostname) ||
+    /^10\./.test(location.hostname) ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(location.hostname);
+
+  const API_BASE =
+    window.API_BASE ||
+    (isLocalHost ? '' : 'https://cotizador-local-jp.onrender.com');
+
+  const API = {
+    catalog: `${API_BASE}/catalog`,
+    quote: `${API_BASE}/quotes`
+  };
+
+  const $ = (sel) => document.querySelector(sel);
+
+  // ---------- Variante por URL/archivo ----------
+  const VARIANT = (() => {
+    const p = location.pathname.toLowerCase();
+    if (p.includes('corporativo')) return 'corporativo';
+    if (p.includes('social')) return 'social';
+    return 'experto';
+  })();
+
+  // ---------- Tipos de evento por variante ----------
+  const EVENT_TYPES = {
+    experto: [
+      'Kick-off / Reunión de planificación',
+      'Capacitación / Taller de desarrollo',
+      'Evento de networking & Team building',
+      'Evento con clientes',
+      'Lanzamiento de producto',
+      'Seminario / conferencia especializada',
+      'Convención anual',
+      'Evento de responsabilidad social',
+      'Fiesta de fin de año',
+      'Otro corporativo',
+      'Boda', 'Graduación', 'Cumpleaños', 'Aniversario de boda', '15 años',
+      'Baby Shower', 'Fiestas patrias', 'Halloween', 'Otro social'
+    ],
+    corporativo: [
+      'Kick-off / Reunión de planificación',
+      'Capacitación / Taller de desarrollo',
+      'Evento de networking & Team building',
+      'Evento con clientes',
+      'Lanzamiento de producto',
+      'Seminario / conferencia especializada',
+      'Convención anual',
+      'Evento de responsabilidad social',
+      'Fiesta de fin de año',
+      'Otro Corporativo'
+    ],
+    social: [
+      'Boda', 'Graduación', 'Cumpleaños', 'Aniversario de boda', '15 años',
+      'Baby Shower', 'Fiestas patrias', 'Halloween', 'Otro Social'
+    ]
+  };
+
+  // ---------- Helpers ----------
+  const toNFC = (v) => {
+    if (typeof v !== 'string') return v;
+    let s = v.normalize('NFC');
+
+    s = s
+      .replace(/ACI[\u0300-\u036F]+N/g, 'ACIÓN')
+      .replace(/aci[\u0300-\u036F]+n/g, 'ación')
+      .replace(/ACI[îÎ\u02C6\u0302\^ˆ]N/g, 'ACIÓN')
+      .replace(/aci[îÎ\u02C6\u0302\^ˆ]n/g, 'ación');
+
+    return s;
+  };
+
+  const intOr = (v, min = 1, def = 1) => {
+    const n = parseInt(String(v).replace(/[^\d]/g, ''), 10);
+    return Number.isNaN(n) ? def : Math.max(min, n);
+  };
+
+  const numberOr = (v, fallback = 999) => {
+    if (v === undefined || v === null || String(v).trim() === '') return fallback;
+    const n = Number(String(v).trim().replace(',', '.'));
+    return Number.isFinite(n) ? n : fallback;
+  };
+
+  const _norm = (s) => (s ?? '').toString().normalize('NFC').toLowerCase();
+  const _tags = (s) => _norm(s).split(/[,\s/|]+/).filter(Boolean);
+
+  function compareCatalogItems(a, b) {
+    return (
+      (numberOr(a.sortGroup) - numberOr(b.sortGroup)) ||
+      (numberOr(a.sortOrder) - numberOr(b.sortOrder)) ||
+      String(a.name || '').localeCompare(String(b.name || ''), 'es', { sensitivity: 'base' })
+    );
+  }
+
+  function getCategorySortInfo(items) {
+    const map = new Map();
+
+    items.forEach((item) => {
+      const category = String(item.category || '').trim();
+      if (!category) return;
+
+      const group = numberOr(item.sortGroup);
+      const order = numberOr(item.sortOrder);
+
+      const prev = map.get(category);
+      if (!prev) {
+        map.set(category, {
+          category,
+          sortGroup: group,
+          sortOrder: order
+        });
+        return;
+      }
+
+      if (
+        group < prev.sortGroup ||
+        (group === prev.sortGroup && order < prev.sortOrder)
+      ) {
+        map.set(category, {
+          category,
+          sortGroup: group,
+          sortOrder: order
+        });
+      }
+    });
+
+    return Array.from(map.values()).sort((a, b) =>
+      (a.sortGroup - b.sortGroup) ||
+      (a.sortOrder - b.sortOrder) ||
+      a.category.localeCompare(b.category, 'es', { sensitivity: 'base' })
+    );
+  }
+
+  // ---------- Fecha: formato y validación ----------
+  function formatDateInputValue(value) {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 8);
+
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+
+    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  }
+
+  function parseDMYDate(value) {
+    const raw = String(value || '').trim();
+    const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(raw);
+
+    if (!match) return null;
+
+    const day = Number(match[1]);
+    const month = Number(match[2]);
+    const year = Number(match[3]);
+
+    if (!Number.isInteger(day) || !Number.isInteger(month) || !Number.isInteger(year)) return null;
+    if (year < 1900 || year > 2100) return null;
+    if (month < 1 || month > 12) return null;
+    if (day < 1 || day > 31) return null;
+
+    const date = new Date(year, month - 1, day);
+
+    const isSameDate =
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day;
+
+    if (!isSameDate) return null;
+
+    return { day, month, year, date };
+  }
+
+  function isValidEventDate(value) {
+    return !!parseDMYDate(value);
+  }
+
+  function eventDateToISO(value) {
+    const parsed = parseDMYDate(value);
+    if (!parsed) return '';
+
+    const D = String(parsed.day).padStart(2, '0');
+    const M = String(parsed.month).padStart(2, '0');
+    const Y = String(parsed.year);
+
+    return `${Y}-${M}-${D}`;
+  }
+
+  function setEventDateValidity(show = false) {
+    const inp = els.eventDate;
+    if (!inp) return false;
+
+    const value = String(inp.value || '').trim();
+    const ok = isValidEventDate(value);
+
+    if (show) {
+      inp.setCustomValidity(ok ? '' : 'Ingresa una fecha válida con formato dd/mm/aaaa.');
+    } else if (ok) {
+      inp.setCustomValidity('');
+    }
+
+    return ok;
+  }
+
+  function attachEventDateMask() {
+    const inp = els.eventDate;
+    if (!inp) return;
+
+    inp.setAttribute('inputmode', 'numeric');
+    inp.setAttribute('maxlength', '10');
+    inp.setAttribute('placeholder', 'dd / mm / aaaa');
+
+    inp.addEventListener('input', () => {
+      const formatted = formatDateInputValue(inp.value);
+      inp.value = formatted;
+
+      if (formatted.length === 10 && isValidEventDate(formatted)) {
+        inp.setCustomValidity('');
+      }
+    });
+
+    inp.addEventListener('blur', () => {
+      inp.value = formatDateInputValue(inp.value);
+      setEventDateValidity(true);
+    });
+  }
+
+  // ---------- Honeypot anti-bot ----------
+  function ensureHoneypotField() {
+    let input =
+      document.querySelector('#website') ||
+      document.querySelector('input[name="website"]');
+
+    if (input) return input;
+
+    input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'website';
+    input.name = 'website';
+    input.autocomplete = 'off';
+    input.tabIndex = -1;
+    input.setAttribute('aria-hidden', 'true');
+
+    Object.assign(input.style, {
+      position: 'absolute',
+      left: '-9999px',
+      top: 'auto',
+      width: '1px',
+      height: '1px',
+      opacity: '0',
+      pointerEvents: 'none'
+    });
+
+    document.body.appendChild(input);
+
+    return input;
+  }
+
+  // ---------- DOM ----------
+  const els = {
+    grid: $('#catalogGrid') || $('#grid') || $('.catalog'),
+    search: $('#search') || $('#q'),
+    category: $('#filterCategory') || $('#category'),
+    cartRows: $('#cartRows') || $('tbody#cart'),
+    send: $('#sendQuote') || $('#btnSend') || $('#enviar'),
+    acceptPrivacy: $('#acceptPrivacy') || $('#chkPrivacy'),
+    form: $('#clientForm') || $('form'),
+    name: $('#name'),
+    company: $('#company'),
+    email: $('#email'),
+    email2: $('#email2'),
+    phone: $('#phone'),
+    eventType: $('#eventType') || $('#tipoEvento'),
+    eventDate: $('#eventDate') || $('input[type="date"]'),
+    eventLocation: $('#eventLocation') || $('#ubicacion'),
+    privacyLink:
+      document.querySelector('[data-open-privacy]') ||
+      document.querySelector('a[href$="avisoprivacidad.html"]'),
+    selectionBar: $('#selectionBar'),
+    selectionBarText: $('#selectionBarText'),
+    selectionBarButton: $('#selectionBarButton'),
+    honeypot: null
+  };
+
+  // ---------- Estado ----------
+  let CATALOG = [];
+  const CART = new Map();
+
+  // ---------- Filtro por variante ----------
+  function passesVariant(it) {
+    if (VARIANT === 'experto') return true;
+
+    const t = _tags(it.section);
+    if (!t.length) return false;
+
+    if (VARIANT === 'corporativo') {
+      return t.includes('corporativo') || t.includes('todos') || t.includes('ambos') || t.includes('all');
+    }
+
+    if (VARIANT === 'social') {
+      return t.includes('social') || t.includes('todos') || t.includes('ambos') || t.includes('all');
+    }
+
+    return true;
+  }
+
+  function applyEventTypeOptions() {
+    const sel = els.eventType;
+    if (!sel) return;
+
+    const list = EVENT_TYPES[VARIANT] || EVENT_TYPES.experto;
+
+    sel.innerHTML = '';
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Selecciona...';
+    sel.appendChild(placeholder);
+
+    list.forEach((eventType) => {
+      const option = document.createElement('option');
+      option.value = eventType;
+      option.textContent = eventType;
+      sel.appendChild(option);
+    });
+  }
+
+  // ---------- Catálogo ----------
+  async function loadCatalog() {
+    try {
+      const res = await fetch(API.catalog, { credentials: 'omit' });
+      const data = await res.json();
+
+      CATALOG = Array.isArray(data) ? data.map((r) => {
+        const categoryRaw = r.category ?? r.Categoria ?? '';
+        let sectionRaw = r.section ?? r.seccion ?? r.section_name ?? r.sectionName ?? '';
+
+        if (!sectionRaw) {
+          const catLower = String(categoryRaw || '').toLowerCase();
+          if (/(^|[,\s])(?:corporativo|social|todos|ambos|all)(?=($|[,\s]))/.test(catLower)) {
+            sectionRaw = categoryRaw;
+          }
+        }
+
+        const sortGroup = numberOr(r.sortGroup ?? r.sort_group ?? r.sortgroup, 999);
+        const sortOrder = numberOr(r.sortOrder ?? r.sort_order ?? r.sortorder, 999);
+
+        return {
+          sku: toNFC(r.sku || r.SKU || ''),
+          name: toNFC(r.name || r.Nombre || r.descripcion || r.description || ''),
+          desc: toNFC(r.desc || r.Descripcion || r.description || ''),
+          price: Number(r.price ?? r.Precio ?? r.dailyPrice ?? 0) || 0,
+          category: toNFC(categoryRaw || ''),
+          section: toNFC(sectionRaw || ''),
+          image: String(r.image || r.img || r.imageUrl || r.image_url || r.imagen || r.photo || r.url || '').trim(),
+          sortGroup,
+          sortOrder
+        };
+      }) : [];
+
+      CATALOG.sort(compareCatalogItems);
+
+      fillCategories();
+      renderCatalog();
+    } catch (e) {
+      console.error('Catálogo error:', e);
+      CATALOG = [];
+      renderCatalog();
+    }
+  }
+
+  function fillCategories() {
+    const sel = els.category;
+    if (!sel) return;
+
+    const base = CATALOG.filter(passesVariant);
+    const cats = getCategorySortInfo(base);
+
+    sel.innerHTML = '';
+
+    const all = document.createElement('option');
+    all.value = '';
+    all.textContent = 'Todas';
+    sel.appendChild(all);
+
+    cats.forEach(({ category }) => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.textContent = category;
+      sel.appendChild(option);
+    });
+  }
+
+  function renderCatalog() {
+    const grid = els.grid;
+    if (!grid) return;
+
+    const q = (els.search?.value || '').trim().toLowerCase();
+    const cat = (els.category?.value || '').trim().toLowerCase();
+
+    const pool = CATALOG.filter(passesVariant).sort(compareCatalogItems);
+
+    const rows = pool.filter((it) => {
+      const okCat = !cat || cat === 'todas' || (it.category || '').toLowerCase() === cat;
+      const hit =
+        !q ||
+        (it.sku || '').toLowerCase().includes(q) ||
+        (it.name || '').toLowerCase().includes(q) ||
+        (it.desc || '').toLowerCase().includes(q) ||
+        (it.category || '').toLowerCase().includes(q);
+
+      return okCat && hit;
+    }).sort(compareCatalogItems);
+
+    grid.innerHTML = '';
+
+    if (!rows.length) {
+      const empty = document.createElement('div');
+      empty.style.opacity = '.85';
+      empty.textContent = 'No se encontraron resultados.';
+      grid.appendChild(empty);
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+
+    rows.forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'product';
+
+      const imgBox = document.createElement('div');
+      imgBox.className = 'imgBox';
+
+      const img = document.createElement('img');
+      const imgSrc = item.image || item.imageUrl || item.image_url;
+
+      if (imgSrc) {
+        img.src = imgSrc;
+        img.alt = item.name || item.sku;
+        img.onerror = () => {
+          img.remove();
+          const ph = document.createElement('div');
+          ph.className = 'ph';
+          imgBox.appendChild(ph);
+        };
+        imgBox.appendChild(img);
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'ph';
+        imgBox.appendChild(ph);
+      }
+
+      card.appendChild(imgBox);
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = item.name || item.sku;
+      card.appendChild(title);
+
+      const desc = document.createElement('div');
+      desc.className = 'desc';
+      desc.textContent = item.desc || '';
+      card.appendChild(desc);
+
+      const controls = document.createElement('div');
+      controls.className = 'controls';
+
+      const line1 = document.createElement('div');
+      line1.className = 'line';
+
+      const qtyField = document.createElement('div');
+      qtyField.className = 'field';
+
+      const qtyLabel = document.createElement('label');
+      qtyLabel.textContent = 'Cantidad';
+
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.min = '1';
+      qtyInput.value = '1';
+      qtyInput.className = 'input';
+
+      qtyField.appendChild(qtyLabel);
+      qtyField.appendChild(qtyInput);
+
+      const daysField = document.createElement('div');
+      daysField.className = 'field';
+
+      const daysLabel = document.createElement('label');
+      daysLabel.textContent = 'Días';
+
+      const daysInput = document.createElement('input');
+      daysInput.type = 'number';
+      daysInput.min = '1';
+      daysInput.value = '1';
+      daysInput.className = 'input';
+
+      daysField.appendChild(daysLabel);
+      daysField.appendChild(daysInput);
+
+      line1.appendChild(qtyField);
+      line1.appendChild(daysField);
+      controls.appendChild(line1);
+
+      const line2 = document.createElement('div');
+      line2.className = 'line';
+
+      const addBtn = document.createElement('button');
+      addBtn.className = 'btn';
+      addBtn.type = 'button';
+      addBtn.textContent = 'Agregar';
+
+      addBtn.addEventListener('click', () => {
+        addToCart(item, qtyInput.value, daysInput.value);
+
+        card.dataset.added = '1';
+        addBtn.textContent = 'Agregado ✓';
+        addBtn.disabled = true;
+      });
+
+      line2.appendChild(addBtn);
+      controls.appendChild(line2);
+
+      card.appendChild(controls);
+
+      if (CART.has(item.sku)) {
+        addBtn.textContent = 'Agregado ✓';
+        addBtn.disabled = true;
+        card.dataset.added = '1';
+      }
+
+      frag.appendChild(card);
+    });
+
+    grid.appendChild(frag);
+  }
+
+  // ---------- Carrito ----------
+  function addToCart(item, qty, days) {
+    if (!item?.sku) return;
+
+    if (CART.has(item.sku)) {
+      const cur = CART.get(item.sku);
+      cur.qty = intOr(qty, 1, cur.qty || 1);
+      cur.days = intOr(days, 1, cur.days || 1);
+    } else {
+      CART.set(item.sku, {
+        sku: item.sku,
+        name: item.name || item.sku,
+        desc: item.desc || '',
+        qty: intOr(qty, 1, 1),
+        days: intOr(days, 1, 1),
+      });
+    }
+
+    renderCart();
+  }
+
+  function removeFromCart(sku) {
+    CART.delete(sku);
+    renderCart();
+    renderCatalog();
+  }
+
+  function renderCart() {
+    const tbody = els.cartRows;
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    if (!CART.size) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 5;
+      td.style.opacity = '.8';
+      td.textContent = 'Aún no has agregado productos.';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+
+      if (els.send) els.send.disabled = true;
+      updateSelectionBar();
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+
+    Array.from(CART.values()).forEach((row) => {
+      const tr = document.createElement('tr');
+
+      const tdSku = document.createElement('td');
+      tdSku.textContent = row.sku;
+
+      const tdDesc = document.createElement('td');
+      tdDesc.textContent = row.name || row.desc || row.sku;
+
+      const tdQty = document.createElement('td');
+      const inQty = document.createElement('input');
+      inQty.type = 'number';
+      inQty.min = '1';
+      inQty.value = row.qty;
+      inQty.className = 'input';
+      inQty.addEventListener('change', () => {
+        row.qty = intOr(inQty.value, 1, 1);
+      });
+      tdQty.appendChild(inQty);
+
+      const tdDays = document.createElement('td');
+      const inDays = document.createElement('input');
+      inDays.type = 'number';
+      inDays.min = '1';
+      inDays.value = row.days;
+      inDays.className = 'input';
+      inDays.addEventListener('change', () => {
+        row.days = intOr(inDays.value, 1, 1);
+      });
+      tdDays.appendChild(inDays);
+
+      const tdActions = document.createElement('td');
+      const rm = document.createElement('button');
+      rm.className = 'btn danger';
+      rm.type = 'button';
+      rm.textContent = 'Quitar';
+      rm.addEventListener('click', () => removeFromCart(row.sku));
+      tdActions.appendChild(rm);
+
+      tr.appendChild(tdSku);
+      tr.appendChild(tdDesc);
+      tr.appendChild(tdQty);
+      tr.appendChild(tdDays);
+      tr.appendChild(tdActions);
+      frag.appendChild(tr);
+    });
+
+    tbody.appendChild(frag);
+
+    if (els.send) els.send.disabled = false;
+
+    updateSelectionBar();
+  }
+
+  // ---------- Popup Aviso de Privacidad ----------
+  (function privacyPopup() {
+    const link = els.privacyLink;
+    if (!link) return;
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const w = window.open(link.getAttribute('href'), 'privacy', 'width=720,height=600');
+
+      if (!w) location.href = link.getAttribute('href');
+    });
+  })();
+
+  // ---------- Validación ----------
+  function validateForm(show = false) {
+    const r = {
+      name: !!els.name?.value.trim(),
+      email: !!els.email?.value.trim() && els.email.value.includes('@'),
+      email2: (els.email2?.value.trim() || '') === (els.email?.value.trim() || ''),
+      eventType: !!els.eventType?.value,
+      eventDate: setEventDateValidity(show),
+      eventLocation: !!els.eventLocation?.value.trim(),
+      privacy: !!els.acceptPrivacy?.checked,
+    };
+
+    const ok = r.name && r.email && r.email2 && r.eventType && r.eventDate && r.eventLocation && r.privacy;
+
+    if (show) {
+      els.name?.setCustomValidity(r.name ? '' : 'Requerido');
+      els.email?.setCustomValidity(r.email ? '' : 'Correo inválido');
+      els.email2?.setCustomValidity(r.email2 ? '' : 'Debe coincidir');
+      els.eventType?.setCustomValidity(r.eventType ? '' : 'Selecciona un tipo');
+      els.eventLocation?.setCustomValidity(r.eventLocation ? '' : 'Indica la ubicación');
+    }
+
+    return ok;
+  }
+
+  // ---------- Navegación de flujo ----------
+  function updateSelectionBar() {
+    const count = CART.size;
+
+    if (!els.selectionBar || !els.selectionBarText) return;
+
+    if (count <= 0) {
+      hideSelectionBar();
+      return;
+    }
+
+    const label = count === 1
+      ? 'Tu selección: 1 producto agregado'
+      : `Tu selección: ${count} productos agregados`;
+
+    els.selectionBarText.textContent = label;
+
+    if (els.selectionBarButton) {
+      els.selectionBarButton.textContent = 'Continuar';
+    }
+
+    els.selectionBar.classList.add('is-visible');
+    els.selectionBar.setAttribute('aria-hidden', 'false');
+  }
+
+  function hideSelectionBar() {
+    if (!els.selectionBar) return;
+
+    els.selectionBar.classList.remove('is-visible');
+    els.selectionBar.setAttribute('aria-hidden', 'true');
+  }
+
+  function scrollToSection(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  // ---------- Envío ----------
+  async function sendQuote() {
+    if (!CART.size) return alert('Agrega al menos un producto.');
+
+    if (els.eventDate) {
+      els.eventDate.value = formatDateInputValue(els.eventDate.value);
+    }
+
+    if (!validateForm(true)) return els.form?.reportValidity?.();
+    if (!els.acceptPrivacy?.checked) return alert('Debes aceptar el Aviso de Privacidad.');
+
+    const items = Array.from(CART.values()).map((x) => ({
+      sku: x.sku,
+      qty: intOr(x.qty, 1, 1),
+      days: intOr(x.days, 1, 1),
+    }));
+
+    const dateISO = eventDateToISO(els.eventDate?.value || '');
+
+    if (!dateISO) {
+      els.eventDate?.setCustomValidity('Ingresa una fecha válida con formato dd/mm/aaaa.');
+      els.form?.reportValidity?.();
+      return;
+    }
+
+    const payload = {
+      client: {
+        name: toNFC(els.name?.value || ''),
+        email: toNFC(els.email?.value || ''),
+        company: toNFC(els.company?.value || ''),
+        phone: toNFC(els.phone?.value || ''),
+        eventType: toNFC(els.eventType?.value || ''),
+        eventDate: dateISO,
+        eventLocation: toNFC(els.eventLocation?.value || ''),
+      },
+      items,
+      acceptPrivacy: !!els.acceptPrivacy?.checked,
+      website: els.honeypot?.value || ''
+    };
+
+    try {
+      if (els.send) els.send.disabled = true;
+
+      const res = await fetch(API.quote, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await res.text().catch(() => '');
+
+      if (!res.ok) {
+        console.error('POST /quotes falló', {
+          status: res.status,
+          statusText: res.statusText,
+          body: text
+        });
+
+        alert(`No se pudo enviar la cotización.\nHTTP ${res.status} ${res.statusText}\n${text.slice(0, 400)}`);
+        return;
+      }
+
+      alert('¡Cotización enviada! Revisa tu bandeja de entrada; si no la encuentras, revisa también SPAM.');
+
+      CART.clear();
+      renderCart();
+      renderCatalog();
+    } catch (e) {
+      console.error('Send quote error:', e);
+      alert('Ocurrió un problema al enviar la cotización. Intenta más tarde.');
+    } finally {
+      if (els.send) els.send.disabled = false;
+    }
+  }
+
+  // ---------- Botón calendario ----------
+  function injectDateButton() {
+    const inp = els.eventDate;
+    if (!inp) return;
+    if (document.getElementById('btnEventCalendar')) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.title = 'Elegir fecha';
+    btn.setAttribute('aria-label', 'Elegir fecha');
+    btn.textContent = '📅';
+    btn.style.marginLeft = '6px';
+    btn.style.padding = '6px 8px';
+    btn.style.borderRadius = '8px';
+    btn.style.border = '1px solid #444';
+    btn.style.background = 'transparent';
+    btn.style.cursor = 'pointer';
+
+    inp.insertAdjacentElement('afterend', btn);
+
+    btn.addEventListener('click', () => {
+      if (typeof inp.showPicker === 'function') inp.showPicker();
+      else {
+        inp.focus();
+        try { inp.click(); } catch {}
+      }
+    });
+  }
+
+  function hookupExternalCalendarButton() {
+    const textInput = document.querySelector(
+      '#eventDate, input[name="event_date"], input[placeholder*="dd"][placeholder*="aaaa"]'
+    );
+
+    if (!textInput) return;
+
+    try {
+      if (textInput.type === 'date') textInput.type = 'text';
+    } catch {}
+
+    let wrap = textInput.closest('.date-wrap');
+
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.className = 'date-wrap';
+      textInput.parentNode.insertBefore(wrap, textInput);
+      wrap.appendChild(textInput);
+    }
+
+    let native = wrap.querySelector('input[type="date"][data-native-picker]');
+
+    if (!native) {
+      native = document.createElement('input');
+      native.type = 'date';
+      native.setAttribute('data-native-picker', '');
+      native.setAttribute('aria-hidden', 'true');
+      native.tabIndex = -1;
+      wrap.appendChild(native);
+    }
+
+    Object.assign(native.style, {
+      position: 'fixed',
+      left: '8px',
+      top: '8px',
+      width: '1px',
+      height: '1px',
+      opacity: '0.01',
+      border: 0,
+      padding: 0,
+      margin: 0,
+      background: 'transparent',
+    });
+
+    const syncToNative = () => {
+      const parsed = parseDMYDate(textInput.value);
+
+      if (parsed) {
+        const D = String(parsed.day).padStart(2, '0');
+        const M = String(parsed.month).padStart(2, '0');
+        const Y = String(parsed.year);
+        native.value = `${Y}-${M}-${D}`;
+      }
+    };
+
+    textInput.addEventListener('blur', syncToNative);
+
+    native.addEventListener('change', () => {
+      const v = native.value;
+
+      if (/^\d{4}-\d{2}-\d{2}$/.test(v)) {
+        const [Y, M, D] = v.split('-');
+        textInput.value = `${D}/${M}/${Y}`;
+        textInput.setCustomValidity('');
+        textInput.dispatchEvent(new Event('input', { bubbles: true }));
+        textInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+
+    const opener = document.getElementById('btnEventCalendar');
+
+    if (opener) {
+      const openPicker = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        requestAnimationFrame(() => {
+          if (typeof native.showPicker === 'function') {
+            native.showPicker();
+          } else {
+            native.focus();
+            native.click();
+          }
+        });
+      };
+
+      ['pointerdown', 'mousedown', 'touchstart', 'click'].forEach((evt) =>
+        opener.addEventListener(evt, openPicker, { passive: false })
+      );
+    }
+  }
+
+  // ---------- Init ----------
+  function init() {
+    els.honeypot = ensureHoneypotField();
+
+    applyEventTypeOptions();
+    attachEventDateMask();
+    hookupExternalCalendarButton();
+    injectDateButton();
+    loadCatalog();
+    renderCart();
+
+    if (els.send) els.send.addEventListener('click', sendQuote);
+    if (els.search) els.search.addEventListener('input', renderCatalog);
+    if (els.category) els.category.addEventListener('change', renderCatalog);
+
+    document.addEventListener('click', (ev) => {
+      const continueSelectionBtn = ev.target.closest('[data-action="continue-selection"]');
+      if (continueSelectionBtn) {
+        ev.preventDefault();
+        scrollToSection('#cartSection');
+        hideSelectionBar();
+        return;
+      }
+
+      const backToCatalogBtn = ev.target.closest('[data-action="back-to-catalog"]');
+      if (backToCatalogBtn) {
+        ev.preventDefault();
+        scrollToSection('#catalogSection');
+        updateSelectionBar();
+        return;
+      }
+
+      const continueClientDataBtn = ev.target.closest('[data-action="continue-client-data"]');
+      if (continueClientDataBtn) {
+        ev.preventDefault();
+        scrollToSection('#clientDataSection');
+        return;
+      }
+
+      const continueFinalBtn = ev.target.closest('[data-action="continue-final"]');
+      if (continueFinalBtn) {
+        ev.preventDefault();
+        scrollToSection('#finalSection');
+      }
+    });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
