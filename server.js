@@ -585,21 +585,6 @@ function createQuotePDF({ quoteId, client, calc }){
     headerCell("Total", xTot, totW, "right");
     y += 16; doc.moveTo(startX, y).lineTo(startX + contentW, y).stroke(); y += 6;
 
-    const CATEGORY_NAMES = {
-  "paquete de temporada": "PAQUETES",
-  "audio": "AUDIO",
-  "video": "VIDEO",
-  "iluminación": "ILUMINACIÓN",
-  "iluminacion": "ILUMINACIÓN",
-  "rigging": "RIGGING",
-  "escenografía": "ESCENOGRAFÍA",
-  "escenografia": "ESCENOGRAFÍA",
-  "personal": "PERSONAL",
-  "viáticos": "VIÁTICOS",
-  "viaticos": "VIÁTICOS",
-  "transportes": "TRANSPORTES",
-  "fletes": "FLETES Y TRANSPORTES"
-};
 
 const sortedLines = [...calc.lines].sort((a, b) => {
   const ga = Number(a.sortGroup || 999);
@@ -624,9 +609,9 @@ if (categoryKey !== currentCategory) {
 
   currentCategory = categoryKey;
 
-  const categoryTitle =
-    CATEGORY_NAMES[categoryKey] ||
-    String(l.category || "").toUpperCase();
+  const categoryTitle = String(l.category || "")
+  .trim()
+  .toUpperCase();
 
   if (y + 24 > doc.page.height - 180) {
     doc.addPage();
