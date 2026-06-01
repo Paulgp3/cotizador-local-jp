@@ -165,7 +165,7 @@ Operador de Streaming,P-009,dia,2500,MXN,Personal,False,,True,todos,https://medi
 Operador de Video,P-010,dia,2500,MXN,Personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,100
 Técnico de Video,P-011,dia,1500,MXN,Personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,110
 Camarógrafo,P-012,dia,2500,MXN,Personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,120
-Head Rigger,P-013,dia,2500,MXN,Personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,130
+Head Rigger,P-013,dia,2500,MXN,Personal,False,.,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,130
 Ground Rigger,P-014,dia,2000,MXN,Personal,False,,True,todos,https://medioangular.com/cotizador/img/staff.jpeg,150,140
 Viáticos,O-001,dia,550,MXN,Otros,True,Gastos de alimentos del staff. (Pueden variar dependiendo de la ubicación del evento),True,todos,https://medioangular.com/cotizador/img/viaticos.jpeg,160,10
 Hospedaje,O-010,dia,1100,MXN,Otros,True,Hospedaje cuarto doble (Pueden variar dependiendo de la ubicación del evento),True,todos,https://medioangular.com/cotizador/img/hospedaje.jpeg,170,10
