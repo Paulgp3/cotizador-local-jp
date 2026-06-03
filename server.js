@@ -118,7 +118,9 @@ app.use(helmet({
     directives: {
       "img-src": ["'self'", "data:", "https:"],
       "style-src": ["'self'", "https:", "'unsafe-inline'"],
-      "script-src": ["'self'"]
+      "script-src": ["'self'", "https://www.googletagmanager.com"],
+      "connect-src": ["'self'", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
+      "frame-src": ["'self'", "https://www.googletagmanager.com"]
     }
   }
 }));

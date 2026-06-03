@@ -99,6 +99,28 @@
     'Flete'
   ];
 
+  function getCotizadorChannel() {
+    const path = String(window.location?.pathname || '').toLowerCase();
+
+    if (path.includes('corporativo')) return 'corporativo';
+    if (path.includes('social')) return 'social';
+
+    return null;
+  }
+
+  function pushCotizadorEvent(baseEvent, extra = {}) {
+    const channel = getCotizadorChannel();
+
+    if (!channel) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: `${baseEvent}_${channel}`,
+      cotizador_tipo: channel,
+      ...extra
+    });
+  }
+
   const els = {
     grid: $('#catalogGrid') || $('#grid') || $('.catalog'),
     search: $('#search') || $('#q'),
@@ -626,7 +648,7 @@
 
     setFirstHeadingText(catalogSection, '1) Selección de productos');
     setFirstHeadingText(cartSection, '3) Tu selección');
-    setFirstHeadingText(clientData, '4) Datos');
+    setFirstHeadingText(clientData, '4) Datos del cliente');
     setFirstHeadingText(finalCard, '5) Enviar cotización');
   }
 
@@ -854,7 +876,7 @@
       });
 
       const span = document.createElement('span');
-      span.textContent = 'Entiendo que esta cotización es una estimación automática e informativa, y que la propuesta final será validada por un especialista de Medio Angular considerando necesidades técnicas, montaje, operación, transporte, logística y condiciones reales del evento.';
+      span.textContent = 'Entiendo que recibiré en mi correo un presupuesto estimado generado automáticamente y que, para garantizar el éxito de mi evento, un especialista técnico de Medio Angular validará posteriormente, sin costo, la viabilidad técnica, de montaje y logística.';
 
       estimateLabel.appendChild(chk);
       estimateLabel.appendChild(span);
@@ -1241,6 +1263,11 @@
 
     addBtn.addEventListener('click', () => {
       addToCart(item, qtyInput.value, daysInput.value);
+      pushCotizadorEvent('prod_agregado', {
+        sku: item.sku || '',
+        producto: item.name || '',
+        categoria: item.category || ''
+      });
 
       card.dataset.added = '1';
       addBtn.textContent = 'Agregado ✓';
@@ -1403,7 +1430,7 @@
         els.acceptEstimateTerms.setCustomValidity(
           r.estimateTerms
             ? ''
-            : 'Debes aceptar que esta cotización es estimada y será validada por un especialista.'
+            : 'Debes aceptar que recibirás un presupuesto estimado y que un especialista técnico validará posteriormente la viabilidad técnica, de montaje y logística.'
         );
       }
     }
@@ -1494,7 +1521,7 @@
     }
 
     if (!els.acceptEstimateTerms?.checked) {
-      alert('Antes de enviar, acepta que esta cotización es estimada y será validada por un especialista.');
+      alert('Antes de enviar, acepta que recibirás un presupuesto estimado y que un especialista técnico validará posteriormente la viabilidad técnica, de montaje y logística.');
       els.acceptEstimateTerms?.focus();
       return;
     }
@@ -1556,6 +1583,11 @@
         alert(`No se pudo enviar la cotización.\nHTTP ${res.status} ${res.statusText}\n${text.slice(0, 400)}`);
         return;
       }
+
+      pushCotizadorEvent('lead_final', {
+        total_items: items.length,
+        event_type: payload.client.eventType || ''
+      });
 
       alert('¡Cotización enviada! Revisa tu bandeja de entrada; si no la encuentras, revisa también SPAM.');
 
@@ -1731,6 +1763,7 @@
 
       if (continueSelectionBtn) {
         ev.preventDefault();
+        pushCotizadorEvent('paso_operacion_logistica');
         scrollToSection('#operationLogisticsSection');
         hideSelectionBar();
         return;
@@ -1740,6 +1773,7 @@
 
       if (continueOpsBtn) {
         ev.preventDefault();
+        pushCotizadorEvent('paso_operacion_logistica');
         scrollToSection('#operationLogisticsSection');
         hideSelectionBar();
         return;
@@ -1749,6 +1783,7 @@
 
       if (continueCartBtn) {
         ev.preventDefault();
+        pushCotizadorEvent('paso_tu_seleccion');
         scrollToCartSection();
         hideSelectionBar();
         return;
@@ -1767,6 +1802,7 @@
 
       if (continueClientDataBtn) {
         ev.preventDefault();
+        pushCotizadorEvent('paso_datos');
         scrollToSection('#clientDataSection');
         return;
       }
@@ -1775,6 +1811,7 @@
 
       if (continueFinalBtn) {
         ev.preventDefault();
+        pushCotizadorEvent('paso_revision');
         scrollToSection('#finalSection');
       }
     });
