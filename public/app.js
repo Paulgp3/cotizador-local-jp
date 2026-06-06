@@ -469,6 +469,14 @@
   }
 
   function ensureTopProgressStepper() {
+    const path = String(window.location?.pathname || '').toLowerCase();
+    const isPublicCotizador = path.includes('corporativo') || path.includes('social');
+    const isTabletOrMobile = window.matchMedia && window.matchMedia('(max-width: 1100px)').matches;
+
+    if (isPublicCotizador && isTabletOrMobile) {
+      return;
+    }
+
     injectGlobalStyles();
 
     const existing = document.getElementById('cotizadorTopStepper');
