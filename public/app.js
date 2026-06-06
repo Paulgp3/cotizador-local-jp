@@ -471,9 +471,9 @@
   function ensureTopProgressStepper() {
     const path = String(window.location?.pathname || '').toLowerCase();
     const isPublicCotizador = path.includes('corporativo') || path.includes('social');
-    const isTabletOrMobile = window.matchMedia && window.matchMedia('(max-width: 1100px)').matches;
 
-    if (isPublicCotizador && isTabletOrMobile) {
+    if (isPublicCotizador) {
+      document.querySelectorAll('nav.stepper, .stepper, .stepper__inner, [aria-label="Flujo del cotizador"]').forEach(el => el.remove());
       return;
     }
 
@@ -656,7 +656,7 @@
 
     setFirstHeadingText(catalogSection, '1) Selección de productos');
     setFirstHeadingText(cartSection, '3) Tu selección');
-    setFirstHeadingText(clientData, '4) Datos del cliente');
+    setFirstHeadingText(clientData, '4) ¿A dónde enviamos tu cotización?');
     setFirstHeadingText(finalCard, '5) Enviar cotización');
   }
 
@@ -1409,7 +1409,7 @@
     const r = {
       name: !!els.name?.value.trim(),
       email: !!els.email?.value.trim() && els.email.value.includes('@'),
-      email2: (els.email2?.value.trim() || '') === (els.email?.value.trim() || ''),
+      email2: true,
       eventType: !!els.eventType?.value,
       eventDate: setEventDateValidity(show),
       eventLocation: !!els.eventLocation?.value.trim(),
@@ -1420,7 +1420,6 @@
     const ok =
       r.name &&
       r.email &&
-      r.email2 &&
       r.eventType &&
       r.eventDate &&
       r.eventLocation &&
@@ -1430,7 +1429,7 @@
     if (show) {
       els.name?.setCustomValidity(r.name ? '' : 'Requerido');
       els.email?.setCustomValidity(r.email ? '' : 'Correo inválido');
-      els.email2?.setCustomValidity(r.email2 ? '' : 'Debe coincidir');
+      els.email2?.setCustomValidity('');
       els.eventType?.setCustomValidity(r.eventType ? '' : 'Selecciona un tipo');
       els.eventLocation?.setCustomValidity(r.eventLocation ? '' : 'Indica la ubicación');
 

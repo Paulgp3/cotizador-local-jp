@@ -118,7 +118,7 @@
     h1{
     margin:0;
     font-family:var(--font-main);
-    font-size:clamp(42px,6vw,78px);
+    font-size:clamp(38px,5vw,64px);
     line-height:1.02;
     letter-spacing:-.035em;
     font-weight:400;
@@ -1051,6 +1051,23 @@
       }
     }
 
+
+    /* Ocultar stepper inicial en cotizadores públicos */
+    nav.stepper,
+    .stepper,
+    .stepper__inner,
+    [aria-label="Flujo del cotizador"]{
+      display:none !important;
+      visibility:hidden !important;
+      height:0 !important;
+      min-height:0 !important;
+      max-height:0 !important;
+      overflow:hidden !important;
+      margin:0 !important;
+      padding:0 !important;
+      border:0 !important;
+    }
+
   </style>
   <script src="gtm.js?v=20260602-1" defer></script>
 </head>
@@ -1134,8 +1151,8 @@
 
     <section id="clientDataSection" class="card" style="margin-top:24px">
       <form id="clientForm" class="form" novalidate>
-        <h2>4) Datos del cliente</h2>
-        <p class="hint">Completa tus datos para enviarte la cotización.</p>
+        <h2>4) ¿A dónde enviamos tu cotización?</h2>
+        <p class="hint">Completa tus datos para recibir el presupuesto estimado al instante en tu correo.</p>
 
         <div class="grid">
           <div class="item">
@@ -1149,16 +1166,11 @@
           </div>
 
           <div class="item">
-            <label for="email">Correo electrónico *</label>
+            <label for="email">Correo donde recibirás la cotización *</label>
             <input id="email" type="email" class="text" placeholder="tucorreo@dominio.com" required />
+            <small class="fieldHelp">Te enviaremos la cotización a este correo. Revísalo antes de continuar.</small>
           </div>
-
-          <div class="item">
-            <label for="email2">Confirma tu correo *</label>
-            <input id="email2" type="email" class="text" placeholder="Repite tu correo" required />
-          </div>
-
-          <div class="item">
+<div class="item">
             <label for="phone">Teléfono <span style="color:var(--muted)">(opcional)</span></label>
             <input id="phone" class="text" placeholder="10 dígitos" />
           </div>
@@ -1233,6 +1245,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260606-mobile-stepper-1" charset="UTF-8" defer></script>
+  <script src="app.js?v=20260606-simplifica-datos-1" charset="UTF-8" defer></script>
 </body>
 </html>
