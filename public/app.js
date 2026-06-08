@@ -667,7 +667,7 @@
       section.style.scrollMarginTop = '140px';
 
       const card = section.querySelector('.operation-logistics-card');
-      if (card) styleOperationCard(card);
+      if (card && !card.children.length) styleOperationCard(card);
 
       els.opsSection = section;
       els.opsGrid = document.getElementById('operationLogisticsGrid');
