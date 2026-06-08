@@ -1146,8 +1146,8 @@
 
     const frag = document.createDocumentFragment();
 
-    rows.forEach((item) => {
-      frag.appendChild(createProductCard(item));
+    rows.forEach((item, index) => {
+      frag.appendChild(createProductCard(item, index));
     });
 
     grid.appendChild(frag);
@@ -1174,8 +1174,8 @@
 
     const frag = document.createDocumentFragment();
 
-    rows.forEach((item) => {
-      const card = createProductCard(item);
+    rows.forEach((item, index) => {
+      const card = createProductCard(item, index);
       card.dataset.logistics = '1';
       frag.appendChild(card);
     });
@@ -1183,7 +1183,7 @@
     grid.appendChild(frag);
   }
 
-  function createProductCard(item) {
+  function createProductCard(item, index = 999) {
     const card = document.createElement('div');
     card.className = 'product';
 
@@ -1194,6 +1194,15 @@
     const imgSrc = item.image || item.imageUrl || item.image_url;
 
     if (imgSrc) {
+      const isPriorityImage = index < 4;
+
+      img.loading = isPriorityImage ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      img.fetchPriority = isPriorityImage ? 'high' : 'low';
+      img.setAttribute('fetchpriority', isPriorityImage ? 'high' : 'low');
+      img.width = 480;
+      img.height = 320;
+
       img.src = imgSrc;
       img.alt = item.name || item.sku;
       img.onerror = () => {
