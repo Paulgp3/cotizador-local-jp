@@ -13,3 +13,7 @@ yarn-error.log
 # Mac / Sistema
 .DS_Store
 Thumbs.db
+
+# Backups locales generados durante ajustes
+backups/
+public/*-backup-*.html
