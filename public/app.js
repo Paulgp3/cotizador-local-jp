@@ -21,7 +21,7 @@
 
   const API_BASE =
     window.API_BASE ||
-    (isLocalHost ? '' : 'https://cotizador-local-jp.onrender.com');
+    (isLocalHost ? 'http://localhost:4000' : 'https://cotizador-local-jp.onrender.com');
 
   const API = {
     catalog: `${API_BASE}/catalog`,
