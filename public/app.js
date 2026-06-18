@@ -1108,6 +1108,118 @@
     });
   }
 
+  const catalogSectionOrder = {
+    "PAQUETES DE TEMPORADA": 1,
+    "AUDIO": 10,
+    "VIDEO": 20,
+    "ILUMINACIÓN": 30,
+    "COMUNICACIÓN": 40,
+    "RIGGING": 50,
+    "ENERGÍA": 60,
+    "ESCENOGRAFÍA": 70,
+    "PERSONAL": 80,
+    "LOGÍSTICA": 90,
+    "OTROS": 999
+  };
+
+  function catalogSectionFromItem(item) {
+    const sku = String(item.sku || '').trim().toUpperCase();
+    const category = String(item.category || '').trim().toLowerCase();
+
+    if (sku.startsWith('T-')) return 'PAQUETES DE TEMPORADA';
+    if (sku.startsWith('A-')) return 'AUDIO';
+    if (sku.startsWith('V-')) return 'VIDEO';
+    if (sku.startsWith('I-')) return 'ILUMINACIÓN';
+    if (sku.startsWith('C-')) return 'COMUNICACIÓN';
+    if (sku.startsWith('R-')) return 'RIGGING';
+    if (sku.startsWith('E-')) return 'ENERGÍA';
+    if (sku.startsWith('D-') || sku.startsWith('DE-')) return 'ESCENOGRAFÍA';
+    if (sku.startsWith('P-')) return 'PERSONAL';
+    if (sku.startsWith('O-')) return 'LOGÍSTICA';
+
+    if (category.includes('temporada')) return 'PAQUETES DE TEMPORADA';
+    if (category.includes('audio')) return 'AUDIO';
+    if (category.includes('video') || category.includes('streaming')) return 'VIDEO';
+    if (category.includes('ilumin')) return 'ILUMINACIÓN';
+    if (category.includes('comunic')) return 'COMUNICACIÓN';
+    if (category.includes('rigging')) return 'RIGGING';
+    if (category.includes('energ')) return 'ENERGÍA';
+    if (category.includes('escen')) return 'ESCENOGRAFÍA';
+    if (category.includes('personal')) return 'PERSONAL';
+    if (category.includes('flete') || category.includes('otro') || category.includes('viático') || category.includes('viatico') || category.includes('hosped')) return 'LOGÍSTICA';
+
+    return 'OTROS';
+  }
+
+  function isCatalogPackageItem(item) {
+    const category = String(item.category || '').toLowerCase();
+    const name = String(item.name || '').toLowerCase();
+
+    return category.includes('paquete') || name.includes('paquete');
+  }
+
+  function compareCatalogVisualItems(a, b) {
+    const sa = catalogSectionFromItem(a);
+    const sb = catalogSectionFromItem(b);
+
+    const sectionDiff = (catalogSectionOrder[sa] || catalogSectionOrder.OTROS) - (catalogSectionOrder[sb] || catalogSectionOrder.OTROS);
+    if (sectionDiff !== 0) return sectionDiff;
+
+    const packageDiff = Number(isCatalogPackageItem(b)) - Number(isCatalogPackageItem(a));
+    if (packageDiff !== 0) return packageDiff;
+
+    const groupDiff = numberOr(a.sortGroup, 999) - numberOr(b.sortGroup, 999);
+    if (groupDiff !== 0) return groupDiff;
+
+    const orderDiff = numberOr(a.sortOrder, 999) - numberOr(b.sortOrder, 999);
+    if (orderDiff !== 0) return orderDiff;
+
+    return String(a.name || '').localeCompare(String(b.name || ''), 'es', { sensitivity: 'base' });
+  }
+
+  function catalogVisualGroupTitle(item) {
+    const category = String(item.category || '').trim().toLowerCase();
+
+    if (category === 'paquete de temporada') return 'Paquetes de Temporada';
+
+    if (category === 'paquete de audio') return 'Paquetes de Audio';
+    if (category === 'audio') return 'Equipos de Audio';
+
+    if (category === 'paquete de video') return 'Paquetes de Video';
+    if (category === 'video') return 'Equipos de Video';
+    if (category === 'streaming') return 'Streaming';
+
+    if (category === 'paquete de iluminación') return 'Paquetes de Iluminación';
+    if (category === 'iluminación' || category === 'iluminacion') return 'Equipos de Iluminación';
+
+    if (category === 'comunicación' || category === 'comunicacion') return 'Comunicación';
+    if (category === 'rigging') return 'Rigging';
+    if (category === 'energía' || category === 'energia') return 'Energía';
+
+    if (category === 'paquete de escenografía' || category === 'paquete de escenografia') return 'Paquetes de Escenografía';
+    if (category === 'escenografía' || category === 'escenografia') return 'Elementos de Escenografía';
+
+    if (category === 'personal') return 'Personal';
+    if (category === 'fletes') return 'Fletes';
+    if (category === 'otros') return 'Otros';
+
+    return String(item.category || 'Otros').trim();
+  }
+
+  function appendCatalogGroupHeader(frag, title) {
+    const header = document.createElement('div');
+    header.className = 'catalogGroupHeader';
+    header.textContent = title;
+    header.style.gridColumn = '1 / -1';
+    header.style.margin = '18px 0 4px';
+    header.style.padding = '10px 0 8px';
+    header.style.borderBottom = '1px solid rgba(0,0,0,.14)';
+    header.style.color = '#003366';
+    header.style.fontWeight = '800';
+    header.style.fontSize = '18px';
+    frag.appendChild(header);
+  }
+
   function renderCatalog() {
     const grid = els.grid;
     if (!grid) return;
@@ -1118,7 +1230,7 @@
     const pool = CATALOG
       .filter(passesVariant)
       .filter((item) => !isLogisticsItem(item))
-      .sort(compareCatalogItems);
+      .sort(compareCatalogVisualItems);
 
     const rows = pool
       .filter((it) => {
@@ -1132,7 +1244,7 @@
 
         return okCat && hit;
       })
-      .sort(compareCatalogItems);
+      .sort(compareCatalogVisualItems);
 
     grid.innerHTML = '';
 
@@ -1146,7 +1258,16 @@
 
     const frag = document.createDocumentFragment();
 
+    let currentCatalogGroup = null;
+
     rows.forEach((item, index) => {
+      const groupTitle = catalogVisualGroupTitle(item);
+
+      if (groupTitle !== currentCatalogGroup) {
+        currentCatalogGroup = groupTitle;
+        appendCatalogGroupHeader(frag, groupTitle);
+      }
+
       frag.appendChild(createProductCard(item, index));
     });
 
@@ -1338,6 +1459,83 @@
     renderOperationLogisticsCatalog();
   }
 
+  const cartSectionOrder = {
+    "PAQUETES DE TEMPORADA": 1,
+    "AUDIO": 10,
+    "VIDEO": 20,
+    "ILUMINACIÓN": 30,
+    "COMUNICACIÓN": 40,
+    "RIGGING": 50,
+    "ENERGÍA": 60,
+    "ESCENOGRAFÍA": 70,
+    "PERSONAL": 80,
+    "LOGÍSTICA": 90,
+    "OTROS": 999
+  };
+
+  function cartProductInfo(row) {
+    return CATALOG.find((item) => String(item.sku || '').trim() === String(row.sku || '').trim()) || {};
+  }
+
+  function cartSectionFromRow(row) {
+    const sku = String(row.sku || '').trim().toUpperCase();
+    const info = cartProductInfo(row);
+    const category = String(info.category || row.category || '').trim().toLowerCase();
+
+    if (sku.startsWith('T-')) return 'PAQUETES DE TEMPORADA';
+    if (sku.startsWith('A-')) return 'AUDIO';
+    if (sku.startsWith('V-')) return 'VIDEO';
+    if (sku.startsWith('I-')) return 'ILUMINACIÓN';
+    if (sku.startsWith('C-')) return 'COMUNICACIÓN';
+    if (sku.startsWith('R-')) return 'RIGGING';
+    if (sku.startsWith('E-')) return 'ENERGÍA';
+    if (sku.startsWith('D-') || sku.startsWith('DE-')) return 'ESCENOGRAFÍA';
+    if (sku.startsWith('P-')) return 'PERSONAL';
+    if (sku.startsWith('O-')) return 'LOGÍSTICA';
+
+    if (category.includes('audio')) return 'AUDIO';
+    if (category.includes('video') || category.includes('streaming')) return 'VIDEO';
+    if (category.includes('ilumin')) return 'ILUMINACIÓN';
+    if (category.includes('comunic')) return 'COMUNICACIÓN';
+    if (category.includes('rigging')) return 'RIGGING';
+    if (category.includes('energ')) return 'ENERGÍA';
+    if (category.includes('escen')) return 'ESCENOGRAFÍA';
+    if (category.includes('personal')) return 'PERSONAL';
+    if (category.includes('flete') || category.includes('otro') || category.includes('viático') || category.includes('viatico') || category.includes('hosped')) return 'LOGÍSTICA';
+
+    return 'OTROS';
+  }
+
+  function isCartPackageRow(row) {
+    const info = cartProductInfo(row);
+    const category = String(info.category || row.category || '').toLowerCase();
+    const name = String(info.name || row.name || '').toLowerCase();
+
+    return category.includes('paquete') || name.includes('paquete');
+  }
+
+  function compareCartRows(a, b) {
+    const sa = cartSectionFromRow(a);
+    const sb = cartSectionFromRow(b);
+
+    const sectionDiff = (cartSectionOrder[sa] || cartSectionOrder.OTROS) - (cartSectionOrder[sb] || cartSectionOrder.OTROS);
+    if (sectionDiff !== 0) return sectionDiff;
+
+    const packageDiff = Number(isCartPackageRow(b)) - Number(isCartPackageRow(a));
+    if (packageDiff !== 0) return packageDiff;
+
+    const ia = cartProductInfo(a);
+    const ib = cartProductInfo(b);
+
+    const groupDiff = numberOr(ia.sortGroup, 999) - numberOr(ib.sortGroup, 999);
+    if (groupDiff !== 0) return groupDiff;
+
+    const orderDiff = numberOr(ia.sortOrder, 999) - numberOr(ib.sortOrder, 999);
+    if (orderDiff !== 0) return orderDiff;
+
+    return String(a.name || '').localeCompare(String(b.name || ''), 'es', { sensitivity: 'base' });
+  }
+
   function renderCart() {
     const tbody = els.cartRows;
     if (!tbody) return;
@@ -1360,7 +1558,26 @@
 
     const frag = document.createDocumentFragment();
 
-    Array.from(CART.values()).forEach((row) => {
+    let currentCartSection = null;
+
+    Array.from(CART.values()).sort(compareCartRows).forEach((row) => {
+      const sectionTitle = cartSectionFromRow(row);
+
+      if (sectionTitle !== currentCartSection) {
+        currentCartSection = sectionTitle;
+
+        const sectionTr = document.createElement('tr');
+        const sectionTd = document.createElement('td');
+        sectionTd.colSpan = 5;
+        sectionTd.textContent = sectionTitle;
+        sectionTd.style.fontWeight = '700';
+        sectionTd.style.color = '#003366';
+        sectionTd.style.paddingTop = '14px';
+        sectionTd.style.borderTop = '1px solid rgba(0,0,0,.12)';
+        sectionTr.appendChild(sectionTd);
+        frag.appendChild(sectionTr);
+      }
+
       const tr = document.createElement('tr');
 
       const tdSku = document.createElement('td');
