@@ -60,7 +60,7 @@ const QUOTE_BASE_URL  = process.env.QUOTE_BASE_URL || `http://localhost:${PORT}`
 
 const COMPANY_NAME    = process.env.COMPANY_NAME || "Medio Angular";
 const COMPANY_EMAIL   = process.env.COMPANY_EMAIL || "cotizacion@medioangular.com";
-const COMPANY_PHONE   = process.env.COMPANY_PHONE || "5530997587";
+const COMPANY_PHONE   = process.env.COMPANY_PHONE || "+52 56 5453 2124";
 const COMPANY_WEBSITE = process.env.COMPANY_WEBSITE || "www.medioangular.com";
 
 const HEADER_IMAGE_PATH = process.env.HEADER_IMAGE_PATH || "";
@@ -588,32 +588,87 @@ function createQuotePDF({ quoteId, client, calc }){
     y += 16; doc.moveTo(startX, y).lineTo(startX + contentW, y).stroke(); y += 6;
 
 
+const pdfSectionOrder = {
+  "PAQUETES DE TEMPORADA": 1,
+  "AUDIO": 10,
+  "VIDEO": 20,
+  "ILUMINACIÓN": 30,
+  "COMUNICACIÓN": 40,
+  "RIGGING": 50,
+  "ENERGÍA": 60,
+  "ESCENOGRAFÍA": 70,
+  "PERSONAL": 80,
+  "LOGÍSTICA": 90,
+  "OTROS": 999
+};
+
+const pdfSectionFromLine = (line) => {
+  const sku = String(line.sku || "").trim().toUpperCase();
+  const category = String(line.category || "").trim().toLowerCase();
+
+  if (sku.startsWith("T-")) return "PAQUETES DE TEMPORADA";
+  if (sku.startsWith("A-")) return "AUDIO";
+  if (sku.startsWith("V-")) return "VIDEO";
+  if (sku.startsWith("I-")) return "ILUMINACIÓN";
+  if (sku.startsWith("D-") || sku.startsWith("DE-")) return "ESCENOGRAFÍA";
+  if (sku.startsWith("C-")) return "COMUNICACIÓN";
+  if (sku.startsWith("R-")) return "RIGGING";
+  if (sku.startsWith("E-")) return "ENERGÍA";
+  if (sku.startsWith("P-")) return "PERSONAL";
+  if (sku.startsWith("O-")) return "LOGÍSTICA";
+
+  if (category.includes("audio")) return "AUDIO";
+  if (category.includes("video")) return "VIDEO";
+  if (category.includes("ilumin")) return "ILUMINACIÓN";
+  if (category.includes("escen")) return "ESCENOGRAFÍA";
+  if (category.includes("comunic")) return "COMUNICACIÓN";
+  if (category.includes("rigging")) return "RIGGING";
+  if (category.includes("energ")) return "ENERGÍA";
+  if (category.includes("personal")) return "PERSONAL";
+  if (category.includes("flete") || category.includes("viático") || category.includes("viatico") || category.includes("hosped")) return "LOGÍSTICA";
+
+  return String(line.category || "OTROS").trim().toUpperCase();
+};
+
+const isPdfPackageLine = (line) => {
+  const category = String(line.category || "").toLowerCase();
+  const name = String(line.name || "").toLowerCase();
+
+  return category.includes("paquete") || name.includes("paquete");
+};
+
 const sortedLines = [...calc.lines].sort((a, b) => {
+  const sa = pdfSectionFromLine(a);
+  const sb = pdfSectionFromLine(b);
+
+  const sectionDiff = (pdfSectionOrder[sa] || pdfSectionOrder.OTROS) - (pdfSectionOrder[sb] || pdfSectionOrder.OTROS);
+  if (sectionDiff !== 0) return sectionDiff;
+
+  const packageDiff = Number(isPdfPackageLine(b)) - Number(isPdfPackageLine(a));
+  if (packageDiff !== 0) return packageDiff;
+
   const ga = Number(a.sortGroup || 999);
   const gb = Number(b.sortGroup || 999);
-
   if (ga !== gb) return ga - gb;
 
   const oa = Number(a.sortOrder || 999);
   const ob = Number(b.sortOrder || 999);
-
   if (oa !== ob) return oa - ob;
 
   return String(a.name || "").localeCompare(String(b.name || ""));
 });
 
 let currentCategory = null;
+let hasSpecialRateNote = false;
 
     for (const l of sortedLines){
-      const categoryKey = String(l.category || "").trim().toLowerCase();
+      const categoryKey = pdfSectionFromLine(l).toLowerCase();
 
 if (categoryKey !== currentCategory) {
 
   currentCategory = categoryKey;
 
-  const categoryTitle = String(l.category || "")
-  .trim()
-  .toUpperCase();
+  const categoryTitle = pdfSectionFromLine(l);
 
   if (y + 24 > doc.page.height - 180) {
     doc.addPage();
@@ -649,29 +704,67 @@ if (categoryKey !== currentCategory) {
       const lineName = String(l.name || "");
       const lineDescription = String(l.description || "").trim();
 
-      const descText =
+      const skuLine = String(l.sku || "").trim().toUpperCase();
+      const isEscenografiaLine = skuLine.startsWith("D-") || skuLine.startsWith("DE-");
+
+      const descTextBase =
         isPackageLine && lineDescription
           ? `${lineName}\n${lineDescription}`
           : lineName;
 
-      const hSku  = doc.heightOfString(String(l.sku || ""), { width: skuW });
+      const showSpecialRate =
+        isEscenografiaLine &&
+        Number(l.days || 1) > 1;
+
+      if (showSpecialRate) hasSpecialRateNote = true;
+
+      const descText = descTextBase;
+      const skuText = `${String(l.sku || "")}${showSpecialRate ? "*" : ""}`;
+
+      const unitPriceText = isEscenografiaLine ? "" : peso(l.dailyPrice);
+
+      const hSku  = doc.heightOfString(skuText, { width: skuW });
       const hDesc = doc.heightOfString(descText, { width: descW });
       const hCant = doc.heightOfString(String(l.qty), { width: cantW });
       const hDias = doc.heightOfString(String(l.days), { width: diasW });
-      const hPU   = doc.heightOfString(peso(l.dailyPrice), { width: puW });
-      const hTot  = doc.heightOfString(peso(l.subtotal), { width: totW });
+      const hPU   = doc.heightOfString(unitPriceText, { width: puW });
+      const lineDisplayTotal = isEscenografiaLine
+        ? Number(l.subtotal || 0) - Number(l.autoDiscount || 0)
+        : Number(l.subtotal || 0);
+
+      const hTot  = doc.heightOfString(peso(lineDisplayTotal), { width: totW });
       const rowH  = Math.max(doc.currentLineHeight(), hSku, hDesc, hCant, hDias, hPU, hTot) + 2;
 
       if (y + rowH > doc.page.height - 180){ doc.addPage(); y = doc.y; }
 
-      doc.text(String(l.sku || ""), xSku, y, { width: skuW });
+      doc.text(skuText, xSku, y, { width: skuW });
       doc.text(descText, xDesc, y, { width: descW });
       doc.text(String(l.qty), xCant, y, { width: cantW, align: "right" });
       doc.text(String(l.days), xDias, y, { width: diasW, align: "right" });
-      doc.text(peso(l.dailyPrice), xPU, y, { width: puW, align: "right" });
-      doc.text(peso(l.subtotal), xTot, y, { width: totW, align: "right" });
+      doc.text(unitPriceText, xPU, y, { width: puW, align: "right" });
+      doc.text(peso(lineDisplayTotal), xTot, y, { width: totW, align: "right" });
 
       y += rowH;
+    }
+
+    if (hasSpecialRateNote) {
+      y += 6;
+
+      const specialRateNote = "* Los precios marcados incluyen tarifa especial aplicable por duración del evento.";
+      const noteH = doc.heightOfString(specialRateNote, { width: contentW });
+
+      if (y + noteH > doc.page.height - 180) {
+        doc.addPage();
+        y = doc.y;
+      }
+
+      doc
+        .fontSize(8)
+        .fillColor("#555555")
+        .text(specialRateNote, startX, y, { width: contentW });
+
+      doc.fillColor("black");
+      y += noteH + 8;
     }
 
     y += 10;
@@ -683,9 +776,24 @@ if (categoryKey !== currentCategory) {
       doc.text(peso(val), valueX, y, { width: valueW, align:"right" });
       y += bold ? 18 : 16;
     };
-    if ((calc.discount ?? 0) > 0) row("Descuento de renta:", -calc.discount);
+    const subtotalAV = Number(calc.subtotalAV || 0);
+    const subtotalEscenografia = Number(calc.subtotalEscenografia || 0);
+    const subtotalGeneral = subtotalAV + subtotalEscenografia;
+    const descuentoAV = Number(calc.autoDiscountAV || 0);
+    const subtotalNeto = subtotalGeneral - descuentoAV + Number(calc.deliveryFee || 0);
+
+    if (subtotalAV > 0) row("Subtotal Producción:", subtotalAV);
+    if (subtotalEscenografia > 0) row("Subtotal Escenografía:", subtotalEscenografia);
+
+    row("Subtotal:", subtotalGeneral);
+
+    if (descuentoAV > 0) row("Descuentos:", -descuentoAV);
     if ((calc.deliveryFee ?? 0) > 0) row("Flete:", calc.deliveryFee);
-    row("Subtotal:", calc.subtotal);
+
+    if (descuentoAV > 0 || (calc.deliveryFee ?? 0) > 0) {
+      row("Subtotal Neto:", subtotalNeto);
+    }
+
     row(`IVA (${Math.round(IVA_RATE*100)}%):`, calc.iva);
     row("Total:", calc.total, true);
 
@@ -816,16 +924,55 @@ function buildLines(items){
 }
 
 function computeTotals({ items, discountRate=0, discountFixed=0, discountApplyTo="discountable", deliveryFee=0 }){
+  const DE_ESCENOGRAFIA_FACTORS = {
+    1: 1,
+    2: 0.95 / 0.75,
+    3: 1.20 / 0.75
+  };
+
   const lines = items.map(it=>{
-    const subtotal = it.dailyPrice * it.qty * it.days;
+    const sku = String(it.sku || "").trim().toUpperCase();
+    const days = Number(it.days || 1);
+    const isEscenografia = sku.startsWith("DE-");
+    const isEscenografiaEspecial = sku.startsWith("DE-");
+
+    if (isEscenografiaEspecial && days > 3) {
+      const err = new Error(`El paquete ${sku} requiere cotización personalizada para eventos de más de 3 días.`);
+      err.statusCode = 400;
+      throw err;
+    }
+
+    const factorDE = isEscenografiaEspecial
+      ? (DE_ESCENOGRAFIA_FACTORS[days] || 1)
+      : null;
+
+    const subtotal = isEscenografiaEspecial
+      ? it.dailyPrice * it.qty * factorDE
+      : it.dailyPrice * it.qty * it.days;
+
     const deposit = (it.depositRate||0) * subtotal;
-    const excluded = isExcludedFromDiscount(it) || it.discountable === false;
+    const excluded = isExcludedFromDiscount(it) || it.discountable === false || isEscenografiaEspecial;
     const dr = excluded ? 0 : daysDiscountRate(it.days);
     const autoDiscount = subtotal * dr;
-    return {...it, subtotal, deposit, autoDiscount, autoRate: dr, excluded};
+
+    return {...it, subtotal, deposit, autoDiscount, autoRate: dr, excluded, isEscenografia};
   });
 
   const merchandise = lines.reduce((a,l)=>a+l.subtotal,0);
+  const isEscenografiaVisual = (l) => {
+    const sku = String(l.sku || "").trim().toUpperCase();
+    return sku.startsWith("D-") || sku.startsWith("DE-");
+  };
+
+  const subtotalEscenografia = lines
+    .filter(isEscenografiaVisual)
+    .reduce((a,l)=>a+l.subtotal-Number(l.autoDiscount||0),0);
+  const subtotalAV = lines
+    .filter(l => !isEscenografiaVisual(l))
+    .reduce((a,l)=>a+l.subtotal,0);
+  const autoDiscountAV = lines
+    .filter(l => !isEscenografiaVisual(l))
+    .reduce((a,l)=>a+(l.autoDiscount||0),0);
   const autoDiscountTotal = lines.reduce((a,l)=>a+(l.autoDiscount||0),0);
 
   const eligibleBase = (discountApplyTo==="all")
@@ -848,7 +995,10 @@ function computeTotals({ items, discountRate=0, discountFixed=0, discountApplyTo
     lines, merchandise,
     discount,
     discountBreakdown: { autoDiscountTotal, extraDiscount, discountRate, discountApplyTo },
-    deliveryFee, subtotal, iva, total, depositTotal, ivaRate: IVA_RATE
+    deliveryFee, subtotal, iva, total, depositTotal, ivaRate: IVA_RATE,
+    subtotalAV,
+    subtotalEscenografia,
+    autoDiscountAV
   };
 }
 
@@ -1166,13 +1316,22 @@ app.post("/quotes", quotesLimiter, async (req,res)=>{
   const { lines, missing } = buildLines(data.items);
   if (missing.length) return res.status(400).json({ error: `Productos no encontrados: ${missing.join(", ")}` });
 
-  const calc = computeTotals({
-    items: lines,
-    discountRate: data.discountRate || 0,
-    discountFixed: data.discountFixed || 0,
-    discountApplyTo: data.discountApplyTo || "discountable",
-    deliveryFee: data.deliveryFee || 0
-  });
+  let calc;
+  try {
+    calc = computeTotals({
+      items: lines,
+      discountRate: data.discountRate || 0,
+      discountFixed: data.discountFixed || 0,
+      discountApplyTo: data.discountApplyTo || "discountable",
+      deliveryFee: data.deliveryFee || 0
+    });
+  } catch (err) {
+    console.warn("VALIDACIÓN /quotes ->", err.message);
+
+    return res.status(err.statusCode || 400).json({
+      error: err.message || "No fue posible calcular la cotización."
+    });
+  }
 
   const quoteId = buildQuoteId(data.client);
   const pdfName = `${quoteId}.pdf`;

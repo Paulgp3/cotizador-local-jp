@@ -1596,7 +1596,24 @@
           body: text
         });
 
-        alert(`No se pudo enviar la cotización.\nHTTP ${res.status} ${res.statusText}\n${text.slice(0, 400)}`);
+        let errorMessage = text;
+
+        try {
+          const parsedError = JSON.parse(text);
+          errorMessage = parsedError.error || errorMessage;
+        } catch (_) {}
+
+        const customEscenografiaMessage =
+          'Los elementos de escenografía (SKU: DE-001 al DE-007) pueden cotizarse automáticamente hasta por 3 días de evento.\n\n' +
+          'Para eventos de mayor duración se requiere la validación de un especialista de Medio Angular debido a consideraciones de montaje y logística.\n\n' +
+          'Ajusta la duración a 3 días o menos para continuar con la cotización automática, o comunícate vía WhatsApp o al teléfono +52 56 5453 2124 para recibir una propuesta personalizada.';
+
+        if (String(errorMessage || '').includes('requiere cotización personalizada')) {
+          alert(customEscenografiaMessage);
+        } else {
+          alert(errorMessage || 'No se pudo enviar la cotización. Intenta más tarde.');
+        }
+
         return;
       }
 
